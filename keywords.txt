@@ -1,0 +1,7 @@
+cspell
+tailwindcss
+commitlint
+zustand
+Testsjest
+Parens
+roboto

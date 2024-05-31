@@ -9,6 +9,5 @@
       "path": "./keywords.txt"
     }
   ],
-  "dictionaries": ["keyword"],
-  "words": ["supabase", "daisyui"]
+  "dictionaries": ["keywords"]
 }

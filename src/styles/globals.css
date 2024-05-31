@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.no-scroll {
+  overflow-y: hidden;
+}
+
+.postNav {
+  .swiper-pagination {
+    bottom: 15% !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: white;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: white !important;
+    border: 1px solid white !important;
+    border-radius: 50% !important;
+    height: fit-content !important;
+    padding: 7px;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 10px !important;
+  }
+
+  .swiper-button-disabled {
+    opacity: 0.75 !important;
+    display: none;
+  }
+}
+
+.swiper-wrapper {
+  gap: 1rem;
+}

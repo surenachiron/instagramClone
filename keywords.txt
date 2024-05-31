@@ -5,3 +5,7 @@ zustand
 Testsjest
 Parens
 roboto
+swiper
+commitlint
+daisyui
+supabase

@@ -12,6 +12,7 @@ import 'swiper/css/effect-coverflow';
 import { FaRegCirclePause } from 'react-icons/fa6';
 import StoryDetail from './StoryDetail';
 import StoryProgress from './StoryProgress';
+import { useEffect } from 'react';
 
 // type Props = { data: { username: string; stories: { media: string }[] }[] };
 export type DataStoriesType = {
@@ -27,7 +28,9 @@ export type DataStoriesType = {
 const ShowStoriesMap = ({ data }: DataStoriesType) => {
   const { initialStory, showStories } = useStoriesStore();
 
-  document.body.className = showStories && 'no-scroll';
+  useEffect(() => {
+    document.body.className = showStories && 'no-scroll';
+  }, [showStories]);
 
   return (
     <>

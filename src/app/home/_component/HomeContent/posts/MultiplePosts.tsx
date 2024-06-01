@@ -29,12 +29,12 @@ const MultiplePosts = ({ post }: TMultiPosts) => {
       pagination={{
         dynamicBullets: true,
       }}
-      className="postNav z-0 rounded-lg"
+      className="postNav z-0 rounded-lg w-full h-full"
       modules={[EffectCreative, Navigation, Pagination]}
     >
       {post.map((data) => (
         <SwiperSlide key={data.link} className={'rounded-lg'}>
-          <Image src={data.image} alt={data.link} width={500} height={300} className="w-full" />
+          <Image src={data.image} alt={data.link} width={500} height={300} className="w-full h-full" />
         </SwiperSlide>
       ))}
     </Swiper>

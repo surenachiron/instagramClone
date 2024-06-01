@@ -5,7 +5,12 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: {
+        DEFAULT: '.5rem',
+        sm: '.5rem',
+        md: '1rem',
+        lg: '2rem',
+      },
     },
     extend: {
       fontFamily: {

@@ -1,21 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Button from '@components/Button';
 import { CiCirclePlus } from 'react-icons/ci';
 
 const AddStory = () => {
+  const myModal = useRef<HTMLDialogElement>(null);
+
   return (
     <div className="z-50">
-      <Button
-        classes="pt-2 pl-3 absolute right-0 bottom-0"
-        onClick={() => document.getElementById('my_modal_3').showModal()}
-      >
+      <Button classes="pt-2 pl-3 absolute right-0 bottom-0" onClick={() => myModal.current?.showModal()}>
         <div className="bg-blue rounded-full p-[.3rem]">
           <CiCirclePlus className="text-white text-md" />
         </div>
       </Button>
-      <dialog id="my_modal_3" className="modal">
+      <dialog id="my_modal_3" className="modal" ref={myModal}>
         <div className="modal-box bg-white cursor-auto">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>

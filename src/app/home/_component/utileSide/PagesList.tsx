@@ -8,10 +8,10 @@ import { MdOutlineExplore } from 'react-icons/md';
 import { RiMovie2Line } from 'react-icons/ri';
 
 export const PagesDetail: { name: string; link: string; icon: React.ReactNode }[] = [
-  { name: 'Home', link: '/home', icon: <GoHomeFill className="text-3xl" /> },
-  { name: 'Explore', link: '/explore', icon: <MdOutlineExplore className="text-3xl" /> },
-  { name: 'Reels', link: '/reels', icon: <RiMovie2Line className="text-3xl" /> },
-  { name: 'Profile', link: '/profile', icon: <IoPersonCircle className="text-3xl" /> },
+  { name: 'Home', link: '/home', icon: <GoHomeFill className="text-3xl tablet:text-2xl" /> },
+  { name: 'Explore', link: '/explore', icon: <MdOutlineExplore className="text-3xl tablet:text-2xl" /> },
+  { name: 'Reels', link: '/reels', icon: <RiMovie2Line className="text-3xl tablet:text-2xl" /> },
+  { name: 'Profile', link: '/profile', icon: <IoPersonCircle className="text-3xl tablet:text-2xl" /> },
 ];
 
 const PagesList = () => {

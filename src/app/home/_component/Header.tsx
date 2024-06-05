@@ -4,6 +4,7 @@ import Button from '@components/Button';
 import { LuMessageCircle } from 'react-icons/lu';
 import { FaHeart } from 'react-icons/fa6';
 import SearchBox from '@components/SearchBox';
+import { PiSignOutFill } from 'react-icons/pi';
 
 const HomeHeader = () => {
   return (
@@ -24,6 +25,9 @@ const HomeHeader = () => {
           <Link href={'/home'}>
             <FaHeart color="red" className="text-md tablet:text-lg" />
           </Link>
+        </Button>
+        <Button classes="bg-grayLight rounded-full h-fit p-2">
+          <PiSignOutFill className="text-black text-md tablet:text-lg" />
         </Button>
       </div>
     </div>

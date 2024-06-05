@@ -18,7 +18,9 @@ const roboto = Roboto({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${roboto.variable} bg-grayBack`}>
-      <body className="font-roboto">{children}</body>
+      <body>
+        <div className="font-roboto">{children}</div>
+      </body>
     </html>
   );
 }

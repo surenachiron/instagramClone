@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import NavigateMobile from './home/_component/utileSide/NavigateMobile';
-import UtileSide from './home/_component/utileSide';
 import '@styles/globals.css';
 
 export const metadata: Metadata = {
@@ -20,15 +18,7 @@ const roboto = Roboto({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${roboto.variable} bg-grayBack`}>
-      <body>
-        <div className="font-roboto grid gap-3 grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 container py-5">
-          <UtileSide />
-          <div className="col-span-1 tablet:col-span-3">
-            {children}
-            <NavigateMobile />
-          </div>
-        </div>
-      </body>
+      <body className="font-roboto">{children}</body>
     </html>
   );
 }

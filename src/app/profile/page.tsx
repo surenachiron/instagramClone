@@ -1,10 +1,12 @@
 import ProfileInformation from './_component/ProfileInformation';
-import Box from '@components/Box';
-import { createClient } from '@/hooks/supabase/server';
+import Box from '@/components/Box';
+import { createServerSupabaseClient } from '@/supabase/utils/server';
 
 const ProfilePage = async () => {
-  const supabase = createClient();
-  const { data, error } = await supabase.from('profile').select();
+  const supabase = createServerSupabaseClient();
+  const { data, error } = await supabase.from('profiles').select('*');
+
+  console.log(data, error);
 
   return (
     <Box classes="h-fit">

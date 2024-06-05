@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import PreviewStories from './HomeContent/story/PreviewStories';
-import Button from '@components/Button';
+import Button from '@/components/Button';
 import { LuMessageCircle } from 'react-icons/lu';
 import { FaHeart } from 'react-icons/fa6';
-import SearchBox from '@components/SearchBox';
 import { PiSignOutFill } from 'react-icons/pi';
+import SearchBox from '@/components/SearchBox';
 
 const HomeHeader = () => {
   return (

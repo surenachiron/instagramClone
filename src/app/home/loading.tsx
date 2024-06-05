@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import Button from '@components/Button';
-import SearchBox from '@components/SearchBox';
-import Skeleton from '@components/Skeleton';
-import Box from '@components/Box';
+import Button from '@/components/Button';
+import SearchBox from '@/components/SearchBox';
+import Skeleton from '@/components/Skeleton';
+import Box from '@/components/Box';
 
 import { FaHeart } from 'react-icons/fa6';
 import { MdOutlineMoreHoriz } from 'react-icons/md';

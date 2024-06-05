@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import { DataStoriesType } from '../story/ShowStoriesMap';
-import textReducer from '@hooks/textReducer';
-import Button from '@components/Button';
+import textReducer from '@/hooks/textReducer';
+import Button from '@/components/Button';
 import { MdOutlineMoreHoriz } from 'react-icons/md';
 import { LuMessageCircle } from 'react-icons/lu';
 import { CiBookmark, CiHeart } from 'react-icons/ci';

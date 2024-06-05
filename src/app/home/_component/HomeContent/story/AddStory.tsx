@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Button from '@components/Button';
+import Button from '@/components/Button';
 import { CiCirclePlus } from 'react-icons/ci';
 
 const AddStory = () => {

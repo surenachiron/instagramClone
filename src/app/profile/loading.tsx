@@ -1,6 +1,6 @@
-import Box from '@components/Box';
-import Skeleton from '@components/Skeleton';
-import Button from '@components/Button';
+import Box from '@/components/Box';
+import Skeleton from '@/components/Skeleton';
+import Button from '@/components/Button';
 
 const ProfileSkeleton = () => {
   return (

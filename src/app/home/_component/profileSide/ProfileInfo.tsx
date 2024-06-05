@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import Box from '@components/Box';
-import Button from '@components/Button';
-import GradientContainer from '@components/GradientContainer';
+import Box from '@/components/Box';
+import Button from '@/components/Button';
+import GradientContainer from '@/components/GradientContainer';
 
 type Props = { buttons: { primaryText: string; secondaryText?: string; bgColor?: string }[] };
 

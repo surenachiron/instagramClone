@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from '@components/Button';
-import { useStoriesAction } from '@store/stories';
+import Button from '@/components/Button';
+import { useStoriesAction } from '@/store/stories';
 import { GrClose } from 'react-icons/gr';
 
 const StoryDetail = () => {

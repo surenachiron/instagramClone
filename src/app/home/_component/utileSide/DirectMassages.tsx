@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import Button from '@components/Button';
-import textReducer from '@hooks/textReducer';
-import Box from '@components/Box';
+import Button from '@/components/Button';
+import textReducer from '@/hooks/textReducer';
+import Box from '@/components/Box';
 import { AiOutlineDash } from 'react-icons/ai';
 
 const directs: { pic: string; username: string; massage: string; link: string }[] = [

@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { GrClose } from 'react-icons/gr';
-import Button from '@components/Button';
-import { useStoriesStore } from '@store/stories';
+import Button from '@/components/Button';
+import { useStoriesStore } from '@/store/stories';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
 import 'swiper/css';

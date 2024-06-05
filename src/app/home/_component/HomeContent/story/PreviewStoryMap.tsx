@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import GradientContainer from '@components/GradientContainer';
+import GradientContainer from '@/components/GradientContainer';
 import { DataStoriesType } from './ShowStoriesMap';
-import { useStoriesAction, useStoriesStore } from '@store/stories';
+import { useStoriesAction, useStoriesStore } from '@/store/stories';
 import AddStory from './AddStory';
 
 import 'swiper/css/pagination';

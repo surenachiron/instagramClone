@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import Box from '@components/Box';
-import Button from '@components/Button';
-import GradientContainer from '@components/GradientContainer';
+import Box from '@/components/Box';
+import Button from '@/components/Button';
+import GradientContainer from '@/components/GradientContainer';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 

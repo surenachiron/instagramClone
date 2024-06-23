@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
-  ignorePatterns: ['dist', '.husky', '.next'],
+  ignorePatterns: ['dist', '.husky', '.next', '/src/supabase/models/database.ts'],
   parser: '@typescript-eslint/parser',
   plugins: ['prettier', '@typescript-eslint'],
   extends: [

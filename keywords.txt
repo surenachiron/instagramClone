@@ -7,6 +7,8 @@ daisyui
 hahha
 hookform
 Karimi
+linebreak
+pading
 Parens
 parsa
 roboto
@@ -15,5 +17,7 @@ surenachiron
 swiper
 tailwindcss
 Testsjest
+toastify
+upsert
 Voluptatibus
 zustand

@@ -5,6 +5,7 @@ Coverflow
 cspell
 daisyui
 hahha
+hookform
 Karimi
 Parens
 parsa

@@ -53,7 +53,6 @@ const SignUpForm = () => {
             placeholder="Enter your username"
             register={register}
             error={errors.userName}
-            autoComplete="username"
           />
           <FormInput
             type="email"
@@ -61,6 +60,7 @@ const SignUpForm = () => {
             placeholder="Enter your email address"
             register={register}
             error={errors.email}
+            autoComplete="username"
           />
           <FormInput
             type="password"

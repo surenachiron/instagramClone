@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import FormInput from '@/components/FormInput';
 import { RegistrationImageAvatarSchema, ImageAvatarData } from '@/types/storage/avatarImage';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SetAvatar } from '@/supabase/useAvatar';
+import { setAvatar } from '@/supabase/useAvatar';
 import Modal from '@/components/Modal';
 
 const AddStoryModal = () => {
@@ -28,7 +28,7 @@ const AddStoryModal = () => {
     if (file) {
       const formData = new FormData();
       formData.append('imageAvatar', file);
-      await SetAvatar(formData);
+      await setAvatar(formData);
       reset();
       localStorage.setItem('avatar', localStorage.getItem('avatar')!);
     }

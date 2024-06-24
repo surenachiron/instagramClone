@@ -6,7 +6,7 @@ const ProfileSkeleton = () => {
   return (
     <Box classes="rounded-md w-full relative py-4 gap-2" backGround="bg-grayBack">
       <Box
-        classes="relative p-3 desktop:p-6 justify-center items-start w-full gap-4 gap-x-8"
+        classes="relative p-3 desktop:p-6 justify-start items-center w-full gap-4 gap-x-8"
         flexDirection="flex-col desktop:flex-row"
         align="items-center desktop:items-start"
       >

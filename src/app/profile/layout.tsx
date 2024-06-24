@@ -2,9 +2,10 @@ import { Metadata } from 'next';
 import BackPage from '@/components/BackPage';
 import UtileSide from '@/app/home/_component/utileSide';
 import NavigateMobile from '@/app/home/_component/utileSide/NavigateMobile';
+import LogOutBut from '@/components/LogOutBut';
 
 export const metadata: Metadata = {
-  title: 'profile',
+  title: 'Profile',
   description: 'a clone of Instagram',
 };
 
@@ -15,7 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <div className="col-span-1 tablet:col-span-3">
         <div className="bg-grayBack">
           <div className="text-start">
-            <BackPage className="bg-white" />
+            <div className="flex justify-between items-center">
+              <BackPage className="bg-white" />
+              <LogOutBut />
+            </div>
           </div>
           {children}
         </div>

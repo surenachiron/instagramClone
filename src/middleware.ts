@@ -1,8 +1,10 @@
 import { updateSession } from '@/supabase/utils/middleware';
 import { type NextRequest, NextResponse } from 'next/server';
+import { createServerSupabaseClient } from './supabase/utils/server';
 
 export async function middleware(request: NextRequest) {
-  const currentUser = request.cookies.has('sb-rawrrhqbuqlxiqvuhbmc-auth-token');
+  const supabase = createServerSupabaseClient();
+  const { data, error } = await supabase.auth.getSession();
   const user_email = request.cookies.has('user_email');
 
   const { pathname } = request.nextUrl;
@@ -24,19 +26,19 @@ export async function middleware(request: NextRequest) {
     paths.reset_password,
   ];
 
-  if (user_email && !currentUser && ![paths.email_verification].includes(pathname)) {
+  if (user_email && !data.session?.access_token && ![paths.email_verification].includes(pathname)) {
     return NextResponse.redirect(new URL(paths.email_verification, request.url));
   }
 
   if (
     !user_email &&
-    !currentUser &&
+    !data.session?.access_token &&
     ![paths.login, paths.sign_up, paths.forgot_password, paths.sent].includes(pathname)
   ) {
     return NextResponse.redirect(new URL(paths.login, request.url));
   }
 
-  if (currentUser && [...authPrivate].includes(pathname)) {
+  if (data.session?.access_token && [...authPrivate].includes(pathname)) {
     const data = await updateSession(request);
     if (!data) return NextResponse.redirect(new URL(paths.login, request.url));
     return NextResponse.redirect(new URL(paths.home, request.url));

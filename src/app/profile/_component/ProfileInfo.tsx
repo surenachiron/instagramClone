@@ -6,60 +6,60 @@ import Button from '@/components/Button';
 import GradientContainer from '@/components/GradientContainer';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+import UtilProfileBut from './UtilProfileBut';
+import UploadAvatar from './UploadAvatar';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
+import { useEffect } from 'react';
+import useFilePath from '@/hooks/useFilePath';
 
 type Props = {
-  profile: { name: string; description: string };
+  profile: { name: string; username: string; avatar: string };
   buttons: { primaryText: string; secondaryText?: string; bgColor?: string; colorText?: string }[];
 };
 
-const ProfileInformation = ({ profile, buttons }: Props) => {
+const ProfileInfo = ({ profile, buttons }: Props) => {
+  const fileName = useFilePath(profile.avatar, 'avatars/');
+  useEffect(() => {
+    localStorage.setItem('avatar', fileName);
+  }, []);
+
   return (
     <Box classes="rounded-md w-full relative py-4 gap-2" backGround="bg-grayBack">
       <Box
-        classes="relative p-3 desktop:p-6 justify-center items-start w-full gap-4 gap-x-8"
+        classes="relative p-3 desktop:p-6 justify-start items-center w-full gap-4 gap-x-8"
         flexDirection="flex-col desktop:flex-row"
-        align="items-center desktop:items-start"
+        align="items-center"
       >
         <div className="absolute desktop:static top-[-30px]">
-          <GradientContainer classes="p-0.5 w-[80px] desktop:w-[150px]" childClasses="p-0.5">
-            <Image src={'/anonymous.png'} alt="test image" width={90} height={90} className="rounded-full w-full" />
+          <GradientContainer
+            classes="p-0.5 w-[80px] desktop:w-[150px] h-[80px] desktop:h-[150px]"
+            childClasses="p-0.5 w-full h-full relative"
+            borderGradient={true}
+          >
+            <div className="absolute w-full h-full p-[2px] left-0 bottom-0">
+              <Image
+                src={profile.avatar ? profile.avatar : '/anonymous.png'}
+                alt={`avatar of ${profile.name}`}
+                width={150}
+                height={150}
+                className="rounded-full w-full h-full object-cover"
+              />
+              <UploadAvatar />
+            </div>
           </GradientContainer>
         </div>
         <div className="flex flex-col gap-4">
           <div className="text-center desktop:text-start mt-10 desktop:mt-0">
-            <h3 className="text-xl font-bold text-black">{profile.name}</h3>
-            <p className="text-sm">{profile.description}</p>
-            <p className="text-sm w-full desktop:w-[326px] h-16 desktop:h-20 mt-2 overflow-hidden text-ellipsis text-start">
-              Lorem ipsum dolor sit. Lorem ipsum dolor sit. Lorem ipsum dolor sit. Lorem ipsum dolor sit. Lorem ipsum
-              dolor sit.Lorem ipsum dolor sit .Lorem ipsum dolor sit .Lorem ipsum dolor sit .Lorem ipsum dolor sit
-              .Lorem ipsum dolor sit
-            </p>
+            <h3 className="text-2xl font-bold text-black">{profile.name}</h3>
+            <p className="text-sm">{profile.username}</p>
           </div>
           <div className="grid grid-cols-3 justify-start gap-2">
-            {buttons.map((but) => (
-              <Button
-                key={but.primaryText}
-                classes={`col-span-1 ${but?.bgColor ? but.bgColor : 'bg-grayLight'} text-black px-3 py-1 rounded-lg w-full`}
-              >
-                {but.secondaryText ? (
-                  <div className="flex flex-col items-center justify-center">
-                    <h4 className="text-md font-bold">{but.primaryText}</h4>
-                    <p className="text-sm text-[#a1a1a1]">{but.secondaryText}</p>
-                  </div>
-                ) : (
-                  <p className={`text-sm ${but?.colorText ? but.colorText : 'text-[#a1a1a1] py-1'}`}>
-                    {but.primaryText}
-                  </p>
-                )}
-              </Button>
-            ))}
+            <UtilProfileBut />
           </div>
         </div>
       </Box>
-
       <div className="flex flex-col gap-2 my-4 w-full">
         <p className="text-sm font-bold text-grayMiddle">Highlights - 8</p>
         <Swiper
@@ -104,4 +104,4 @@ const ProfileInformation = ({ profile, buttons }: Props) => {
   );
 };
 
-export default ProfileInformation;
+export default ProfileInfo;

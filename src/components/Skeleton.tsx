@@ -1,6 +1,6 @@
 'use client';
 
-import useMedia from '@hooks/useMedia';
+import useMedia from '@/hooks/useMedia';
 
 type ResponsiveNumber = number | { [key: string]: number };
 
@@ -26,6 +26,8 @@ const Skeleton = ({ parentClass, classes = 'w-full', row = 1, column = 1, radius
   const rows = getResponsiveValue(row);
   const columns = getResponsiveValue(column);
 
+  // if you pass <column> more than 1 then you create number(pass) column of rows(pass number)
+  // but if you didn't pass it it's just a one column of rows(pass number)
   return (
     <>
       {Array.from({ length: columns }, (_, colIndex) => (

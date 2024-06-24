@@ -32,7 +32,7 @@ export default function HomeLoading() {
               </Link>
             </Button>
             <div className="desktop:hidden order-2 w-[50%]">
-              <SearchBox bg="Light" padH={1} />
+              <SearchBox bg="Light" padingH={1} />
             </div>
             <Button classes="bg-white rounded-full h-fit p-2 order-1 desktop:order-3">
               <Link href={'/home'}>

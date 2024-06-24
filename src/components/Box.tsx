@@ -12,7 +12,7 @@ const Box = ({
   classes,
   backGround = 'bg-white',
   flexDirection = 'flex-col',
-  align = ' items-center',
+  align = 'items-center',
   children,
 }: Props) => {
   return <div className={`flex ${flexDirection} ${align} rounded-lg ${backGround} ${classes}`}>{children}</div>;

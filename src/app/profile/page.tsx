@@ -1,29 +1,27 @@
-import ProfileInformation from './_component/ProfileInformation';
+import ProfileInfo from './_component/ProfileInfo';
 import Box from '@/components/Box';
-import { createServerSupabaseClient } from '@/supabase/utils/server';
+import { getUser } from '@/supabase/getUser';
+
+export const revalidate = 30;
 
 const ProfilePage = async () => {
-  const supabase = createServerSupabaseClient();
-  const { data, error } = await supabase.from('profiles').select('*');
-
-  console.log(data, error);
+  const userProfile = await getUser();
 
   return (
     <Box classes="h-fit">
-      {data?.map((pro) => (
-        <ProfileInformation
-          key={pro.id}
-          profile={{ name: pro.name, description: pro.description }}
+      {userProfile ? (
+        <ProfileInfo
+          key={userProfile.id}
+          profile={{ name: userProfile.fullName, username: userProfile.username, avatar: userProfile.avatar }}
           buttons={[
-            { primaryText: '29', secondaryText: 'Posts' },
-            { primaryText: '13 960', secondaryText: 'Followers' },
-            { primaryText: '10 350', secondaryText: 'Following' },
-            { primaryText: 'Follow', bgColor: 'bg-blue', colorText: 'text-white' },
-            { primaryText: 'Message' },
-            { primaryText: 'Share profile' },
+            { primaryText: '0', secondaryText: 'Posts' },
+            { primaryText: '0', secondaryText: 'Followers' },
+            { primaryText: '0', secondaryText: 'Following' },
           ]}
         />
-      ))}
+      ) : (
+        <div className="w-full h-full flex justify-center items-center">something went wrong, please try again.</div>
+      )}
     </Box>
   );
 };

@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 
 // type Props = { data: { username: string; stories: { media: string }[] }[] };
 export type DataStoriesType = {
-  data: {
+  data?: {
     albumId: number;
     id: number;
     title: string;
@@ -29,7 +29,7 @@ const ShowStoriesMap = ({ data }: DataStoriesType) => {
   const { initialStory, showStories } = useStoriesStore();
 
   useEffect(() => {
-    document.body.className = showStories && 'no-scroll';
+    document.body.className = showStories ? 'no-scroll' : '';
   }, [showStories]);
 
   return (
@@ -65,7 +65,7 @@ const ShowStoriesMap = ({ data }: DataStoriesType) => {
                 initialSlide={initialStory - 1}
                 className="h-full"
               >
-                {data.slice(0, 10).map((story) => (
+                {data?.slice(0, 10).map((story) => (
                   <SwiperSlide key={story.id} className="w-full tablet:w-3/4 desktop:w-2/6 h-full">
                     <div className="flex flex-col rounded-lg relative w-full h-full">
                       <StoryProgress />

@@ -12,7 +12,7 @@ const UtileSide = () => {
       <Box classes="gap-8 px-6 py-8">
         <div className="flex flex-col items-center w-full gap-5">
           <Image src={'typography.svg'} alt="instagram typography" width={100} height={35} className="w-32" />
-          <SearchBox bg="Back" padH={6} />
+          <SearchBox bg="Back" padingH={6} />
         </div>
         <PagesList />
         <div className="w-full">

@@ -22,7 +22,7 @@ const fakePosts: TMultiPosts = {
 const ShowPosts = ({ data }: DataStoriesType) => {
   return (
     <div className="relative flex flex-col gap-5">
-      {data.slice(0, 10).map((post, len) => (
+      {data?.slice(0, 10).map((post, len) => (
         <div className="relative justify-between rounded-lg w-full h-[90vh]" key={post.id}>
           {len === 0 ? (
             <MultiplePosts post={fakePosts.post} />

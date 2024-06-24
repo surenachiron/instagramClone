@@ -9,7 +9,7 @@ const ProfileInfo = ({ buttons }: Props) => {
   return (
     <Box classes="relative px-6 gap-2 py-8 rounded-md w-full">
       <div className="absolute top-[-45px]">
-        <GradientContainer classes="p-0.5" childClasses="p-0.5">
+        <GradientContainer classes="p-0.5" childClasses="p-0.5" borderGradient={true}>
           <Image src={'/anonymous.png'} alt="test image" width={70} height={70} className="rounded-full" />
         </GradientContainer>
       </div>

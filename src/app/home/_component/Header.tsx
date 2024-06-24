@@ -3,7 +3,6 @@ import PreviewStories from './HomeContent/story/PreviewStories';
 import Button from '@/components/Button';
 import { LuMessageCircle } from 'react-icons/lu';
 import { FaHeart } from 'react-icons/fa6';
-import { PiSignOutFill } from 'react-icons/pi';
 import SearchBox from '@/components/SearchBox';
 
 const HomeHeader = () => {
@@ -19,15 +18,12 @@ const HomeHeader = () => {
           </Link>
         </Button>
         <div className="desktop:hidden order-2 w-[50%]">
-          <SearchBox bg="Light" padH={1} />
+          <SearchBox bg="Light" padingH={1} />
         </div>
         <Button classes="bg-white rounded-full h-fit p-2 order-1 desktop:order-3">
           <Link href={'/home'}>
             <FaHeart color="red" className="text-md tablet:text-lg" />
           </Link>
-        </Button>
-        <Button classes="bg-grayLight rounded-full h-fit p-2">
-          <PiSignOutFill className="text-black text-md tablet:text-lg" />
         </Button>
       </div>
     </div>

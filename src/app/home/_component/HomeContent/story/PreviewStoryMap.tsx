@@ -8,17 +8,18 @@ import { Pagination } from 'swiper/modules';
 import GradientContainer from '@/components/GradientContainer';
 import { DataStoriesType } from './ShowStoriesMap';
 import { useStoriesAction, useStoriesStore } from '@/store/stories';
-import AddStory from './AddStory';
+import AddStoryModal from './AddStoryModal';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
+import UploadAvatar from '@/app/profile/_component/UploadAvatar';
 
 const PreviewStoryMap = ({ data }: DataStoriesType) => {
   const { changeShowStories, setInitialStory } = useStoriesAction();
   const { showStories } = useStoriesStore();
 
   useEffect(() => {
-    document.body.className = !showStories && '';
+    document.body.className = !showStories ? '' : '';
   }, []);
 
   function startShowingStory(id: number) {
@@ -35,21 +36,21 @@ const PreviewStoryMap = ({ data }: DataStoriesType) => {
       className="!px-3 mr-2 z-0 flex gap-2"
     >
       <SwiperSlide className="cursor-pointer w-20 h-20">
-        <GradientContainer classes="relative w-fit mb-1">
+        <GradientContainer classes="relative w-fit mb-1" borderGradient={true}>
           <Link href={'/home/stories'} className="flex items-center flex-col">
             <Image src={'/anonymous.png'} alt={`profile of `} width={50} height={50} className="rounded-full" />
           </Link>
-          <AddStory />
+          <UploadAvatar />
         </GradientContainer>
         <Link href={'/home/stories'} className="flex items-start flex-col mr-2">
           <p className="leading-5 text-xs overflow-hidden text-ellipsis">mohammad</p>
         </Link>
       </SwiperSlide>
 
-      {data.map((story) => (
+      {data?.map((story) => (
         <SwiperSlide key={story.id} onClick={() => startShowingStory(story.id)} className="cursor-pointer w-16 h-20">
           <Link href={'/home/stories'} className="flex items-center flex-col mr-0">
-            <GradientContainer classes="w-fit mb-1">
+            <GradientContainer classes="w-fit mb-1" borderGradient={true}>
               <Image
                 src={'/anonymous.png'}
                 alt={`profile of ${story.title}`}

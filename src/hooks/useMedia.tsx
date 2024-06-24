@@ -18,7 +18,7 @@ const useMedia = (query: string): boolean => {
     };
   }, [query]);
 
-  return matches;
+  return matches!;
 };
 
 export default useMedia;

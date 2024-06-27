@@ -1,11 +1,10 @@
-import { updateSession } from '@/supabase/utils/middleware';
 import { type NextRequest, NextResponse } from 'next/server';
-import { createServerSupabaseClient } from './supabase/utils/server';
+import { supabaseServer } from './supabase/utils/server';
 
 export async function middleware(request: NextRequest) {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const { data, error } = await supabase.auth.getSession();
-  const user_email = request.cookies.has('user_email');
+  const user_email = request.cookies.get('user_email')?.value;
 
   const { pathname } = request.nextUrl;
   const paths = {
@@ -33,14 +32,12 @@ export async function middleware(request: NextRequest) {
   if (
     !user_email &&
     !data.session?.access_token &&
-    ![paths.login, paths.sign_up, paths.forgot_password, paths.sent].includes(pathname)
+    ![paths.login, paths.sign_up, paths.forgot_password, paths.sent, paths.reset_password].includes(pathname)
   ) {
     return NextResponse.redirect(new URL(paths.login, request.url));
   }
 
   if (data.session?.access_token && [...authPrivate].includes(pathname)) {
-    const data = await updateSession(request);
-    if (!data) return NextResponse.redirect(new URL(paths.login, request.url));
     return NextResponse.redirect(new URL(paths.home, request.url));
   }
 }

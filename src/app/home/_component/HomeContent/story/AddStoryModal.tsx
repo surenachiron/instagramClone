@@ -9,7 +9,7 @@ import FormInput from '@/components/FormInput';
 import { RegistrationImageAvatarSchema, ImageAvatarData } from '@/types/storage/avatarImage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { setAvatar } from '@/supabase/useAvatar';
-import Modal from '@/components/Modal';
+import Modal from '@/components/Modals/Modal';
 
 const AddStoryModal = () => {
   const myModal = useRef<HTMLDialogElement>(null);
@@ -51,7 +51,7 @@ const AddStoryModal = () => {
             type="file"
             name="imageAvatar"
             register={register}
-            error={errors.imageAvatar}
+            error={errors.imageAvatar?.message}
             accept="image/png, image/jpeg, image/jpg"
           />
           <Button type="submit" classes="bg-blue text-white px-3 py-2 rounded-lg w-2/4" loading={isSubmitting}>

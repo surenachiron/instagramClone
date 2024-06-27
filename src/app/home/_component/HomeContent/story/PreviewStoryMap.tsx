@@ -12,7 +12,7 @@ import AddStoryModal from './AddStoryModal';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
-import UploadAvatar from '@/app/profile/_component/UploadAvatar';
+import UploadAvatar from '@/app/profile/[username]/_component/UploadAvatar';
 
 const PreviewStoryMap = ({ data }: DataStoriesType) => {
   const { changeShowStories, setInitialStory } = useStoriesAction();

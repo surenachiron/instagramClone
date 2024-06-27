@@ -1,9 +1,9 @@
 import { cache } from 'react';
-import { createServerSupabaseClient } from '@/supabase/utils/server';
 import { redirect } from 'next/navigation';
+import { supabaseServer } from './utils/server';
 
 export const getUser = cache(async () => {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
 
   const { data } = await supabase.auth.getUser();
   if (data.user == null) redirect('auth/login');

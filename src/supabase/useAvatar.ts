@@ -1,14 +1,14 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { createServerSupabaseClient } from './utils/server';
+import { supabaseServer } from './utils/server';
 import RandomPath from '@/hooks/RandomPath';
 
 export const setAvatar = async (formData: FormData) => {
   const file = formData.get('imageAvatar') as File;
   const oldAvatar = formData.get('oldAvatarUrl') as string;
   const filePath = RandomPath(file.name);
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
 
   const { error: userError } = await supabase.auth.getUser();
   if (userError) return redirect('/auth/login');
@@ -29,7 +29,7 @@ export const setAvatar = async (formData: FormData) => {
 };
 
 export const removeAvatar = async (oldAvatar: string) => {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const { error: userError } = await supabase.auth.getUser();
   if (userError) return redirect('/auth/login');
 

@@ -3,11 +3,11 @@
 import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { createServerSupabaseClient } from '@/supabase/utils/server';
+import { supabaseServer } from '@/supabase/utils/server';
 import { FormSingUpData, SignUpDataSchema } from '@/types/auth/signUpFormType';
 
 export async function signUp(userData: FormSingUpData) {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const cookieStore = cookies();
 
   const isDataValid = SignUpDataSchema.safeParse(userData);
@@ -37,6 +37,12 @@ export async function signUp(userData: FormSingUpData) {
         sameSite: 'strict',
         maxAge: 1800,
       });
+      cookieStore.set({
+        name: 'username',
+        value: signUPData.user?.user_metadata.user_name,
+        sameSite: 'strict',
+        maxAge: 31536000,
+      });
       revalidatePath('/auth/email-verification', 'page');
       redirect('/auth/email-verification');
     }
@@ -45,7 +51,7 @@ export async function signUp(userData: FormSingUpData) {
 }
 
 export async function isUsernameExists(username: string) {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const { data, error } = await supabase.from('profiles').select('user_name').eq('user_name', `@${username}`).single();
 
   if (data) return true;
@@ -53,7 +59,7 @@ export async function isUsernameExists(username: string) {
 }
 
 export async function isEmailExists(email: string) {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const { data, error } = await supabase.from('profiles').select('email').eq('email', email).single();
 
   if (data) return true;

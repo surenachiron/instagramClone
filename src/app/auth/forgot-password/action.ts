@@ -1,12 +1,12 @@
 'use server';
 
-import { createServerSupabaseClient } from '@/supabase/utils/server';
+import { supabaseServer } from '@/supabase/utils/server';
 import { ForgotPasswordSchema, FormForgotPassword } from '@/types/auth/forgotPasswordType';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function sendResetEmail(data: FormForgotPassword) {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const isDataValid = ForgotPasswordSchema.safeParse(data);
 
   if (isDataValid.success) {

@@ -74,7 +74,7 @@ const Input = ({ type, name, placeholder, classes, register, valueAsNumber, ...p
     <input
       type={type}
       placeholder={placeholder}
-      className={`focus-visible:outline-none text-black rounded-xl ${classes}`}
+      className={`text-black rounded-xl ${classes}`}
       {...(register && { ...register(name!, { valueAsNumber }) })}
       {...props}
     />

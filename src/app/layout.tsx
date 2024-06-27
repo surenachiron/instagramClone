@@ -4,6 +4,8 @@ import '@/styles/globals.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from '@/components/Spinner';
+import CookiesToLocal from '@/hooks/setCookiesToLocal';
+import { cookies } from 'next/headers';
 
 export const metadata: Metadata = {
   title: 'Instagram clone',
@@ -19,11 +21,14 @@ const roboto = Roboto({
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const username = cookies().get('username')?.value;
+
   return (
     <html lang="en" className={`${roboto.variable} bg-grayBack`}>
       <body>
         <div className="font-roboto">
           <Spinner />
+          <CookiesToLocal namVal="username" val={username} />
           {children}
           <ToastContainer />
         </div>

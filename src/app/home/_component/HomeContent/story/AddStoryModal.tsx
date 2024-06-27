@@ -9,7 +9,7 @@ import FormInput from '@/components/FormInput';
 import { RegistrationImageAvatarSchema, ImageAvatarData } from '@/types/storage/avatarImage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { setAvatar } from '@/supabase/useAvatar';
-import Modal from '@/components/Modals/Modal';
+import Modal from '@/components/Modal';
 
 const AddStoryModal = () => {
   const myModal = useRef<HTMLDialogElement>(null);

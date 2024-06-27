@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { MdOutlineCameraAlt } from 'react-icons/md';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Input from '@/components/Input';
-import Modal from '@/components/Modals/Modal';
+import Modal from '@/components/Modal';
 import UploadSvg from '@/components/Icons/UploadSvg';
 import Button from '@/components/Button';
 import { zodResolver } from '@hookform/resolvers/zod';

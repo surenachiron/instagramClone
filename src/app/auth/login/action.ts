@@ -1,13 +1,13 @@
 'use server';
 
-import { createServerSupabaseClient } from '@/supabase/utils/server';
+import { supabaseServer } from '@/supabase/utils/server';
 import { FormLoginData, LoginDataSchema } from '@/types/auth/loginFormType';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export async function login(userData: FormLoginData) {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const cookiesStore = cookies();
   const isDataValid = LoginDataSchema.safeParse(userData);
 
@@ -27,6 +27,12 @@ export async function login(userData: FormLoginData) {
       };
     }
     if (error) return { status: false };
+    cookiesStore.set({
+      name: 'username',
+      value: data.user.user_metadata.user_name,
+      sameSite: 'strict',
+      maxAge: 31536000,
+    });
     revalidatePath('/');
     redirect('/');
   }

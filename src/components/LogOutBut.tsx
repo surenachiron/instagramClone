@@ -1,18 +1,22 @@
 'use client';
 
-import { useUtilAction } from '@/store/util';
+import { useRouter } from 'next/navigation';
 import Button from './Button';
-import { useLogout } from '@/supabase/setLogOut';
 import { PiSignOutFill } from 'react-icons/pi';
 import { toast } from 'react-toastify';
+import { useUtilAction } from '@/store/util';
+import { useLogout } from '@/supabase/setLogOut';
 
 const LogOutBut = () => {
+  const router = useRouter();
   const { setLoading } = useUtilAction();
   const logOut = useLogout();
 
   async function onLogOut() {
     setLoading('main', true);
     await logOut();
+    router.push('/auth/login');
+    router.refresh();
     setLoading('main', false);
     toast.success('You have left your account.');
   }

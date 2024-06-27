@@ -44,7 +44,7 @@ const SignUpForm = () => {
             name="firstName"
             placeholder="Enter your name"
             register={register}
-            error={errors.firstName}
+            error={errors.firstName?.message}
             autoComplete="given-name"
           />
           <FormInput
@@ -52,14 +52,14 @@ const SignUpForm = () => {
             name="userName"
             placeholder="Enter your username"
             register={register}
-            error={errors.userName}
+            error={errors.userName?.message}
           />
           <FormInput
             type="email"
             name="email"
             placeholder="Enter your email address"
             register={register}
-            error={errors.email}
+            error={errors.email?.message}
             autoComplete="username"
           />
           <FormInput
@@ -67,7 +67,7 @@ const SignUpForm = () => {
             name="password"
             placeholder="Must have 6-42 characters"
             register={register}
-            error={errors.password}
+            error={errors.password?.message}
             autoComplete="new-password"
           />
           <span className="text-red-600">{checkEmailUsername.emailMessage}</span>

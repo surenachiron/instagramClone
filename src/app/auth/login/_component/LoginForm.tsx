@@ -56,14 +56,14 @@ const LoginForm = () => {
             name="email"
             placeholder="Enter your email address"
             register={register}
-            error={errors.email}
+            error={errors.email?.message}
           />
           <FormInput
             type="password"
             name="password"
             placeholder="password"
             register={register}
-            error={errors.password}
+            error={errors.password?.message}
             autoComplete="new-password"
           />
           {checkError.length > 1 && (

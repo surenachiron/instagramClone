@@ -39,7 +39,7 @@ const ForgotPasswordForm = () => {
             name="email"
             placeholder="example@gmail.com"
             register={register}
-            error={errors.email}
+            error={errors.email?.message}
           />
         </div>
         <Button classes="bg-blue text-white w-full py-3 px-2 rounded-xl font-medium" loading={isSubmitting}>

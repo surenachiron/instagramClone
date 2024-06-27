@@ -1,6 +1,8 @@
 import { InputProps } from '@/components/Input';
 
 export type FormInputProps = InputProps & {
-  error: any;
+  error: string | undefined;
   parentClasses?: string;
+  labelContent?: string;
+  labelClasses?: string;
 };

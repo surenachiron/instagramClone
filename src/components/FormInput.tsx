@@ -10,12 +10,15 @@ const FormInput: React.FC<FormInputProps> = ({
   register,
   error,
   valueAsNumber,
+  labelContent,
+  labelClasses,
   classes = 'w-full py-3 px-2',
   parentClasses,
   ...props
 }) => {
   return (
     <div className={`w-full h-full flex flex-col gap-1 ${parentClasses}`}>
+      {labelContent && <label className={labelClasses}>{labelContent}</label>}
       <Input
         type={type!}
         name={name}
@@ -25,7 +28,7 @@ const FormInput: React.FC<FormInputProps> = ({
         classes={classes}
         {...props}
       />
-      {error && <span className="text-red-600">{error.message}</span>}
+      {error && <span className="text-red-600">{error}</span>}
     </div>
   );
 };

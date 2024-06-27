@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormResetPasswordData, ResetPasswordSchema } from '@/types/auth/resetPasswordFormType';
 import { toast } from 'react-toastify';
 import FormInput from '@/components/FormInput';
+import { useState } from 'react';
 
 const ResetPasswordForm = () => {
   const searchParams = useSearchParams();
@@ -18,11 +19,14 @@ const ResetPasswordForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<FormResetPasswordData>({ resolver: zodResolver(ResetPasswordSchema) });
+  const [codeError, setCodeError] = useState('');
 
   async function formSubmit(data: FormResetPasswordData) {
+    if (!searchParams.get('code')) return setCodeError('you have no permission to change your password');
     const result = await setResetPassword(data.password, searchParams.get('code')!);
     if (result === false) toast.error('Something went wrong. Please try again.');
     if (result !== false) toast.success('Your Password has successfully changed.');
+    setCodeError('');
   }
 
   return (
@@ -39,7 +43,7 @@ const ResetPasswordForm = () => {
             name="password"
             placeholder="Must have at least 6 characters"
             register={register}
-            error={errors.password}
+            error={errors.password?.message}
             autoComplete="new-password"
           />
           <label htmlFor="passwordSecondary" className="text-slate-700 font-medium mt-3">
@@ -50,9 +54,10 @@ const ResetPasswordForm = () => {
             name="rePassword"
             placeholder="Must have at least 6 characters"
             register={register}
-            error={errors.rePassword}
+            error={errors.rePassword?.message}
             autoComplete="new-password"
           />
+          {codeError.length > 1 && <span className="text-red-600">{codeError}</span>}
         </div>
         <Button classes="bg-blue text-white w-full py-3 px-2 rounded-xl font-medium" loading={isSubmitting}>
           Reset Password

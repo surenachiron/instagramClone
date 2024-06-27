@@ -47,7 +47,7 @@ const ForgotPasswordForm = () => {
         </Button>
       </form>
       <p className="flex items-center gap-x-2 mt-3">
-        Remember your password?{' '}
+        Remember your password?
         <Button classes="text-blue" onClick={() => router.back()}>
           Go Back
         </Button>

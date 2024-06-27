@@ -86,3 +86,7 @@ input[type='file']::file-selector-button {
     transform: scale(1);
   }
 }
+
+button:disabled {
+  opacity: 0.3;
+}

@@ -30,15 +30,6 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/--tests--/snapshot.js",
-    ".next/types/**/*.ts",
-    "src/test/sumNumber.تs",
-    "src/test/sumNumber.js",
-    "src/test/sumNumber.test.js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/--tests--/snapshot.js", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

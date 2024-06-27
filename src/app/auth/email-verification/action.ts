@@ -1,19 +1,19 @@
 'use server';
 
-import { createServerSupabaseClient } from '@/supabase/utils/server';
+import { supabaseServer } from '@/supabase/utils/server';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export async function UserEmailVerification(formData: FormData) {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const cookieStore = cookies();
 
   let digitCode = '';
   for (const pair of formData.entries()) digitCode += pair[1];
   const user_email = cookieStore.get('user_email');
 
-  const { error } = await supabase.auth.verifyOtp({
+  const { data, error } = await supabase.auth.verifyOtp({
     email: user_email!.value,
     token: digitCode,
     type: 'email',
@@ -23,12 +23,12 @@ export async function UserEmailVerification(formData: FormData) {
   else {
     cookieStore.delete('user_email');
     revalidatePath('/profile');
-    redirect('/profile');
+    redirect(`/profile/${data.user?.user_metadata.user_name}`);
   }
 }
 
 export async function reSendEmailVerification() {
-  const supabase = createServerSupabaseClient();
+  const supabase = supabaseServer();
   const cookieStore = cookies();
   const user_email = cookieStore.get('user_email');
   const { error } = await supabase.auth.resend({

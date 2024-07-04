@@ -26,11 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${roboto.variable} bg-grayBack`}>
       <body>
-        <div className="font-roboto">
+        <div className="font-roboto mb-14">
           <Spinner />
           <CookiesToLocal namVal="username" val={username} />
           {children}
-          <ToastContainer />
+          <ToastContainer autoClose={3000} />
         </div>
       </body>
     </html>

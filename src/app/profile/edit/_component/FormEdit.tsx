@@ -1,35 +1,32 @@
 'use client';
 
 import FormInput from '@/components/FormInput';
-import { ProfileTable } from '@/supabase/models/database';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { EditProfileSchema, FormEditProfileType } from './editProfileType';
 import TextArea from '@/components/TextArea';
 import Button from '@/components/Button';
-import { updateProfile } from '../action';
+import { updateProfile } from './UpdateProfileAction';
 import { toast } from 'react-toastify';
+import { ProfilePropsWithoutAuth } from './EditProfile';
 
-type Props = { profile: ProfileTable };
-
-const FormEdit = ({ profile }: Props) => {
+const FormEdit = ({ profile }: ProfilePropsWithoutAuth) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
-    trigger,
   } = useForm<FormEditProfileType>({
     resolver: zodResolver(EditProfileSchema),
     defaultValues: { name: profile.full_name!, bio: profile.bio!, gender: profile.gender! },
   });
 
   async function submitEditProfile(data: FormEditProfileType) {
-    let name = '';
-    let bio = '';
-    let gender = '';
-    if (data.name !== profile.full_name) name = data.name;
-    if (data.bio !== profile.bio) bio = data.bio;
-    if (data.gender !== profile.gender) gender = data.gender;
+    const { name: newName, bio: newBio, gender: newGender } = data;
+    const { full_name: currentName, bio: currentBio, gender: currentGender } = profile;
+
+    const name = newName !== currentName ? newName : '';
+    const bio = newBio !== currentBio ? newBio : '';
+    const gender = newGender !== currentGender ? newGender : '';
     if (gender.length > 0 || name.length > 0 || bio.length > 0) {
       const result = await updateProfile({ full_name: name, bio, gender });
       if (result?.status) toast.success(result?.message);

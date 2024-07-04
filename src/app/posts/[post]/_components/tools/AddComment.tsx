@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { postComment } from './commentAction';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { postComment } from './commentAction';
 import TextArea from '@/components/TextArea';
 import Button from '@/components/Button';
 

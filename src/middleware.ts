@@ -5,6 +5,7 @@ export async function middleware(request: NextRequest) {
   const supabase = supabaseServer();
   const { data, error } = await supabase.auth.getSession();
   const user_email = request.cookies.get('user_email')?.value;
+  const username = request.cookies.get('username')?.value;
 
   const { pathname } = request.nextUrl;
   const paths = {
@@ -38,10 +39,11 @@ export async function middleware(request: NextRequest) {
   }
 
   if (data.session?.access_token && [...authPrivate].includes(pathname)) {
-    return NextResponse.redirect(new URL(paths.home, request.url));
+    if (username) return NextResponse.redirect(new URL(paths.home, request.url));
+    else return NextResponse.redirect(new URL(paths.login, request.url));
   }
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|_public|_src/app/error|.*\\.(?:svg|png|jpg|jpeg)$).*)'],
+  matcher: ['/auth/:path*', '/', '/profile', '/posts/*'],
 };

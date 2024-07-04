@@ -31,9 +31,12 @@ const Skeleton = ({ parentClass, classes = 'w-full', row = 1, column = 1, radius
   return (
     <>
       {Array.from({ length: columns }, (_, colIndex) => (
-        <div className={`flex ${parentClass} ${columns !== 1 ? 'flex-col' : ''} gap-3`} key={colIndex}>
+        <div className={`flex ${parentClass && parentClass} ${columns !== 1 && 'flex-col'} gap-3`} key={colIndex}>
           {Array.from({ length: rows }, (_, rowIndex) => (
-            <div key={rowIndex} className={`bg-[#d4d4d4] shadow-lg animate-pulse h-2 rounded-${radius} ${classes}`} />
+            <div
+              key={rowIndex}
+              className={`bg-[#d4d4d4] shadow-lg animate-pulse h-2 rounded-${radius} ${classes && classes}`}
+            />
           ))}
         </div>
       ))}

@@ -16,7 +16,7 @@ export async function updateProfile(updatedFields: Partial<updateProfileType>) {
   );
 
   if (Object.keys(filteredUpdatedFields).length > 0) {
-    const { data, error } = await supabase.auth.updateUser({
+    const { error } = await supabase.auth.updateUser({
       data: filteredUpdatedFields,
     });
     if (error) return { status: false, message: 'something went wrong, please try again.' };

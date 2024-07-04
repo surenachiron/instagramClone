@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --toastify-z-index: 9999999 !important;
+}
+
 .no-scroll {
   overflow-y: hidden;
 }
@@ -35,8 +39,24 @@
   }
 }
 
-.swiper-wrapper {
-  gap: 1rem;
+.singlePostSwi {
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: inherit !important;
+    border: 1px solid gray !important;
+    border-radius: 50% !important;
+    height: fit-content !important;
+    padding: 5px;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 10px !important;
+  }
+
+  .swiper-button-disabled {
+    display: none !important;
+  }
 }
 
 input {

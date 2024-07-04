@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import SearchBox from '@/components/SearchBox';
 import PagesList from './PagesList';
-import Button from '@/components/Button';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import Box from '@/components/Box';
 import DirectMassages from './DirectMassages';
+import NewPost from '@/app/profile/newPost/post/NewPost';
 
 const UtileSide = () => {
   return (
@@ -16,10 +16,14 @@ const UtileSide = () => {
         </div>
         <PagesList />
         <div className="w-full">
-          <Button classes="w-full bg-blue gap-x-2 text-white font-light rounded-2xl p-2">
-            <IoMdAddCircleOutline className="text-2xl" />
-            New post
-          </Button>
+          <NewPost
+            icon={
+              <div className="flex gap-x-1 justify-center">
+                New post
+                <IoMdAddCircleOutline className="text-2xl" />
+              </div>
+            }
+          />
         </div>
       </Box>
       <DirectMassages />

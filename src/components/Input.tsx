@@ -12,9 +12,10 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   classes?: string;
   register?: UseFormRegister<any>;
   valueAsNumber?: boolean;
+  onChange?: (e: any) => void;
 }
 
-const Input = ({ type, name, placeholder, classes, register, valueAsNumber, ...props }: InputProps) => {
+const Input = ({ type, name, placeholder, classes, register, valueAsNumber, onChange, ...props }: InputProps) => {
   // all states for password input
   const [usableType, setUsableType] = useState<HTMLInputTypeAttribute>(type);
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -48,7 +49,7 @@ const Input = ({ type, name, placeholder, classes, register, valueAsNumber, ...p
   if (type === 'password') {
     return (
       <div
-        className={`flex justify-around items-center bg-[#EFEFF0] rounded-xl w-full pr-3 ${showOutLine && 'border border-[#cccccc]'}`}
+        className={`flex justify-around items-center bg-[#EFEFF0] rounded-xl w-full pr-3 ${showOutLine && 'border border-black'}`}
         ref={passwordRef}
       >
         <input
@@ -75,7 +76,7 @@ const Input = ({ type, name, placeholder, classes, register, valueAsNumber, ...p
       type={type}
       placeholder={placeholder}
       className={`text-black rounded-xl ${classes}`}
-      {...(register && { ...register(name!, { valueAsNumber }) })}
+      {...(register && { ...register(name!, { onChange: onChange, valueAsNumber }) })}
       {...props}
     />
   );

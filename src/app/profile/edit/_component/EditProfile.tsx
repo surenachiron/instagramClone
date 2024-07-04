@@ -1,19 +1,29 @@
 'ues client';
 
 import Box from '@/components/Box';
-import { ProfileTable } from '@/supabase/models/database';
 import Image from 'next/image';
-import UploadAvatar from '../../[username]/_component/UploadAvatar';
+import UploadAvatar from '../../[username]/_component/info/UploadAvatar';
 import FormEdit from './FormEdit';
 
-type Props = { profile: ProfileTable };
+export type ProfilePropsWithoutAuth = {
+  profile: {
+    avatar_url: string | null;
+    bio: string | null;
+    email: string | null;
+    full_name: string | null;
+    gender: string | null;
+    id: number;
+    user_id: string;
+    user_name: string | null;
+  };
+};
 
-const EditProfile = ({ profile }: Props) => {
+const EditProfile = ({ profile }: ProfilePropsWithoutAuth) => {
   return (
     <Box classes="rounded-md w-full py-4 gap-2" backGround="bg-grayBack">
       <Box classes="p-3 desktop:p-6 justify-start w-full tablet:w-3/4 gap-y-6" align="items-start">
         <h3 className="text-xl font-bold text-black">Edit Profile</h3>
-        <Box classes="flex justify-between items-center w-full p-3" flexDirection="flex-row" backGround="bg-grayBack">
+        <Box classes="flex justify-between w-full p-3" flexDirection="flex-row" backGround="bg-grayBack">
           <div className="flex items-center gap-x-3">
             <div className="relative w-[65px] h-[65px]">
               <div className="absolute w-full h-full">

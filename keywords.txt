@@ -4,6 +4,7 @@ coverflow
 Coverflow
 cspell
 daisyui
+fkey
 hahha
 hookform
 Karimi

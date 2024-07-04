@@ -1,19 +1,16 @@
 'use client';
 
+import { useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import Box from '@/components/Box';
-import Button from '@/components/Button';
 import GradientContainer from '@/components/GradientContainer';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import FilePath from '@/hooks/FilePath';
 import UtilProfileBut, { ButtonsProfileProps } from './UtilProfileBut';
 import UploadAvatar from './UploadAvatar';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
-import { useEffect } from 'react';
-import useFilePath from '@/hooks/useFilePath';
-import Link from 'next/link';
 
 type Props = {
   profile: { name: string; username: string; bio: string; avatar: string };
@@ -22,7 +19,7 @@ type Props = {
 };
 
 const ProfileInfo = ({ profile, buttons, privateProfile = false }: Props) => {
-  const fileName = useFilePath(profile.avatar, 'avatars/');
+  const fileName = FilePath(profile.avatar, 'avatars/');
   useEffect(() => {
     localStorage.setItem('avatar', fileName);
   }, []);
@@ -73,45 +70,6 @@ const ProfileInfo = ({ profile, buttons, privateProfile = false }: Props) => {
           </div>
         </div>
       </Box>
-      <div className="flex flex-col gap-2 my-4 w-full">
-        <p className="text-sm font-bold text-grayMiddle">Highlights - 8</p>
-        <Swiper
-          slidesPerView={'auto'}
-          grabCursor={true}
-          spaceBetween={10}
-          modules={[Pagination]}
-          className="z-0 m-0 flex w-full"
-        >
-          {buttons.map((butTest) => (
-            <SwiperSlide key={butTest.primaryText} className="cursor-pointer w-[5.5rem] h-28 m-0">
-              <Image src={'/anonymous.png'} alt="test" height={100} width={100} className="rounded-lg h-full" />
-            </SwiperSlide>
-          ))}
-          {buttons.map((butTest) => (
-            <SwiperSlide key={butTest.primaryText} className="cursor-pointer w-[5.5rem] h-28 m-0">
-              <Image src={'/anonymous.png'} alt="test" height={100} width={100} className="rounded-lg h-full" />
-            </SwiperSlide>
-          ))}
-          {buttons.map((butTest) => (
-            <SwiperSlide key={butTest.primaryText} className="cursor-pointer w-[5.5rem] h-28 m-0">
-              <Image src={'/anonymous.png'} alt="test" height={100} width={100} className="rounded-lg h-full" />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div className="flex flex-col gap-2 my-4 w-full">
-        <p className="text-sm font-bold text-grayMiddle">Posts - 29</p>
-        <div className="grid grid-cols-12 gap-2">
-          {buttons.map((butTest) => (
-            <div key={butTest.primaryText} className="col-span-4">
-              <Image src={'/anonymous.png'} alt="test" className="rounded-lg w-full" width={70} height={70} />
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center my-2">
-          <Button classes="text-sm rounded-lg bg-grayLight w-fit px-2 py-1">Hide your posts</Button>
-        </div>
-      </div>
     </Box>
   );
 };

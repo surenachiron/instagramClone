@@ -6,8 +6,8 @@ import Image from 'next/image';
 import Box from '@/components/Box';
 import { usePostsAction } from '@/store/posts';
 import useSize from '@/hooks/useSize';
-import PostModalSlide from './PostModalSlide';
 import PreInfoPost from './PreInfoPost';
+import PostModalSlide from './PostModalSlide';
 import { ContentProps, ShowSingePosts, UserData } from './TsShowPosts';
 
 const ShowPosts = ({ data, userData }: { data: ShowSingePosts; userData: UserData }) => {

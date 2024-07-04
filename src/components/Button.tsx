@@ -30,7 +30,7 @@ const Button: React.FC<Props> = ({
             {children} <RotateSpinner {...Spinner} />
           </div>
         );
-      } else setOutput(<RotateSpinner />);
+      } else setOutput(<RotateSpinner {...Spinner} />);
     } else setOutput(<>{children}</>);
   }, [loading, direction]);
 

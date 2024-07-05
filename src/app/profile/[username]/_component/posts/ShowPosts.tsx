@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Box from '@/components/Box';
@@ -38,42 +38,40 @@ const ShowPosts = ({ data, userData }: { data: ShowSingePosts; userData: UserDat
   };
 
   return (
-    <div>
-      <Box classes="grid grid-cols-12 gap-1">
-        {data &&
-          data.map((post, index) => (
-            <>
-              {windowSize! >= 960 ? (
-                content({
+    <Box classes="grid grid-cols-12 gap-1">
+      {data &&
+        data.map((post, index) => (
+          <React.Fragment key={post.id}>
+            {windowSize! >= 960 ? (
+              content({
+                id: post.id,
+                index,
+                media_url: post.media_url,
+                commentsCount: post.comments.length,
+                likesCount: post.likes[0].count,
+              })
+            ) : (
+              <Link href={`/posts/${post.id}`} className="col-span-4">
+                {content({
                   id: post.id,
                   index,
                   media_url: post.media_url,
                   commentsCount: post.comments.length,
                   likesCount: post.likes[0].count,
-                })
-              ) : (
-                <Link href={`/posts/${post.id}`} className="col-span-4">
-                  {content({
-                    id: post.id,
-                    index,
-                    media_url: post.media_url,
-                    commentsCount: post.comments.length,
-                    likesCount: post.likes[0].count,
-                  })}
-                </Link>
-              )}
-            </>
-          ))}
-        {data && windowSize! >= 960 && (
-          <PostModalSlide
-            data={data!}
-            userData={userData}
-            onOpen={() => newPostRef.current?.showModal()}
-            ref={newPostRef}
-          />
-        )}
-      </Box>
-    </div>
+                })}
+              </Link>
+            )}
+          </React.Fragment>
+        ))}
+      {data && windowSize! >= 960 && (
+        <PostModalSlide
+          data={data!}
+          userData={userData}
+          onOpen={() => newPostRef.current?.showModal()}
+          ref={newPostRef}
+        />
+      )}
+    </Box>
   );
 };
 

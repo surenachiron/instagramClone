@@ -3,7 +3,6 @@ import { supabaseServer } from './supabase/utils/server';
 
 export async function middleware(request: NextRequest) {
   const supabase = supabaseServer();
-  const { data, error } = await supabase.auth.getSession();
   const user_email = request.cookies.get('user_email')?.value;
   const username = request.cookies.get('username')?.value;
 
@@ -26,6 +25,7 @@ export async function middleware(request: NextRequest) {
     paths.reset_password,
   ];
 
+  const { data } = await supabase.auth.getSession();
   if (user_email && !data.session?.access_token && ![paths.email_verification].includes(pathname)) {
     return NextResponse.redirect(new URL(paths.email_verification, request.url));
   }
@@ -33,17 +33,19 @@ export async function middleware(request: NextRequest) {
   if (
     !user_email &&
     !data.session?.access_token &&
-    ![paths.login, paths.sign_up, paths.forgot_password, paths.sent, paths.reset_password].includes(pathname)
+    ![paths.login, paths.sign_up, paths.forgot_password, paths.sent, paths.reset_password].includes(pathname) &&
+    !username
   ) {
     return NextResponse.redirect(new URL(paths.login, request.url));
   }
 
   if (data.session?.access_token && [...authPrivate].includes(pathname)) {
-    if (username) return NextResponse.redirect(new URL(paths.home, request.url));
-    else return NextResponse.redirect(new URL(paths.login, request.url));
+    return NextResponse.redirect(new URL(paths.home, request.url));
   }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/auth/:path*', '/', '/profile', '/posts/:path*'],
+  matcher: ['/((?!api|_next/static|_next/image|_public|_src/app/error|.*\\.(?:svg|png|jpg|jpeg)$).*)'],
 };

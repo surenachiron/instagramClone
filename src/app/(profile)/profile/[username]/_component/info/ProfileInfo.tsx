@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Box from '@/components/Box';
@@ -8,12 +8,10 @@ import GradientContainer from '@/components/GradientContainer';
 import FilePath from '@/hooks/FilePath';
 import UtilProfileBut, { ButtonsProfileProps } from './UtilProfileBut';
 import UploadAvatar from './UploadAvatar';
-
-import 'swiper/css/pagination';
-import 'swiper/css';
+import FollowUser from './FollowUser';
 
 type Props = {
-  profile: { name: string; username: string; bio: string; avatar: string };
+  profile: { name: string; username: string; bio: string; avatar: string; id: string; nowUserId: string };
   buttons: ButtonsProfileProps;
   privateProfile?: boolean;
 };
@@ -49,9 +47,12 @@ const ProfileInfo = ({ profile, buttons, privateProfile = false }: Props) => {
             </div>
           </GradientContainer>
         </div>
-        <div className="flex flex-col gap-4 tablet:w-[60%] wide:w-1/2">
-          <div className="text-center desktop:text-start mt-10 desktop:mt-0">
+        <div className="flex flex-col gap-4 w-full tablet:w-[60%] wide:w-1/2">
+          <div className="text-center flex items-center desktop:text-start mt-10 desktop:mt-0">
             <h3 className="text-2xl font-bold text-black">{profile.username}</h3>
+            <div className="hidden tablet:flex ml-2">
+              {privateProfile && <FollowUser user_profile={profile.id} user_id={profile.nowUserId} />}
+            </div>
           </div>
           <div>
             <p className="text-sm text-black">{profile.name}</p>
@@ -67,6 +68,9 @@ const ProfileInfo = ({ profile, buttons, privateProfile = false }: Props) => {
                 Edit Profile
               </Link>
             )}
+            <div className="grid-cols-3 tablet:hidden">
+              {privateProfile && <FollowUser user_profile={profile.id} user_id={profile.nowUserId} />}
+            </div>
           </div>
         </div>
       </Box>

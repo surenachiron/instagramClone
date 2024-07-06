@@ -2,11 +2,11 @@ import { supabaseServer } from '@/supabase/utils/server';
 import ShowPosts from './ShowPosts';
 import Box from '@/components/Box';
 import { BiCamera } from 'react-icons/bi';
-import NewPost from '@/app/profile/newPost/post/NewPost';
+import NewPost from '@/app/(profile)/profile/newPost/post/NewPost';
 
 const PostsInProfile = async ({ privatePosts = false, user_id }: { privatePosts?: boolean; user_id: string }) => {
   const supabase = supabaseServer();
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from('posts')
     .select('*, profiles(user_name, full_name, avatar_url, user_id), comments(*), likes(count)')
     .eq('user_id', user_id)
@@ -15,7 +15,7 @@ const PostsInProfile = async ({ privatePosts = false, user_id }: { privatePosts?
 
   return (
     <>
-      {data?.length ? (
+      {data && data?.length ? (
         <ShowPosts data={data} userData={userData} />
       ) : (
         <Box classes="text-black flex justify-center gap-3 py-10">
@@ -40,6 +40,7 @@ const PostsInProfile = async ({ privatePosts = false, user_id }: { privatePosts?
           )}
         </Box>
       )}
+      {error && 'Something went wrong.'}
     </>
   );
 };

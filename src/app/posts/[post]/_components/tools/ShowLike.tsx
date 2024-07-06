@@ -14,7 +14,7 @@ type Props = {
 };
 
 const ShowLike = ({ username, avatarUrl, userId, postId }: Props) => {
-  const [data, setData] = useState<number | undefined>();
+  const [data, setData] = useState<number | undefined>(undefined);
   const [hasLiked, setHasLiked] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const supabase = supabaseClient();

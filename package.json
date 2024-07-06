@@ -20,7 +20,8 @@
     "lint": "next lint",
     "lint-fix": "eslint . --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cspell": "cspell lint \"src/**/*.{js,ts,tsx}\""
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
@@ -45,7 +46,7 @@
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
     "autoprefixer": "^10.0.1",
-    "cspell": "^8.3.2",
+    "cspell": "^8.10.4",
     "daisyui": "^4.10.5",
     "eslint": "^8",
     "eslint-config-next": "^14.1.0",

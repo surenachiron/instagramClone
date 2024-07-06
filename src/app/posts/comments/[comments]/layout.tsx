@@ -24,7 +24,7 @@ export default function PostsLayout({ children, params }: { children: React.Reac
       <UtileSide />
       <div className="col-span-1 tablet:col-span-3">
         <div className="text-start block tablet:hidden">
-          <div className="flex justify-between items-center bg-white text-black py-2 px-5 sticky top-0 border-b border-l-grayMiddle">
+          <div className="flex justify-between items-center bg-white text-black py-2 px-3 sticky top-0 border-b border-l-grayMiddle">
             <BackPage className="bg-white left-3" link={`/posts/${params.comments}`} />
             <h3 className="font-bold">Comment</h3>
             <div className="w-[30px]"> </div>

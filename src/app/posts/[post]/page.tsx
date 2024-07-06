@@ -16,7 +16,7 @@ const ShowSinglePost = async ({ params }: { params: { post: string } }) => {
 
   return (
     <>
-      {postData && postData.profiles && userData && (
+      {postData && postData.profiles && userData ? (
         <div className="flex tablet:flex-row flex-col w-full gap-x-3 gap-y-2 pt-2 tablet:pt-0 h-full tablet:h-[90vh] tablet:border">
           <div className="h-[450px] tablet:h-full w-full tablet:w-1/2 order-2 tablet:order-1 bg-grayMiddle">
             <Image src={postData.media_url} alt={postData.content} width={500} height={500} className="w-full h-full" />
@@ -61,6 +61,8 @@ const ShowSinglePost = async ({ params }: { params: { post: string } }) => {
             />
           </div>
         </div>
+      ) : (
+        'Something went wrong.'
       )}
     </>
   );

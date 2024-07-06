@@ -32,8 +32,10 @@ const RemoveFollower = ({ followerID, followedID, privateArea }: Props) => {
         <Button
           classes="bg-grayBack text-black py-1 px-3 rounded-lg text-sm"
           loading={loading}
+          direction="row"
           onClick={unFollowing}
           disabled={result}
+          Spinner={{ color: 'black', w: '20px', h: '20px' }}
         >
           Remove
         </Button>

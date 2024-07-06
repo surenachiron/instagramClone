@@ -4,7 +4,7 @@ import PagesList from './PagesList';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import Box from '@/components/Box';
 import DirectMassages from './DirectMassages';
-import NewPost from '@/app/profile/newPost/post/NewPost';
+import NewPost from '@/app/(profile)/profile/newPost/post/NewPost';
 
 const UtileSide = () => {
   return (
@@ -19,8 +19,8 @@ const UtileSide = () => {
           <NewPost
             icon={
               <div className="flex gap-x-1 justify-center">
-                New post
                 <IoMdAddCircleOutline className="text-2xl" />
+                New post
               </div>
             }
           />

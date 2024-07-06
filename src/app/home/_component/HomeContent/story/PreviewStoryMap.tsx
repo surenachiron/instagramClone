@@ -8,11 +8,11 @@ import { Pagination } from 'swiper/modules';
 import GradientContainer from '@/components/GradientContainer';
 import { DataStoriesType } from './ShowStoriesMap';
 import { useStoriesAction, useStoriesStore } from '@/store/stories';
+import UploadAvatar from '@/app/(profile)/profile/[username]/_component/info/UploadAvatar';
 import AddStoryModal from './AddStoryModal';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
-import UploadAvatar from '@/app/profile/[username]/_component/info/UploadAvatar';
 
 const PreviewStoryMap = ({ data }: DataStoriesType) => {
   const { changeShowStories, setInitialStory } = useStoriesAction();

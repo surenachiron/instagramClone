@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { PagesDetail } from './PagesList';
 import { usePathname } from 'next/navigation';
 import { useUtilStore } from '@/store/util';
-import NewPost from '@/app/profile/newPost/post/NewPost';
+import NewPost from '@/app/(profile)/profile/newPost/post/NewPost';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 
 const NavigateMobile = () => {

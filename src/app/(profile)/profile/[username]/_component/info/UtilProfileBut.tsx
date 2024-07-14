@@ -2,6 +2,7 @@
 
 import Button from '@/components/Button';
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 export type ButtonsProfileProps = {
   primaryText: string | number;
@@ -9,6 +10,7 @@ export type ButtonsProfileProps = {
   link?: string;
   bgColor?: string;
   classes?: string;
+  linkClasses?: string;
   colorText?: string;
   onClick?: () => void;
 }[];
@@ -22,8 +24,7 @@ const UtilProfileBut = ({ buttons }: Props) => {
       {buttons.map((button) => {
         const buttonContent = (
           <Button
-            key={button.primaryText}
-            classes={`col-span-1 ${button?.bgColor ? button.bgColor : 'bg-[#f1f1f1]'} text-black px-7 py-1 rounded-lg w-full ${button.classes}`}
+            classes={`col-span-1 ${button?.bgColor ? button.bgColor : 'bg-[#f1f1f1]'} text-black py-1 rounded-lg ${button.classes ? button.classes : 'w-full'}`}
             onClick={button.onClick}
           >
             {button.secondaryText ? (
@@ -40,11 +41,15 @@ const UtilProfileBut = ({ buttons }: Props) => {
         );
 
         return button.link ? (
-          <Link key={button.primaryText} href={button.link}>
+          <Link
+            key={button.secondaryText ? button.secondaryText : button.primaryText}
+            href={button.link}
+            className={button.linkClasses}
+          >
             {buttonContent}
           </Link>
         ) : (
-          buttonContent
+          <Fragment key={button.secondaryText ? button.secondaryText : button.primaryText}>{buttonContent}</Fragment>
         );
       })}
     </>

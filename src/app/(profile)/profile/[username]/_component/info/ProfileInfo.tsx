@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Box from '@/components/Box';
@@ -10,13 +10,13 @@ import UtilProfileBut, { ButtonsProfileProps } from './UtilProfileBut';
 import UploadAvatar from './UploadAvatar';
 import FollowUser from './FollowUser';
 
-type Props = {
+export type ProfileInfoType = {
   profile: { name: string; username: string; bio: string; avatar: string; id: string; nowUserId: string };
   buttons: ButtonsProfileProps;
   privateProfile?: boolean;
 };
 
-const ProfileInfo = ({ profile, buttons, privateProfile = false }: Props) => {
+const ProfileInfo = ({ profile, buttons, privateProfile = false }: ProfileInfoType) => {
   const fileName = FilePath(profile.avatar, 'avatars/');
   useEffect(() => {
     localStorage.setItem('avatar', fileName);

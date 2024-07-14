@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 import { RotateSpinner, SpinnerT } from './Icons/RotateSpinner';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   loading?: boolean;
   direction?: 'row' | 'empty';
+  justify?: 'start' | 'center' | 'end';
   classes?: string;
   Spinner?: SpinnerT;
 }
@@ -15,6 +16,7 @@ const Button: React.FC<Props> = ({
   classes,
   loading = false,
   direction = 'empty',
+  justify = 'center',
   children,
   onClick,
   Spinner,
@@ -32,10 +34,10 @@ const Button: React.FC<Props> = ({
         );
       } else setOutput(<RotateSpinner {...Spinner} />);
     } else setOutput(<>{children}</>);
-  }, [loading, direction]);
+  }, [loading, direction, children, Spinner]);
 
   return (
-    <button {...props} className={`flex justify-center items-center font-regular ${classes}`} onClick={onClick}>
+    <button {...props} className={`flex justify-${justify} items-center font-regular ${classes}`} onClick={onClick}>
       {output}
     </button>
   );

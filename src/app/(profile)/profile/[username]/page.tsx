@@ -4,7 +4,7 @@ import Box from '@/components/Box';
 import ProfileInfo from './_component/info/ProfileInfo';
 import PostsInProfile from './_component/posts';
 
-export const revalidate = 240;
+export const revalidate = 0;
 
 const ProfilePage = async ({ params }: { params: { username: string } }) => {
   const supabase = supabaseServer();

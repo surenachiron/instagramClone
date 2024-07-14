@@ -1,6 +1,6 @@
 'use client';
 
-import { RotateSpinner } from '@/components/Icons/RotateSpinner';
+import Button from '@/components/Button';
 import { supabaseClient } from '@/supabase/utils/client';
 import { useEffect, useState } from 'react';
 
@@ -51,25 +51,29 @@ const FollowUser = ({ user_profile, user_id }: Props) => {
   return (
     <>
       {hasFollowed === undefined ? (
-        <button className="bg-[#f1f1f1] py-1 px-5 text-black rounded-lg text-sm w-full flex justify-center">
-          <RotateSpinner color="black" h="20px" w="20px" />
-        </button>
+        <Button
+          classes="bg-[#f1f1f1] py-1 px-5 text-black rounded-lg text-sm w-full flex justify-center"
+          loading={true}
+          Spinner={{ color: 'black', h: '20px', w: '20px' }}
+        />
       ) : hasFollowed ? (
-        <button
-          className="bg-[#f1f1f1] py-1 px-5 text-black rounded-lg text-sm w-full"
+        <Button
+          classes="bg-[#f1f1f1] py-1 px-5 text-black rounded-lg text-sm w-full"
           onClick={unFollowing}
-          disabled={loading}
+          loading={loading}
+          Spinner={{ color: 'black', h: '20px', w: '20px' }}
         >
           Following
-        </button>
+        </Button>
       ) : (
-        <button
-          className="bg-blue py-1 px-5 text-white rounded-lg text-sm w-full"
+        <Button
+          classes="bg-blue py-1 px-5 text-white rounded-lg text-sm w-full"
           onClick={following}
-          disabled={loading}
+          loading={loading}
+          Spinner={{ color: 'white', h: '20px', w: '20px' }}
         >
           Follow
-        </button>
+        </Button>
       )}
     </>
   );

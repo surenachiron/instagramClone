@@ -3,7 +3,7 @@ import PreviewStories from './HomeContent/story/PreviewStories';
 import Button from '@/components/Button';
 import { LuMessageCircle } from 'react-icons/lu';
 import { FaHeart } from 'react-icons/fa6';
-import SearchBox from '@/components/SearchBox';
+import { IoIosSearch } from 'react-icons/io';
 
 const HomeHeader = () => {
   return (
@@ -18,7 +18,13 @@ const HomeHeader = () => {
           </Link>
         </Button>
         <div className="desktop:hidden order-2 w-[50%]">
-          <SearchBox bg="Light" paddingH={1} />
+          <Link
+            href={'/search'}
+            className="flex items-center gap-1 rounded-2xl bg-grayLight text-grayMiddle px-2 py-1 cursor-text"
+          >
+            <IoIosSearch className={'text-2xl text-grayMiddle'} />
+            <p className="text-base">Search a user</p>
+          </Link>
         </div>
         <Button classes="bg-white rounded-full h-fit p-2 order-1 desktop:order-3">
           <Link href={'/home'}>

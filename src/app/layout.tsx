@@ -20,7 +20,7 @@ const roboto = Roboto({
   variable: '--font-roboto',
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, modal }: { children: React.ReactNode; modal: React.ReactNode }) {
   const username = cookies().get('username')?.value;
 
   return (
@@ -29,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="font-roboto mb-14">
           <Spinner />
           <CookiesToLocal namVal="username" val={username} />
+          {modal && <div id="modal-root">{modal}</div>}
           {children}
           <ToastContainer autoClose={3000} />
         </div>

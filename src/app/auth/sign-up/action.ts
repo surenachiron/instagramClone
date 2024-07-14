@@ -12,7 +12,7 @@ export async function signUp(userData: FormSingUpData) {
 
   const isDataValid = SignUpDataSchema.safeParse(userData);
   if (isDataValid.success) {
-    const userNameExists = await isUsernameExists(userData.userName);
+    const userNameExists = await isUsernameExists(userData.userName.trim().toLowerCase());
     const emailExists = await isEmailExists(userData.email);
     if (userNameExists)
       return {
@@ -26,7 +26,11 @@ export async function signUp(userData: FormSingUpData) {
       email: userData.email,
       password: userData.password,
       options: {
-        data: { full_name: userData.firstName, user_name: `@${userData.userName}`, avatar_url: '' },
+        data: {
+          full_name: userData.firstName,
+          user_name: `@${userData.userName.trim().toLowerCase()}`,
+          avatar_url: '',
+        },
       },
     });
     if (signUPError) return { status: false };
@@ -52,7 +56,7 @@ export async function signUp(userData: FormSingUpData) {
 
 export async function isUsernameExists(username: string) {
   const supabase = supabaseServer();
-  const { data, error } = await supabase.from('profiles').select('user_name').eq('user_name', `@${username}`).single();
+  const { data } = await supabase.from('profiles').select('user_name').eq('user_name', `@${username}`).single();
 
   if (data) return true;
   return false;
@@ -60,7 +64,7 @@ export async function isUsernameExists(username: string) {
 
 export async function isEmailExists(email: string) {
   const supabase = supabaseServer();
-  const { data, error } = await supabase.from('profiles').select('email').eq('email', email).single();
+  const { data } = await supabase.from('profiles').select('email').eq('email', email).single();
 
   if (data) return true;
   return false;

@@ -26,11 +26,3 @@ export type ShowSingePosts = {
 }[];
 
 export type UserData = any;
-
-export type ContentProps = {
-  id: string;
-  index: number;
-  media_url: string;
-  likesCount: number;
-  commentsCount: number;
-};

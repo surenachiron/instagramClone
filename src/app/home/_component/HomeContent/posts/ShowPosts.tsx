@@ -1,65 +1,75 @@
 'use client';
 
 import Image from 'next/image';
-import { DataStoriesType } from '../story/ShowStoriesMap';
-import textReducer from '@/hooks/textReducer';
-import Button from '@/components/Button';
-import { MdOutlineMoreHoriz } from 'react-icons/md';
-import { LuMessageCircle } from 'react-icons/lu';
-import { CiBookmark, CiHeart } from 'react-icons/ci';
-import { TbSend } from 'react-icons/tb';
-import MultiplePosts, { TMultiPosts } from './MultiplePosts';
+import Link from 'next/link';
+import CaptionAndTools from './tools/CaptionAndTools';
+import PostDropdown from './tools/PostDropdown';
+import { PostType } from './TShowPosts';
+import UserInfoByPost from '@/app/posts/[post]/_components/UserInfoByPost';
+import SuggestUsers from './SuggestUsers';
 
-const fakePosts: TMultiPosts = {
-  post: [
-    { image: '/anonymous.png', link: '1' },
-    { image: '/anonymous.png', link: '2' },
-    { image: '/anonymous.png', link: '3' },
-    { image: '/anonymous.png', link: '4' },
-  ],
-};
-
-const ShowPosts = ({ data }: DataStoriesType) => {
+const ShowPosts = ({ data, ownUserId }: PostType) => {
   return (
     <div className="relative flex flex-col gap-5">
-      {data?.slice(0, 10).map((post, len) => (
-        <div className="relative justify-between rounded-lg w-full h-[90vh]" key={post.id}>
-          {len === 0 ? (
-            <MultiplePosts post={fakePosts.post} />
-          ) : (
-            <Image src={post.url} alt={post.title} width={500} height={300} className="w-full h-full rounded-lg" />
-          )}
-          <div className="absolute top-0 w-full p-4 text-white flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <Image src={'/anonymous.png'} alt="user profile" width={40} height={40} className="rounded-full" />
-              <p className="text-white text-sm">
-                @{textReducer({ text: post.title, min: 0, max: 18, additionally: '...' })}
-              </p>
+      {data ? (
+        data.length > 0 ? (
+          data?.slice(0, 10).map((post) => (
+            <div className="relative justify-between rounded-lg w-full h-[85vh] desktop:h-[90vh]" key={post.id}>
+              <Image
+                src={post.media_url}
+                alt={post.profiles?.user_name as string}
+                width={500}
+                height={300}
+                className="w-full h-full rounded-lg"
+              />
+              <div className="absolute top-0 w-full px-3 py-2 text-white flex justify-between items-center">
+                <div className="group relative w-fit">
+                  <Link href={`/profile/${post.profiles?.user_name}`} className="flex items-center gap-2">
+                    <Image
+                      src={post.profiles?.avatar_url ? post.profiles?.avatar_url : '/anonymous.png'}
+                      alt="user profile"
+                      width={500}
+                      height={500}
+                      className="rounded-full bg-grayMiddle w-[30px] h-[30px]"
+                    />
+                    <p className="text-white text-xs mix-blend-difference">{post.profiles?.user_name}</p>
+                  </Link>
+                  <UserInfoByPost
+                    classes="hidden group-hover:inline-block"
+                    userData={{
+                      avatar_url: post.profiles?.avatar_url as string,
+                      user_name: post.profiles?.user_name as string,
+                      full_name: post.profiles?.full_name as string,
+                      user_id: post.profiles?.user_id as string,
+                    }}
+                  />
+                </div>
+                <PostDropdown
+                  postId={post.id}
+                  profileID={post.profiles?.user_id as string}
+                  userID={ownUserId}
+                  privateUser={ownUserId !== post.profiles?.user_id}
+                />
+              </div>
+              <CaptionAndTools
+                caption={post.content}
+                postId={post.id}
+                user={{
+                  username: post.profiles?.user_name as string,
+                  avatar_url: post.profiles?.avatar_url as string,
+                  user_id: post.profiles?.user_id as string,
+                }}
+              />
             </div>
-            <Button>
-              <MdOutlineMoreHoriz className="text-3xl" />
-            </Button>
-          </div>
-          <div className="absolute bottom-0 w-full p-4 text-white flex justify-between items-center">
-            {/* we should return caption of this post here */}
-            <p className="text-white text-sm">{post.title}</p>
-            <div className="flex justify-center items-center gap-2">
-              <Button classes="p-[6px] tablet:p-2 rounded-full bg-[#c3c3c3cf] backdrop-blur-lg">
-                <CiHeart color="inherit" className="text-md tablet:text-xl" />
-              </Button>
-              <Button classes="p-[6px] tablet:p-2 rounded-full bg-[#c3c3c3cf] backdrop-blur-lg">
-                <LuMessageCircle color="inherit" className="text-md tablet:text-xl" />
-              </Button>
-              <Button classes="p-[6px] tablet:p-2 rounded-full bg-[#c3c3c3cf] backdrop-blur-lg">
-                <TbSend color="inherit" className="text-md tablet:text-xl" />
-              </Button>
-              <Button classes="p-[6px] tablet:p-2 rounded-full bg-[#c3c3c3cf] backdrop-blur-lg">
-                <CiBookmark color="inherit" className="text-md tablet:text-xl" />
-              </Button>
-            </div>
-          </div>
+          ))
+        ) : (
+          <SuggestUsers data={data} ownUserId={ownUserId} />
+        )
+      ) : (
+        <div className="h-[200px] w-full flex flex-col items-center justify-center bg-white rounded-lg">
+          <h3 className="text-xl text-bold text-black">Something went wrong, please try again.</h3>
         </div>
-      ))}
+      )}
     </div>
   );
 };

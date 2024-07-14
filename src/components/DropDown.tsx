@@ -5,7 +5,7 @@ type Props = {
   items: { element: ReactNode }[];
 };
 
-const DropDown = ({ dropText, items }: Props) => {
+const Dropdown = ({ dropText, items }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -48,4 +48,4 @@ const DropDown = ({ dropText, items }: Props) => {
   );
 };
 
-export default DropDown;
+export default Dropdown;

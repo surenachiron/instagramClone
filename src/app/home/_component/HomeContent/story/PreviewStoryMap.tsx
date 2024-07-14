@@ -8,8 +8,6 @@ import { Pagination } from 'swiper/modules';
 import GradientContainer from '@/components/GradientContainer';
 import { DataStoriesType } from './ShowStoriesMap';
 import { useStoriesAction, useStoriesStore } from '@/store/stories';
-import UploadAvatar from '@/app/(profile)/profile/[username]/_component/info/UploadAvatar';
-import AddStoryModal from './AddStoryModal';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
@@ -40,7 +38,6 @@ const PreviewStoryMap = ({ data }: DataStoriesType) => {
           <Link href={'/home/stories'} className="flex items-center flex-col">
             <Image src={'/anonymous.png'} alt={`profile of `} width={50} height={50} className="rounded-full" />
           </Link>
-          <UploadAvatar />
         </GradientContainer>
         <Link href={'/home/stories'} className="flex items-start flex-col mr-2">
           <p className="leading-5 text-xs overflow-hidden text-ellipsis">mohammad</p>

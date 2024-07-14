@@ -14,7 +14,7 @@ const StoryDetail = () => {
       <Image
         src={'/typography.svg'}
         alt="instagram typography"
-        width={100}
+        width={50}
         height={35}
         className="w-32 bg-white p-1 rounded-lg"
       />

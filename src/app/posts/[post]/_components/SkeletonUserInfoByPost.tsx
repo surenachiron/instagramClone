@@ -3,9 +3,9 @@
 import Box from '@/components/Box';
 import Skeleton from '@/components/Skeleton';
 
-const SkeletonUserInfoByPost = () => {
+const SkeletonUserInfoByPost = ({ classes }: { classes: string }) => {
   return (
-    <Box classes={`absolute top-[34px] p-[6px] w-[350px] shadow-xl`} align="">
+    <Box classes={`absolute top-[34px] p-[6px] w-[350px] shadow-xl ${classes}`} align="">
       <div className="flex items-center justify-start gap-2 mx-3 group relative">
         <Skeleton parentClass="w-[55px] h-[55px]" classes="w-full h-full" radius="full" />
         <div className="flex flex-col gap-y-2 justify-center w-fit">

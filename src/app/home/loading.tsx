@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Button from '@/components/Button';
-import SearchBox from '@/components/SearchBox';
+import SearchBox from '@/components/search/SearchBox';
 import Skeleton from '@/components/Skeleton';
 import Box from '@/components/Box';
 

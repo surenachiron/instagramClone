@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <UtileSide />
       <div className="col-span-1 tablet:col-span-3">
         <div className="bg-grayBack">
-          <div className="text-grayMiddle">{children}</div>;
+          <div className="text-grayMiddle">{children}</div>
         </div>
         <NavigateMobile />
       </div>

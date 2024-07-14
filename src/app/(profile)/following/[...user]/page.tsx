@@ -55,7 +55,7 @@ const FollowingPage = async ({ params }: { params: Props }) => {
             <div className="flex justify-between items-center w-full">You don&#39;t follow anybody.</div>
           )
         ) : (
-          'Something went wrong.'
+          'Something went wrong, Please check your internet connection.'
         )}
       </Box>
     </Box>

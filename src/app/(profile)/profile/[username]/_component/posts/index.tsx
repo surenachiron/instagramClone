@@ -40,7 +40,7 @@ const PostsInProfile = async ({ privatePosts = false, user_id }: { privatePosts?
           )}
         </Box>
       )}
-      {error && 'Something went wrong.'}
+      {error && 'Something went wrong, Please check your internet connection.'}
     </>
   );
 };

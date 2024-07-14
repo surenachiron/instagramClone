@@ -11,9 +11,22 @@ type Props = {
   avatarUrl: string;
   userId: string;
   postId: string;
+  isShowCount?: boolean;
+  parentClasses?: string;
+  likedClasses?: string;
+  unLikedClasses?: string;
 };
 
-const ShowLike = ({ username, avatarUrl, userId, postId }: Props) => {
+const ShowLike = ({
+  username,
+  avatarUrl,
+  userId,
+  postId,
+  isShowCount = true,
+  parentClasses,
+  likedClasses = 'text-2xl',
+  unLikedClasses = 'text-2xl',
+}: Props) => {
   const [data, setData] = useState<number | undefined>(undefined);
   const [hasLiked, setHasLiked] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -29,6 +42,7 @@ const ShowLike = ({ username, avatarUrl, userId, postId }: Props) => {
         .eq('post_id', postId)
         .eq('user_id', userId)
         .single();
+      console.log(isUserLikedError, error);
       if (error || isUserLikedError) {
         setData(undefined);
         setHasLiked(false);
@@ -63,7 +77,7 @@ const ShowLike = ({ username, avatarUrl, userId, postId }: Props) => {
 
   if (loading)
     return (
-      <Button loading={loading} Spinner={{ w: '20px', h: '20px', color: '#3797ef' }}>
+      <Button loading={loading} classes={parentClasses} Spinner={{ w: '20px', h: '20px', color: '#3797ef' }}>
         {' '}
       </Button>
     );
@@ -71,15 +85,15 @@ const ShowLike = ({ username, avatarUrl, userId, postId }: Props) => {
   return (
     <div className="flex flex-col items-center">
       {hasLiked ? (
-        <Button onClick={removeShowLike}>
-          <FaHeart className="text-2xl" color="red" />
+        <Button onClick={removeShowLike} classes={parentClasses}>
+          <FaHeart className={likedClasses} color="red" />
         </Button>
       ) : (
-        <Button onClick={setShowLike}>
-          <FaRegHeart className="text-2xl" color="black" />
+        <Button onClick={setShowLike} classes={parentClasses}>
+          <FaRegHeart className={`${unLikedClasses}`} color="black" />
         </Button>
       )}
-      {typeof data === 'number' && data > 0 && <span>{data}</span>}
+      {typeof data === 'number' && data > 0 && isShowCount && <span>{data}</span>}
     </div>
   );
 };

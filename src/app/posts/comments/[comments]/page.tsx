@@ -33,7 +33,7 @@ const CommentsPage = async ({ params }: { params: { comments: string } }) => {
           />
         </div>
       ) : (
-        'Something went wrong.'
+        'Something went wrong, Please check your internet connection.'
       )}
     </>
   );

@@ -1,6 +1,10 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { supabaseServer } from '@/supabase/utils/server';
+import { supabaseClient } from '@/supabase/utils/client';
+import { PostsTable } from '@/supabase/models/database';
 import Box from '@/components/Box';
 import SkeletonUserInfoByPost from './SkeletonUserInfoByPost';
 
@@ -14,9 +18,19 @@ type Props = {
   classes: string;
 };
 
-const UserInfoByPost = async ({ userData, classes }: Props) => {
-  const supabase = supabaseServer();
-  const { data } = await supabase.from('posts').select('*').eq('user_id', userData.user_id).limit(3);
+type UserPostsType = PostsTable[] | null;
+
+const UserInfoByPost = ({ userData, classes }: Props) => {
+  const [data, setData] = useState<UserPostsType>();
+
+  useEffect(() => {
+    async function callData() {
+      const supabase = supabaseClient();
+      const { data } = await supabase.from('posts').select('*').eq('user_id', userData.user_id).limit(3);
+      setData(data);
+    }
+    callData();
+  }, [userData.user_id, classes]);
 
   return (
     <>
@@ -39,24 +53,23 @@ const UserInfoByPost = async ({ userData, classes }: Props) => {
           </Link>
           <hr className="my-2" />
           <div className="grid grid-cols-12 gap-1">
-            {data &&
-              data.map((post) => (
-                <div key={post.id} className="col-span-4 h-36 cursor-pointer">
-                  <Link href={`/posts/${post.id}`}>
-                    <Image
-                      src={post.media_url ? post.media_url : '/anonymous.png'}
-                      alt="test"
-                      className="w-full h-full"
-                      width={300}
-                      height={300}
-                    />
-                  </Link>
-                </div>
-              ))}
+            {data.map((post) => (
+              <div key={post.id} className="col-span-4 h-36 cursor-pointer">
+                <Link href={`/posts/${post.id}`}>
+                  <Image
+                    src={post.media_url ? post.media_url : '/anonymous.png'}
+                    alt="test"
+                    className="w-full h-full"
+                    width={300}
+                    height={300}
+                  />
+                </Link>
+              </div>
+            ))}
           </div>
         </Box>
       ) : (
-        <SkeletonUserInfoByPost />
+        <SkeletonUserInfoByPost classes={classes} />
       )}
     </>
   );

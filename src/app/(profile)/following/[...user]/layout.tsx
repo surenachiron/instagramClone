@@ -1,5 +1,5 @@
-import UtileSide from '@/app/home/_component/utileSide';
-import NavigateMobile from '@/app/home/_component/utileSide/NavigateMobile';
+import UtileSide from '@/app/(home)/_component/utileSide';
+import NavigateMobile from '@/app/(home)/_component/utileSide/NavigateMobile';
 import BackPage from '@/components/BackPage';
 
 type Props = {

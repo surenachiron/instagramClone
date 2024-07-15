@@ -1,4 +1,4 @@
-import ShowStoriesMap from '../home/_component/HomeContent/story/ShowStoriesMap';
+import ShowStoriesMap from '../(home)/_component/HomeContent/story/ShowStoriesMap';
 
 const ShowStories = async () => {
   return <ShowStoriesMap />;

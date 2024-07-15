@@ -1,6 +1,6 @@
 import React from 'react';
-import UtileSide from '../home/_component/utileSide';
-import NavigateMobile from '../home/_component/utileSide/NavigateMobile';
+import UtileSide from '../(home)/_component/utileSide';
+import NavigateMobile from '../(home)/_component/utileSide/NavigateMobile';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (

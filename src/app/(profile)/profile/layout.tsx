@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import BackPage from '@/components/BackPage';
-import UtileSide from '@/app/home/_component/utileSide';
-import NavigateMobile from '@/app/home/_component/utileSide/NavigateMobile';
+import UtileSide from '@/app/(home)/_component/utileSide';
+import NavigateMobile from '@/app/(home)/_component/utileSide/NavigateMobile';
 import LogOutBut from '@/components/LogOutBut';
 
 export const metadata: Metadata = {

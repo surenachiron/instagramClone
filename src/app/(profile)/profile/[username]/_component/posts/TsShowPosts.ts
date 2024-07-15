@@ -24,5 +24,3 @@ export type ShowSingePosts = {
     count: number;
   }[];
 }[];
-
-export type UserData = any;

@@ -6,9 +6,9 @@ import Image from 'next/image';
 import Box from '@/components/Box';
 import { usePostsAction } from '@/store/posts';
 import PreInfoPost from './PreInfoPost';
-import { ShowSingePosts, UserData } from './TsShowPosts';
+import { ShowSingePosts } from './TsShowPosts';
 
-const ShowPosts = ({ data }: { data: ShowSingePosts; userData: UserData }) => {
+const ShowPosts = ({ data }: { data: ShowSingePosts }) => {
   const newPostRef = useRef<HTMLDialogElement>(null);
   const { setInitialPost } = usePostsAction();
 

@@ -24,7 +24,7 @@ export const SearchResultNode = ({ result, classes }: { result: resultType; clas
                   alt={`avatar of ${user.user_name}`}
                   width={100}
                   height={100}
-                  className="w-[35px] h-[35px] rounded-full"
+                  className="w-[35px] h-[35px] rounded-full border border-grayMiddle"
                 />
                 <div className="flex flex-col justify-center">
                   <p className="text-base">{user.user_name}</p>

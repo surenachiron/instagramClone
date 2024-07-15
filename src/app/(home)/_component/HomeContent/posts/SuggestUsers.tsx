@@ -28,7 +28,7 @@ const SuggestUsers = ({ data, ownUserId }: PostType) => {
           <h3 className="text-xl text-bold text-black">{`You don't follow anyone.`}</h3>
           <p className="text-sm">Follow users to see their latest posts and stories.</p>
         </div>
-        <div className="flex items-center overflow-x-auto customScroll py-4">
+        <div className="flex items-center overflow-x-auto customScroll py-4 w-full">
           {mostPopularUsers ? (
             mostPopularUsers?.map((popularUser) => (
               <div key={popularUser.user_id} className="min-w-[120px]">
@@ -54,8 +54,8 @@ const SuggestUsers = ({ data, ownUserId }: PostType) => {
               {Array.from({ length: 3 }, (_, storyIndex) => (
                 <div className="flex flex-col w-full justify-center items-center gap-y-4" key={storyIndex}>
                   <Skeleton classes="w-[60px] h-[60px] desktop:w-[60px] desktop:h-[60px]" radius="full" />
-                  <Skeleton classes="py-0.5 w-[30px] desktop:w-[60px]" radius="full" />
-                  <Skeleton classes="py-1 desktop:py-3 px-2 w-[60px] desktop:w-[120px]" radius="md" />
+                  <Skeleton classes="py-0.5 w-[50px] desktop:w-[60px]" radius="full" />
+                  <Skeleton classes="py-2 desktop:py-3 px-2 w-[80px] desktop:w-[120px]" radius="md" />
                 </div>
               ))}
             </div>

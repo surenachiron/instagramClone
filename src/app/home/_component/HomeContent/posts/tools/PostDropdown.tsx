@@ -4,7 +4,7 @@ import { IoIosMore } from 'react-icons/io';
 import CopyLink from '@/components/CopyLink';
 import Dropdown from '@/components/Dropdown';
 import FollowUser from '@/app/(profile)/profile/[username]/_component/info/FollowUser';
-import DeletePost from '../../../../../posts/[post]/_components/tools/DeletePost';
+import DeletePost from '@/app/posts/[post]/_components/tools/DeletePost';
 
 type Props = {
   postId: string;

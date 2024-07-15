@@ -1,21 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { supabaseServer } from '@/supabase/utils/server';
+
+import { getUser } from '@/supabase/getUser';
+import { getFollowings } from '@/supabase/getFollowing';
+
 import Box from '@/components/Box';
 import FollowUser from '../../profile/[username]/_component/info/FollowUser';
-import { getUser } from '@/supabase/getUser';
 
 type Props = {
   user: [username: string, user_id: string];
 };
 
 const FollowingPage = async ({ params }: { params: Props }) => {
-  const supabase = supabaseServer();
-  const { data: following } = await supabase
-    .from('follows')
-    .select(`followed:profiles!follows_followed_id_fkey (user_id, user_name, avatar_url, full_name)`)
-    .eq('follower_id', params.user[1])
-    .order('created_at', { ascending: false });
+  const { data: following } = await getFollowings(params.user[1]);
   const nowUsername = await getUser();
 
   return (

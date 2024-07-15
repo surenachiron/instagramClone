@@ -2,22 +2,24 @@ import Box from '@/components/Box';
 import ProfileInfo from './ProfileInfo';
 import { supabaseServer } from '@/supabase/utils/server';
 import { cookies } from 'next/headers';
+import { cache } from 'react';
 
 export const revalidate = 240;
 
-const ProfileSide = async () => {
+const getProfileWithPosts = cache(async () => {
   const supabase = supabaseServer();
   const enterUsername = cookies().get('username')?.value as string;
   const { data } = await supabase
     .from('profiles')
-    .select(
-      `*,
-      posts(id, media_url)
-      `
-    )
+    .select(`*, posts(id, media_url)`)
     .eq('user_name', enterUsername)
     .limit(1, { foreignTable: 'posts' })
     .single();
+  return data;
+});
+
+const ProfileSide = async () => {
+  const data = await getProfileWithPosts();
 
   return (
     <Box classes="col-span-1 h-fit rounded-md desktop:flex hidden">

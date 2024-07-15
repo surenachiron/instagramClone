@@ -2,15 +2,21 @@ import { supabaseServer } from '@/supabase/utils/server';
 import CommentsInfo from '../../[post]/_components/tools/CommentsInfo';
 import AddComment from '../../[post]/_components/tools/AddComment';
 import { getUser } from '@/supabase/getUser';
+import { cache } from 'react';
 
-const CommentsPage = async ({ params }: { params: { comments: string } }) => {
-  const commentId = params.comments;
+const getPostsProfilesComments = cache(async (commentId: string) => {
   const supabase = supabaseServer();
-  const { data: postData } = await supabase
+  const { data } = await supabase
     .from('posts')
     .select(`id, content, profiles(avatar_url, user_name), comments(*)`)
     .eq('id', commentId)
     .single();
+  return data;
+});
+
+const CommentsPage = async ({ params }: { params: { comments: string } }) => {
+  const commentId = params.comments;
+  const postData = await getPostsProfilesComments(commentId);
   const userData = await getUser();
 
   return (

@@ -4,15 +4,21 @@ import PostTools from './_components/tools/PostTools';
 import CommentsInfo from './_components/tools/CommentsInfo';
 import UserPostInfo from './_components/UserPostInfo';
 import { getUser } from '@/supabase/getUser';
+import { cache } from 'react';
 
-const ShowSinglePost = async ({ params, parentClasses }: { params: { post: string }; parentClasses?: string }) => {
-  const post = params.post;
+const getFullPostsProfileComments = cache(async (post: string) => {
   const supabase = supabaseServer();
-  const { data: postData } = await supabase
+  const { data } = await supabase
     .from('posts')
     .select(`*, profiles(user_name, full_name, avatar_url, user_id), comments(*)`)
     .eq('id', post)
     .single();
+  return data;
+});
+
+const ShowSinglePost = async ({ params, parentClasses }: { params: { post: string }; parentClasses?: string }) => {
+  const post = params.post;
+  const postData = await getFullPostsProfileComments(post);
   const userData = await getUser();
 
   return (

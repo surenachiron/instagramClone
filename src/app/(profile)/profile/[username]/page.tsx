@@ -6,7 +6,7 @@ import PostsInProfile from './_component/posts';
 import { cache } from 'react';
 import { getUser } from '@/supabase/getUser';
 
-const getProfiles = cache(async (username: string) => {
+const getProfilesWithPostsAndFollow = cache(async (username: string) => {
   const supabase = supabaseServer();
   const { data } = await supabase
     .from('profiles')
@@ -31,7 +31,7 @@ const getProfiles = cache(async (username: string) => {
 const ProfilePage = async ({ params }: { params: { username: string } }) => {
   const username = decodeURIComponent(params.username);
   const enterUsername = cookies().get('username');
-  const data = await getProfiles(username);
+  const data = await getProfilesWithPostsAndFollow(username);
   const userData = await getUser();
 
   if (data && userData) {

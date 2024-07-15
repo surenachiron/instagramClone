@@ -50,18 +50,15 @@ const SuggestUsers = ({ data, ownUserId }: PostType) => {
               </div>
             ))
           ) : (
-            <>
+            <div className="flex justify-between items-center w-full gap-2 overflow-x-auto customScroll">
               {Array.from({ length: 3 }, (_, storyIndex) => (
-                <div
-                  className="min-w-[120px] flex flex-col w-full justify-center items-center gap-y-4 mx-4"
-                  key={storyIndex}
-                >
-                  <Skeleton classes="w-[60px] h-[60px]" radius="full" />
-                  <Skeleton classes="py-0.5 w-[60px]" radius="full" />
-                  <Skeleton classes="py-3 px-2 w-[120px]" radius="md" />
+                <div className="flex flex-col w-full justify-center items-center gap-y-4" key={storyIndex}>
+                  <Skeleton classes="w-[60px] h-[60px] desktop:w-[60px] desktop:h-[60px]" radius="full" />
+                  <Skeleton classes="py-0.5 w-[30px] desktop:w-[60px]" radius="full" />
+                  <Skeleton classes="py-1 desktop:py-3 px-2 w-[60px] desktop:w-[120px]" radius="md" />
                 </div>
               ))}
-            </>
+            </div>
           )}
         </div>
       </div>

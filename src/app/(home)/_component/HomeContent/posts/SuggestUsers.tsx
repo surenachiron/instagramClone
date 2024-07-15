@@ -3,11 +3,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { supabaseClient } from '@/supabase/utils/client';
 import FollowUser from '@/app/(profile)/profile/[username]/_component/info/FollowUser';
 import Skeleton from '@/components/Skeleton';
 import textReducer from '@/hooks/textReducer';
 import { mostPopularUserType, PostType } from './TShowPosts';
-import { supabaseClient } from '@/supabase/utils/client';
 
 const SuggestUsers = ({ data, ownUserId }: PostType) => {
   const [mostPopularUsers, setMostPopularUsers] = useState<mostPopularUserType[] | null>();

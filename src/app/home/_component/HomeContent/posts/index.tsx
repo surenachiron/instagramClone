@@ -5,8 +5,8 @@ import { getUser } from '@/supabase/getUser';
 
 import ShowPosts from './ShowPosts';
 
-const supabase = supabaseServer();
 const getPosts = cache(async (userId: string, followingIDs: (string | null)[]) => {
+  const supabase = supabaseServer();
   const { data } = await supabase
     .from('posts')
     .select(`id, content, media_url, profiles(user_name, avatar_url, user_id, full_name)`)
@@ -16,6 +16,7 @@ const getPosts = cache(async (userId: string, followingIDs: (string | null)[]) =
 });
 
 const getFollowings = cache(async (userId: string) => {
+  const supabase = supabaseServer();
   const { data } = await supabase.from('follows').select('followed_id').eq('follower_id', userId);
   return { data };
 });

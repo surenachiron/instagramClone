@@ -19,7 +19,7 @@ export type ProfileInfoType = {
 const ProfileInfo = ({ profile, buttons, privateProfile = false }: ProfileInfoType) => {
   const fileName = FilePath(profile.avatar, 'avatars/');
   useEffect(() => {
-    localStorage.setItem('avatar', fileName);
+    if (!privateProfile) localStorage.setItem('avatar', fileName);
   }, []);
 
   return (

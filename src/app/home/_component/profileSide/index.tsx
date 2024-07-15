@@ -1,10 +1,10 @@
+import { cache } from 'react';
+import { cookies } from 'next/headers';
+
+import { supabaseServer } from '@/supabase/utils/server';
+
 import Box from '@/components/Box';
 import ProfileInfo from './ProfileInfo';
-import { supabaseServer } from '@/supabase/utils/server';
-import { cookies } from 'next/headers';
-import { cache } from 'react';
-
-export const revalidate = 240;
 
 const getProfileWithPosts = cache(async () => {
   const supabase = supabaseServer();

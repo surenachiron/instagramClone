@@ -1,14 +1,16 @@
+'use client';
+
 import Link from 'next/link';
-import Button from '@/components/Button';
-import SearchBox from '@/components/search/SearchBox';
-import Skeleton from '@/components/Skeleton';
-import Box from '@/components/Box';
 
 import { FaHeart } from 'react-icons/fa6';
 import { MdOutlineMoreHoriz } from 'react-icons/md';
 import { LuMessageCircle } from 'react-icons/lu';
 
-const buttons = [{ primaryText: 'Edit Profile' }, { primaryText: 'Share profile' }];
+import Button from '@/components/Button';
+import SearchBox from '@/components/search/SearchBox';
+import Skeleton from '@/components/Skeleton';
+import Box from '@/components/Box';
+
 export default function HomeLoading() {
   return (
     <div className="flex flex-col gap-5">

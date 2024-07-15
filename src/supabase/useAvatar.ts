@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation';
 import { supabaseServer } from './utils/server';
 import RandomPath from '@/hooks/RandomPath';
+import { getUser } from './getUser';
 
 export const setAvatar = async (formData: FormData) => {
   const file = formData.get('imageAvatar') as File;
@@ -10,7 +11,7 @@ export const setAvatar = async (formData: FormData) => {
   const filePath = RandomPath(file.name);
   const supabase = supabaseServer();
 
-  const { error: userError } = await supabase.auth.getUser();
+  const userError = await getUser();
   if (userError) return redirect('/auth/login');
 
   await supabase.storage.from('avatars').remove([oldAvatar]);
@@ -30,7 +31,7 @@ export const setAvatar = async (formData: FormData) => {
 
 export const removeAvatar = async (oldAvatar: string) => {
   const supabase = supabaseServer();
-  const { error: userError } = await supabase.auth.getUser();
+  const userError = await getUser();
   if (userError) return redirect('/auth/login');
 
   const { error } = await supabase.storage.from('avatars').remove([oldAvatar]);

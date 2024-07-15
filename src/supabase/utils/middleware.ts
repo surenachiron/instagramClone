@@ -1,5 +1,6 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
+import { getUser } from '../getUser';
 
 export const updateSession = async (request: NextRequest) => {
   try {
@@ -55,7 +56,7 @@ export const updateSession = async (request: NextRequest) => {
       }
     );
 
-    await supabase.auth.getUser();
+    await getUser();
 
     return response;
   } catch (e) {

@@ -1,6 +1,7 @@
 import { supabaseServer } from '@/supabase/utils/server';
 import CommentsInfo from '../../[post]/_components/tools/CommentsInfo';
 import AddComment from '../../[post]/_components/tools/AddComment';
+import { getUser } from '@/supabase/getUser';
 
 const CommentsPage = async ({ params }: { params: { comments: string } }) => {
   const commentId = params.comments;
@@ -10,8 +11,7 @@ const CommentsPage = async ({ params }: { params: { comments: string } }) => {
     .select(`id, content, profiles(avatar_url, user_name), comments(*)`)
     .eq('id', commentId)
     .single();
-  const { data: userData } = await supabase.auth.getUser();
-  const user = userData.user?.user_metadata;
+  const userData = await getUser();
 
   return (
     <>
@@ -27,9 +27,9 @@ const CommentsPage = async ({ params }: { params: { comments: string } }) => {
           </div>
           <AddComment
             post_id={postData.id}
-            avatar={user!.avatar_url}
-            user_id={userData.user!.id}
-            username={user!.user_name}
+            avatar={userData.avatar}
+            user_id={userData.id}
+            username={userData.username}
           />
         </div>
       ) : (

@@ -1,22 +1,29 @@
-import { supabaseServer } from '@/supabase/utils/server';
-import ShowPosts from './ShowPosts';
-import Box from '@/components/Box';
-import { BiCamera } from 'react-icons/bi';
-import NewPost from '@/app/(profile)/profile/newPost/post/NewPost';
+import { cache } from 'react';
 
-const PostsInProfile = async ({ privatePosts = false, user_id }: { privatePosts?: boolean; user_id: string }) => {
+import { BiCamera } from 'react-icons/bi';
+import { supabaseServer } from '@/supabase/utils/server';
+
+import Box from '@/components/Box';
+import NewPost from '@/app/(profile)/profile/newPost/post/NewPost';
+import ShowPosts from './ShowPosts';
+
+const getPostAndProfile = cache(async (user_id: string) => {
   const supabase = supabaseServer();
   const { data, error } = await supabase
     .from('posts')
     .select('*, profiles(user_name, full_name, avatar_url, user_id), comments(*), likes(count)')
     .eq('user_id', user_id)
     .order('created_at', { ascending: false });
-  const { data: userData } = await supabase.auth.getUser();
+  return { data, error };
+});
+
+const PostsInProfile = async ({ privatePosts = false, user_id }: { privatePosts?: boolean; user_id: string }) => {
+  const { data, error } = await getPostAndProfile(user_id);
 
   return (
     <>
       {data && data?.length ? (
-        <ShowPosts data={data} userData={userData} />
+        <ShowPosts data={data} />
       ) : (
         <Box classes="text-black flex justify-center gap-3 py-10">
           {privatePosts ? (

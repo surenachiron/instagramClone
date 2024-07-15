@@ -3,6 +3,7 @@ import { supabaseServer } from '@/supabase/utils/server';
 import PostTools from './_components/tools/PostTools';
 import CommentsInfo from './_components/tools/CommentsInfo';
 import UserPostInfo from './_components/UserPostInfo';
+import { getUser } from '@/supabase/getUser';
 
 const ShowSinglePost = async ({ params, parentClasses }: { params: { post: string }; parentClasses?: string }) => {
   const post = params.post;
@@ -12,7 +13,7 @@ const ShowSinglePost = async ({ params, parentClasses }: { params: { post: strin
     .select(`*, profiles(user_name, full_name, avatar_url, user_id), comments(*)`)
     .eq('id', post)
     .single();
-  const { data: userData } = await supabase.auth.getUser();
+  const userData = await getUser();
 
   return (
     <>
@@ -27,7 +28,7 @@ const ShowSinglePost = async ({ params, parentClasses }: { params: { post: strin
             <UserPostInfo
               profile={postData.profiles}
               post_id={postData.id}
-              privateUser={userData.user?.id === postData.profiles.user_id ? false : true}
+              privateUser={userData.id === postData.profiles.user_id ? false : true}
             />
             <hr className="hidden tablet:block w-full mt-1" />
             <div className="hidden tablet:block h-full overflow-auto relative">
@@ -40,9 +41,9 @@ const ShowSinglePost = async ({ params, parentClasses }: { params: { post: strin
             <hr className="w-full hidden tablet:block" />
             <div className="hidden tablet:block">
               <PostTools
-                avatar={userData.user?.user_metadata.avatar_url}
-                username={userData.user?.user_metadata.user_name}
-                user_id={userData.user?.id as string}
+                avatar={userData.avatar}
+                username={userData.username}
+                user_id={userData.id as string}
                 post_id={postData.id}
                 createdAt={postData.created_at!}
               />
@@ -50,9 +51,9 @@ const ShowSinglePost = async ({ params, parentClasses }: { params: { post: strin
           </div>
           <div className="block order-3 tablet:hidden mx-3">
             <PostTools
-              avatar={userData.user?.user_metadata.avatar_url}
-              username={userData.user?.user_metadata.user_name}
-              user_id={userData.user?.id as string}
+              avatar={userData.avatar}
+              username={userData.username}
+              user_id={userData.id as string}
               post_id={postData.id}
               createdAt={postData.created_at!}
               caption={{

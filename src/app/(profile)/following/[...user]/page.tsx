@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { supabaseServer } from '@/supabase/utils/server';
 import Box from '@/components/Box';
 import FollowUser from '../../profile/[username]/_component/info/FollowUser';
+import { getUser } from '@/supabase/getUser';
 
 type Props = {
   user: [username: string, user_id: string];
@@ -15,7 +16,7 @@ const FollowingPage = async ({ params }: { params: Props }) => {
     .select(`followed:profiles!follows_followed_id_fkey (user_id, user_name, avatar_url, full_name)`)
     .eq('follower_id', params.user[1])
     .order('created_at', { ascending: false });
-  const nowUsername = await supabase.auth.getUser();
+  const nowUsername = await getUser();
 
   return (
     <Box classes="rounded-md w-full min-h-[80vh] h-full pt-0 tablet:py-4 gap-2" backGround="bg-grayBack">
@@ -41,11 +42,8 @@ const FollowingPage = async ({ params }: { params: Props }) => {
                     </div>
                   </Link>
                   <div className="w-fit">
-                    {followed?.user_id !== (nowUsername.data.user?.id as string) && (
-                      <FollowUser
-                        user_id={nowUsername.data.user?.id as string}
-                        user_profile={followed?.user_id as string}
-                      />
+                    {followed?.user_id !== (nowUsername.id as string) && (
+                      <FollowUser user_id={nowUsername.id as string} user_profile={followed?.user_id as string} />
                     )}
                   </div>
                 </div>

@@ -4,6 +4,7 @@ import { supabaseServer } from '@/supabase/utils/server';
 import Box from '@/components/Box';
 import RemoveFollower from './_component/RemoveFollower';
 import FollowUser from '../../profile/[username]/_component/info/FollowUser';
+import { getUser } from '@/supabase/getUser';
 
 type Props = {
   user: [username: string, user_id: string];
@@ -16,7 +17,7 @@ const FollowersPage = async ({ params }: { params: Props }) => {
     .select(`follower:profiles!follows_follower_id_fkey (user_id, user_name, avatar_url, full_name)`)
     .eq('followed_id', params.user[1])
     .order('created_at', { ascending: false });
-  const nowUsername = await supabase.auth.getUser();
+  const nowUsername = await getUser();
 
   return (
     <Box classes="rounded-md w-full min-h-[80vh] h-full pt-0 tablet:py-4 gap-2" backGround="bg-grayBack">
@@ -41,19 +42,15 @@ const FollowersPage = async ({ params }: { params: Props }) => {
                       </div>
                     </div>
                   </Link>
-                  {follower?.user_id !== (nowUsername.data.user?.id as string) &&
-                    nowUsername.data.user?.id !== params.user[1] && (
-                      <div className="w-fit">
-                        <FollowUser
-                          user_id={nowUsername.data.user?.id as string}
-                          user_profile={follower?.user_id as string}
-                        />
-                      </div>
-                    )}
+                  {follower?.user_id !== (nowUsername.id as string) && nowUsername.id !== params.user[1] && (
+                    <div className="w-fit">
+                      <FollowUser user_id={nowUsername.id as string} user_profile={follower?.user_id as string} />
+                    </div>
+                  )}
                   <RemoveFollower
                     followerID={follower?.user_id as string}
                     followedID={params.user[1]}
-                    privateArea={nowUsername.data.user?.id === params.user[1]}
+                    privateArea={nowUsername.id === params.user[1]}
                   />
                 </div>
               ))}

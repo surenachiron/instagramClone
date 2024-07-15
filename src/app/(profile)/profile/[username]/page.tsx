@@ -3,13 +3,11 @@ import { supabaseServer } from '@/supabase/utils/server';
 import Box from '@/components/Box';
 import ProfileInfo from './_component/info/ProfileInfo';
 import PostsInProfile from './_component/posts';
+import { cache } from 'react';
+import { getUser } from '@/supabase/getUser';
 
-export const revalidate = 0;
-
-const ProfilePage = async ({ params }: { params: { username: string } }) => {
+const getProfiles = cache(async (username: string) => {
   const supabase = supabaseServer();
-  const username = decodeURIComponent(params.username);
-  const enterUsername = cookies().get('username');
   const { data } = await supabase
     .from('profiles')
     .select(
@@ -27,7 +25,14 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
     )
     .eq('user_name', username)
     .single();
-  const { data: userData } = await supabase.auth.getUser();
+  return data;
+});
+
+const ProfilePage = async ({ params }: { params: { username: string } }) => {
+  const username = decodeURIComponent(params.username);
+  const enterUsername = cookies().get('username');
+  const data = await getProfiles(username);
+  const userData = await getUser();
 
   if (data && userData) {
     if (username === enterUsername?.value)
@@ -41,7 +46,7 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
               bio: data.bio!,
               avatar: data.avatar_url!,
               id: data.user_id!,
-              nowUserId: userData.user?.id as string,
+              nowUserId: userData.id as string,
             }}
             buttons={[
               { primaryText: data.posts.length, secondaryText: 'Posts', classes: 'cursor-auto' },
@@ -71,7 +76,7 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
               bio: data.bio!,
               avatar: data.avatar_url!,
               id: data.user_id!,
-              nowUserId: userData.user?.id as string,
+              nowUserId: userData.id as string,
             }}
             buttons={[
               { primaryText: data.posts.length, secondaryText: 'Posts', classes: 'cursor-auto' },

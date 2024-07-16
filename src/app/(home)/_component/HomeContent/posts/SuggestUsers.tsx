@@ -29,7 +29,7 @@ const SuggestUsers = ({ data, ownUserId }: PostType) => {
           <h3 className="text-xl text-bold text-black">{`You don't follow anyone.`}</h3>
           <p className="text-sm">Follow users to see their latest posts and stories.</p>
         </div>
-        <div className="flex items-center overflow-x-auto customScroll py-4 w-full">
+        <div className="flex items-center justify-center overflow-x-auto customScroll py-4 w-full">
           {mostPopularUsers ? (
             mostPopularUsers?.map((popularUser) => (
               <div key={popularUser.user_id} className="min-w-[120px]">

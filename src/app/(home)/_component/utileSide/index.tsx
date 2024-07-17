@@ -11,7 +11,7 @@ const UtileSide = () => {
     <div className="hidden desktop:flex flex-col col-span-1 gap-y-7">
       <Box classes="gap-8 px-6 py-8">
         <div className="flex flex-col items-center w-full gap-5">
-          <Image src={'/typography.svg'} alt="instagram typography" width={50} height={35} className="w-32" />
+          <Image src={'/typography.svg'} alt="instagram typography" width={50} height={35} className="w-32 h-[35px]" />
           <SearchBox bg="Back" paddingH={6} />
         </div>
         <PagesList />

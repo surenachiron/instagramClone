@@ -11,7 +11,7 @@ import FormInput from '@/components/FormInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { reSendEmailVerification } from '../../email-verification/action';
+import { reSendEmailVerification } from '../../email-verification/_component/action';
 import { useRouter } from 'next/navigation';
 import { useUtilAction, useUtilStore } from '@/store/util';
 

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import UserInfoByPost from './UserInfoByPost';
-import PostsUtils from './PostsUtils';
+import PostDropdown from '@/app/(home)/_component/HomeContent/posts/tools/PostDropdown';
 
 type Props = {
   profile: {
@@ -12,11 +12,11 @@ type Props = {
     user_id: string;
   };
   post_id: string;
-  privateUser?: boolean;
+  ownUserID: string;
   avatar: string;
 };
 
-const UserPostInfo = ({ profile, post_id, privateUser = false, avatar }: Props) => {
+const UserPostInfo = ({ profile, post_id, ownUserID, avatar }: Props) => {
   return (
     <div className="flex justify-between items-center w-full">
       <div className="group relative w-fit">
@@ -34,7 +34,13 @@ const UserPostInfo = ({ profile, post_id, privateUser = false, avatar }: Props) 
         </Link>
         <UserInfoByPost classes="hidden group-hover:inline-block" userData={profile} />
       </div>
-      {privateUser === false && <PostsUtils post_id={post_id} avatar={avatar} />}
+      <PostDropdown
+        postId={post_id}
+        profileID={profile.user_id}
+        userID={ownUserID}
+        avatar={avatar}
+        privateUser={profile.user_id === ownUserID ? false : true}
+      />
     </div>
   );
 };

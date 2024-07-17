@@ -1,4 +1,3 @@
 {
-  "*.json": ["prettier --write", "cspell"],
-  "*.{js,ts,tsx}": ["prettier --write", "cspell", "eslint --fix"]
+  "*.{js,ts,tsx}": ["prettier --write", "cspell --no-must-find-files", "eslint --fix"]
 }

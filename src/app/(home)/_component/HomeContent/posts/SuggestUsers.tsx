@@ -46,7 +46,7 @@ const SuggestUsers = ({ data, ownUserId }: PostType) => {
                       {textReducer({ text: popularUser.user_name, max: 20, additionally: '...' })}
                     </p>
                   </Link>
-                  <FollowUser user_profile={popularUser.user_id as string} user_id={ownUserId} />
+                  <FollowUser user_profile={popularUser.user_id as string} user_id={ownUserId} defaultValue={false} />
                 </div>
               </div>
             ))

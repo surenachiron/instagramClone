@@ -11,16 +11,18 @@ type Props = {
   privateUser: boolean;
   userID: string;
   profileID: string;
+  avatar: string;
+  followValue?: boolean;
 };
 
-const PostDropdown = ({ postId, userID, profileID, privateUser = false }: Props) => {
+const PostDropdown = ({ postId, userID, profileID, privateUser = false, avatar, followValue }: Props) => {
   return (
     <>
       {privateUser === false ? (
         <Dropdown
           dropText={<IoIosMore className="text-2xl text-white mix-blend-difference" />}
           items={[
-            { element: <DeletePost postId={postId} /> },
+            { element: <DeletePost postId={postId} avatar={avatar} /> },
             { element: <CopyLink customPath={`/posts/${postId}`} /> },
           ]}
         />
@@ -30,7 +32,7 @@ const PostDropdown = ({ postId, userID, profileID, privateUser = false }: Props)
           items={[
             { element: <CopyLink customPath={`/posts/${postId}`} /> },
             {
-              element: <FollowUser user_id={userID} user_profile={profileID} />,
+              element: <FollowUser user_id={userID} user_profile={profileID} defaultValue={followValue} />,
             },
           ]}
         />

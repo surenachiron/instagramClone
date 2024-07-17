@@ -49,6 +49,8 @@ const ShowPosts = ({ data, ownUserId }: PostType) => {
                   profileID={post.profiles?.user_id as string}
                   userID={ownUserId}
                   privateUser={ownUserId !== post.profiles?.user_id}
+                  avatar={post.media_url}
+                  followValue={true}
                 />
               </div>
               <CaptionAndTools

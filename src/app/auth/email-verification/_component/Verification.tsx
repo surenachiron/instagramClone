@@ -1,17 +1,22 @@
 'use client';
 
+import Image from 'next/image';
+
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
+
+import { UserEmailVerification, reSendEmailVerification } from './action';
+import { useUtilAction, useUtilStore } from '@/store/util';
+
 import Box from '@/components/Box';
 import Button from '@/components/Button';
 import GradientContainer from '@/components/GradientContainer';
-import Image from 'next/image';
 import InputVerificationT from './InputVerificationT';
-import { UserEmailVerification, reSendEmailVerification } from '../action';
-import { toast } from 'react-toastify';
-import { useUtilAction, useUtilStore } from '@/store/util';
 
 type Props = { user_email: string | undefined };
 
 const Verification = ({ user_email }: Props) => {
+  const router = useRouter();
   const { setLoading } = useUtilAction();
   const { loading } = useUtilStore();
 
@@ -41,7 +46,14 @@ const Verification = ({ user_email }: Props) => {
       </div>
       <div>
         <h3 className="text-xl font-bold mb-2 text-black">Verify Your Email</h3>
-        <p>A 6-digit code has been sent to {user_email ? user_email : 'your email'} .(check the spam section)</p>
+        <p>A 6-digit code has been sent to {user_email ? user_email : 'your email'}.</p>
+        <Button
+          classes="text-blue cursor-pointer"
+          type="submit"
+          onClick={() => router.push('/auth/email-verification/wrong-email')}
+        >
+          (Entered the wrong email? Change it here.)
+        </Button>
         <p>Please enter it within the next 30 minutes.</p>
       </div>
       <form className="w-full" onSubmit={formSubmit}>

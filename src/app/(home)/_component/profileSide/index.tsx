@@ -5,6 +5,7 @@ import { supabaseServer } from '@/supabase/utils/server';
 
 import Box from '@/components/Box';
 import ProfileInfo from './ProfileInfo';
+import CopyLink from '@/components/CopyLink';
 
 const getProfileWithPosts = cache(async () => {
   const supabase = supabaseServer();
@@ -19,6 +20,7 @@ const getProfileWithPosts = cache(async () => {
 });
 
 const ProfileSide = async () => {
+  const enterUsername = cookies().get('username')?.value as string;
   const data = await getProfileWithPosts();
 
   return (
@@ -32,7 +34,18 @@ const ProfileSide = async () => {
             username: data.user_name as string,
           }}
           posts={data.posts}
-          buttons={[{ primaryText: 'Edit Profile', link: '/profile/edit' }, { primaryText: 'Share profile' }]}
+          buttons={[
+            { primaryText: 'Edit Profile', link: '/profile/edit' },
+            {
+              element: (
+                <CopyLink
+                  text="Share profile"
+                  customPath={`/profile/${enterUsername}`}
+                  classes="bg-[#f1f1f1] justify-center"
+                />
+              ),
+            },
+          ]}
         />
       ) : (
         <div className="p-2">Something went wrong, Please check your internet connection.</div>

@@ -57,7 +57,7 @@ const SearchBox = ({ bg, paddingH, preIcon }: Props) => {
   return (
     <>
       <form
-        className={`flex gap-1 w-full rounded-2xl items-center bg-gray${bg} text-grayMiddle px-2 relative`}
+        className={`flex gap-1 w-full rounded-2xl items-center bg-gray${bg} text-grayMiddle px-2 py-1 relative`}
         style={{ padding: `${paddingH}px 0` }}
         ref={searchRef}
         onSubmit={handleSubmit(handleSearchUser)}
@@ -80,7 +80,6 @@ const SearchBox = ({ bg, paddingH, preIcon }: Props) => {
           type="submit"
           classes={preIcon ?? showResult ? 'fade-in' : 'fade-out'}
         >
-          {loading}
           <IoIosSearch
             className={`cursor-pointer text-2xl text-grayMiddle desktop:${showResult ? 'fade-in' : 'fade-out'}`}
           />
@@ -89,9 +88,9 @@ const SearchBox = ({ bg, paddingH, preIcon }: Props) => {
           <SearchResultNode result={result} classes="hidden desktop:block absolute bottom-0 top-[2.2rem] left-0 p-2" />
         )}
       </form>
-      {pathname !== '/home' && (
+      {pathname !== '/' && (
         <div className="block desktop:hidden w-full h-full relative">
-          <SearchResultNode result={result} classes="block desktop:hidden min-h-[50vh] w-3/4 p-0 mt-2 border-0" />
+          <SearchResultNode result={result} classes="min-h-[50vh] w-3/4 p-0 mt-2 border-0" />
         </div>
       )}
     </>

@@ -7,6 +7,5 @@ export const getSingleProfile = cache(async (username: string) => {
 
   const { data, error } = await supabase.from('profiles').select('*').eq('user_name', username!).single();
 
-  if (error) return error;
-  return data;
+  return { data, error };
 });

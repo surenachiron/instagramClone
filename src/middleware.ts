@@ -11,6 +11,7 @@ export async function middleware(request: NextRequest) {
     login: '/auth/login',
     sign_up: '/auth/sign-up',
     email_verification: '/auth/email-verification',
+    wrong_email: '/auth/email-verification/wrong-email',
     forgot_password: '/auth/forgot-password',
     sent: '/auth/forgot-password/sent',
     reset_password: '/auth/reset-password',
@@ -20,13 +21,14 @@ export async function middleware(request: NextRequest) {
     paths.login,
     paths.sign_up,
     paths.email_verification,
+    paths.wrong_email,
     paths.forgot_password,
     paths.sent,
     paths.reset_password,
   ];
 
   const { data } = await supabase.auth.getSession();
-  if (user_email && !data.session?.access_token && ![paths.email_verification].includes(pathname)) {
+  if (user_email && !data.session?.access_token && ![paths.email_verification, paths.wrong_email].includes(pathname)) {
     return NextResponse.redirect(new URL(paths.email_verification, request.url));
   }
 

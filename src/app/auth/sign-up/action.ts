@@ -47,6 +47,8 @@ export async function signUp(userData: FormSingUpData) {
         sameSite: 'strict',
         maxAge: 31536000,
       });
+      cookieStore.set('full_name', userData.firstName);
+      cookieStore.set('password', userData.password);
       revalidatePath('/auth/email-verification', 'page');
       redirect('/auth/email-verification');
     }

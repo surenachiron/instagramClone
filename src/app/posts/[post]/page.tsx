@@ -35,6 +35,7 @@ const ShowSinglePost = async ({ params, parentClasses }: { params: { post: strin
               profile={postData.profiles}
               post_id={postData.id}
               privateUser={userData.id === postData.profiles.user_id ? false : true}
+              avatar={postData.media_url}
             />
             <hr className="hidden tablet:block w-full mt-1" />
             <div className="hidden tablet:block h-full overflow-auto relative">

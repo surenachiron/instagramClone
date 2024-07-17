@@ -6,13 +6,13 @@ import Dropdown from '@/components/Dropdown';
 import CopyLink from '@/components/CopyLink';
 import DeletePost from './tools/DeletePost';
 
-type Props = { post_id: string };
+type Props = { post_id: string; avatar: string };
 
-const PostsUtils = ({ post_id }: Props) => {
+const PostsUtils = ({ post_id, avatar }: Props) => {
   return (
     <Dropdown
       dropText={<IoIosMore className="text-xl text-black" />}
-      items={[{ element: <DeletePost postId={post_id} /> }, { element: <CopyLink /> }]}
+      items={[{ element: <DeletePost postId={post_id} avatar={avatar} /> }, { element: <CopyLink /> }]}
     />
   );
 };

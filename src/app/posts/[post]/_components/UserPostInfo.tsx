@@ -12,9 +12,10 @@ type Props = {
   };
   post_id: string;
   privateUser?: boolean;
+  avatar: string;
 };
 
-const UserPostInfo = ({ profile, post_id, privateUser = false }: Props) => {
+const UserPostInfo = ({ profile, post_id, privateUser = false, avatar }: Props) => {
   return (
     <div className="flex justify-between items-center w-full">
       <div className="group relative w-fit">
@@ -32,7 +33,7 @@ const UserPostInfo = ({ profile, post_id, privateUser = false }: Props) => {
         </Link>
         <UserInfoByPost classes="hidden group-hover:inline-block" userData={profile} />
       </div>
-      {privateUser === false && <PostsUtils post_id={post_id} />}
+      {privateUser === false && <PostsUtils post_id={post_id} avatar={avatar} />}
     </div>
   );
 };

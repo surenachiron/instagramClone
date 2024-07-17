@@ -4,14 +4,17 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/Button';
 import { supabaseClient } from '@/supabase/utils/client';
+import FilePath from '@/hooks/FilePath';
 
-const DeletePost = ({ postId }: { postId: string }) => {
+const DeletePost = ({ postId, avatar }: { postId: string; avatar?: string }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   async function deletePost() {
     const supabase = supabaseClient();
     setLoading(true);
+    console.log(avatar, FilePath(avatar!, 'posts/'));
+    await supabase.storage.from('posts').remove([FilePath(avatar!, 'posts/')]);
     await supabase.from('posts').delete().eq('id', postId);
     router.refresh();
     setLoading(false);
@@ -23,6 +26,7 @@ const DeletePost = ({ postId }: { postId: string }) => {
       direction="row"
       justify="start"
       loading={loading}
+      Spinner={{ color: 'black', w: '20px', h: '20px' }}
     >
       Delete post
     </Button>

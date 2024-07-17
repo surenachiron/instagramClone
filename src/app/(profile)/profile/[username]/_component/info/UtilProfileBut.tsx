@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 
 export type ButtonsProfileProps = {
-  primaryText: string | number;
+  primaryText?: string | number;
   secondaryText?: string | number;
+  element?: React.ReactNode;
   link?: string;
   bgColor?: string;
   classes?: string;
@@ -48,6 +49,8 @@ const UtilProfileBut = ({ buttons }: Props) => {
           >
             {buttonContent}
           </Link>
+        ) : button.element ? (
+          button.element
         ) : (
           <Fragment key={button.secondaryText ? button.secondaryText : button.primaryText}>{buttonContent}</Fragment>
         );

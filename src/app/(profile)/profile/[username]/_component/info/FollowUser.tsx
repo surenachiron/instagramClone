@@ -7,12 +7,13 @@ import { useEffect, useState } from 'react';
 type Props = {
   user_profile: string;
   user_id: string;
+  defaultValue?: boolean;
 };
 
-const FollowUser = ({ user_profile, user_id }: Props) => {
+const FollowUser = ({ user_profile, user_id, defaultValue }: Props) => {
   const supabase = supabaseClient();
   const [loading, setLoading] = useState<boolean>(false);
-  const [hasFollowed, setHasFollowed] = useState<boolean>();
+  const [hasFollowed, setHasFollowed] = useState<boolean | undefined>(defaultValue);
 
   async function following() {
     setLoading(true);
@@ -33,20 +34,22 @@ const FollowUser = ({ user_profile, user_id }: Props) => {
   }
 
   useEffect(() => {
-    const getInitialFollowed = async () => {
-      const { data, error } = await supabase
-        .from('follows')
-        .select('*')
-        .eq('follower_id', user_id)
-        .eq('followed_id', user_profile);
-      if (!error && data.length > 0) {
-        setHasFollowed(true);
-      } else {
-        setHasFollowed(false);
-      }
-    };
-    getInitialFollowed();
-  }, [user_id, user_profile, supabase]);
+    if (!defaultValue) {
+      const getInitialFollowed = async () => {
+        const { data, error } = await supabase
+          .from('follows')
+          .select('*')
+          .eq('follower_id', user_id)
+          .eq('followed_id', user_profile);
+        if (!error && data.length > 0) {
+          setHasFollowed(true);
+        } else {
+          setHasFollowed(false);
+        }
+      };
+      getInitialFollowed();
+    }
+  }, [user_id, user_profile, supabase, defaultValue]);
 
   return (
     <>

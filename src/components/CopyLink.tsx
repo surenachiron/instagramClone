@@ -5,7 +5,15 @@ import { usePathname } from 'next/navigation';
 
 import Button from './Button';
 
-const CopyLink = ({ text = 'Copy', customPath, classes }: { text?: string; customPath?: string; classes?: string }) => {
+const CopyLink = ({
+  text = 'Copy Link',
+  customPath,
+  classes,
+}: {
+  text?: string;
+  customPath?: string;
+  classes?: string;
+}) => {
   const pathname = usePathname();
   const [copied, setCopied] = useState(false);
 

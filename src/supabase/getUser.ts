@@ -1,5 +1,6 @@
 import { cache } from 'react';
 import { redirect } from 'next/navigation';
+
 import { supabaseServer } from './utils/server';
 
 export const getUser = cache(async () => {

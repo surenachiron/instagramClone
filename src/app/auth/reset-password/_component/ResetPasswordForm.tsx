@@ -1,15 +1,18 @@
 'use client';
 
-import Box from '@/components/Box';
-import Button from '@/components/Button';
+import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { setResetPassword } from '../action';
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormResetPasswordData, ResetPasswordSchema } from '@/types/auth/resetPasswordFormType';
 import { toast } from 'react-toastify';
+
+import { setResetPassword } from '../action';
+
+import Box from '@/components/Box';
+import Button from '@/components/Button';
 import FormInput from '@/components/FormInput';
-import { useState } from 'react';
+import { FormResetPasswordData, ResetPasswordSchema } from '@/types/auth/resetPasswordFormType';
 
 const ResetPasswordForm = () => {
   const searchParams = useSearchParams();

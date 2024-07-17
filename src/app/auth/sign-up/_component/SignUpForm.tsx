@@ -1,17 +1,19 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-toastify';
+
+import { signUp } from '../action';
+
 import Button from '@/components/Button';
 import GradientContainer from '@/components/GradientContainer';
-import Input from '@/components/Input';
-import { signUp } from '../action';
-import { useForm } from 'react-hook-form';
-import { FormSingUpData, SignUpDataSchema } from '@/types/auth/signUpFormType';
-import { zodResolver } from '@hookform/resolvers/zod';
 import FormInput from '@/components/FormInput';
-import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { FormSingUpData, SignUpDataSchema } from '@/types/auth/signUpFormType';
 
 const SignUpForm = () => {
   const {

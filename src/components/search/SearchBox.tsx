@@ -1,15 +1,18 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+
+import { z, ZodType } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { IoIosSearch } from 'react-icons/io';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { z, ZodType } from 'zod';
-import Button from '../Button';
-import Input from '@/components/Input';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SearchResultNode } from './SearchResultNode';
+
 import { searchResult } from './action';
-import { usePathname } from 'next/navigation';
+
+import Input from '@/components/Input';
+import Button from '../Button';
+import { SearchResultNode } from './SearchResultNode';
 
 type Props = { bg: 'Back' | 'Middle' | 'Light'; paddingH: number; preIcon?: string };
 

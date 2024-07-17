@@ -4,10 +4,13 @@ import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { PagesDetail } from './PagesList';
-import { useUtilStore } from '@/store/util';
-import NewPost from '@/app/(profile)/profile/newPost/post/NewPost';
+
 import { IoMdAddCircleOutline } from 'react-icons/io';
+
+import { useUtilStore } from '@/store/util';
+
+import { PagesDetail } from './PagesList';
+import NewPost from '@/app/(profile)/profile/newPost/post/NewPost';
 
 const NavigateMobile = () => {
   const { username } = useUtilStore();

@@ -3,9 +3,11 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+import FilePath from '@/hooks/FilePath';
+
 import Box from '@/components/Box';
 import GradientContainer from '@/components/GradientContainer';
-import FilePath from '@/hooks/FilePath';
 import UtilProfileBut, { ButtonsProfileProps } from './UtilProfileBut';
 import UploadAvatar from './UploadAvatar';
 import FollowUser from './FollowUser';

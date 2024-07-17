@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { InputHTMLAttributes, HTMLInputTypeAttribute } from 'react';
+
 import { UseFormRegister } from 'react-hook-form';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 

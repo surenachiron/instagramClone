@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
+import { supabaseServer } from '@/supabase/utils/server';
+
 import UtileSide from '@/app/(home)/_component/utileSide';
 import NavigateMobile from '@/app/(home)/_component/utileSide/NavigateMobile';
-import { supabaseServer } from '@/supabase/utils/server';
 import BackPage from '@/components/BackPage';
 
 export async function generateMetadata({ params }: { params: { comments: string } }) {

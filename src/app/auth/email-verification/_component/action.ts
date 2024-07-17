@@ -1,9 +1,10 @@
 'use server';
 
-import { supabaseServer } from '@/supabase/utils/server';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+import { supabaseServer } from '@/supabase/utils/server';
 
 export async function UserEmailVerification(formData: FormData) {
   const supabase = supabaseServer();

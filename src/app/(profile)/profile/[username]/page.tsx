@@ -1,10 +1,12 @@
+import { cache } from 'react';
 import { cookies } from 'next/headers';
+
 import { supabaseServer } from '@/supabase/utils/server';
+import { getUser } from '@/supabase/getUser';
+
 import Box from '@/components/Box';
 import ProfileInfo from './_component/info/ProfileInfo';
 import PostsInProfile from './_component/posts';
-import { cache } from 'react';
-import { getUser } from '@/supabase/getUser';
 
 const getProfilesWithPostsAndFollow = cache(async (username: string) => {
   const supabase = supabaseServer();

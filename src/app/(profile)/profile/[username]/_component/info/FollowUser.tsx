@@ -1,8 +1,10 @@
 'use client';
 
-import Button from '@/components/Button';
-import { supabaseClient } from '@/supabase/utils/client';
 import { useEffect, useState } from 'react';
+
+import { supabaseClient } from '@/supabase/utils/client';
+
+import Button from '@/components/Button';
 
 type Props = {
   user_profile: string;

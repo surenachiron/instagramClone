@@ -2,16 +2,19 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
+
 import { MdOutlineCameraAlt } from 'react-icons/md';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { removeAvatar, setAvatar } from '@/supabase/useAvatar';
+import { useUtilAction, useUtilStore } from '@/store/util';
+
+import { ImageAvatarData, RegistrationImageAvatarSchema } from '@/types/storage/avatarImage';
 import Input from '@/components/Input';
 import Modal from '@/components/Modal';
 import UploadSvg from '@/components/Icons/UploadSvg';
 import Button from '@/components/Button';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { removeAvatar, setAvatar } from '@/supabase/useAvatar';
-import { useUtilAction, useUtilStore } from '@/store/util';
-import { ImageAvatarData, RegistrationImageAvatarSchema } from '@/types/storage/avatarImage';
 
 type Props = { icon?: React.ReactElement | string; iconStyle?: string; parentIconStyle?: string };
 

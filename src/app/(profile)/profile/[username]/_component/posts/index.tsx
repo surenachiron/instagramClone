@@ -1,6 +1,7 @@
 import { cache } from 'react';
 
 import { BiCamera } from 'react-icons/bi';
+
 import { supabaseServer } from '@/supabase/utils/server';
 
 import Box from '@/components/Box';

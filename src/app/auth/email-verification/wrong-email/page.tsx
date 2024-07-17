@@ -7,10 +7,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 
+import { changeWrongEmailAction } from '../_component/action';
+
 import Box from '@/components/Box';
 import FormInput from '@/components/FormInput';
 import Button from '@/components/Button';
-import { changeWrongEmailAction } from '../_component/action';
 
 type WrongEmailType = { email: string };
 

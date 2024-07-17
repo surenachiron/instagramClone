@@ -1,10 +1,12 @@
 'use server';
 
-import { supabaseServer } from '@/supabase/utils/server';
-import { FormLoginData, LoginDataSchema } from '@/types/auth/loginFormType';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+import { supabaseServer } from '@/supabase/utils/server';
+
+import { FormLoginData, LoginDataSchema } from '@/types/auth/loginFormType';
 
 export async function login(userData: FormLoginData) {
   const supabase = supabaseServer();

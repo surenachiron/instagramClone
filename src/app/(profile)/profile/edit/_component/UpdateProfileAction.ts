@@ -1,7 +1,8 @@
 'use server';
 
-import { supabaseServer } from '@/supabase/utils/server';
 import { revalidatePath } from 'next/cache';
+
+import { supabaseServer } from '@/supabase/utils/server';
 
 type updateProfileType = {
   full_name: string;

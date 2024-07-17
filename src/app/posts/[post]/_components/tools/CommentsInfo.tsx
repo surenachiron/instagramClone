@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { supabaseClient } from '@/supabase/utils/client';
-import CommentsLoading from '@/app/posts/comments/[comments]/loading';
 import { CommentsTable } from '@/supabase/models/database';
+
+import CommentsLoading from '@/app/posts/comments/[comments]/loading';
 
 type Props = {
   post_id: string;

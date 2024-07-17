@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 
 import { getSingleProfile } from '@/supabase/getProfiles';
+
 import EditProfile from './_component/EditProfile';
 import Box from '@/components/Box';
 

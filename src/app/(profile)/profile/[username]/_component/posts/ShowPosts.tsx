@@ -3,10 +3,11 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+import type { ShowSingePosts } from './TsShowPosts';
 import Box from '@/components/Box';
 import { usePostsAction } from '@/store/posts';
 import PreInfoPost from './PreInfoPost';
-import { ShowSingePosts } from './TsShowPosts';
 
 const ShowPosts = ({ data }: { data: ShowSingePosts }) => {
   const newPostRef = useRef<HTMLDialogElement>(null);

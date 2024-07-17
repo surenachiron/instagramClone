@@ -1,10 +1,12 @@
 'use client';
 
-import Button from './Button';
 import { PiSignOutFill } from 'react-icons/pi';
 import { toast } from 'react-toastify';
+
 import { useUtilAction } from '@/store/util';
 import { useLogout } from '@/supabase/setLogOut';
+
+import Button from './Button';
 
 const LogOutBut = () => {
   const { setLoading } = useUtilAction();

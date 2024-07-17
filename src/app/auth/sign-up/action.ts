@@ -3,7 +3,9 @@
 import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+
 import { supabaseServer } from '@/supabase/utils/server';
+
 import { FormSingUpData, SignUpDataSchema } from '@/types/auth/signUpFormType';
 
 export async function signUp(userData: FormSingUpData) {

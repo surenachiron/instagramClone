@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+
+import textReducer from '@/hooks/textReducer';
+
 import Box from '@/components/Box';
 import GradientContainer from '@/components/GradientContainer';
 import UtilProfileBut, { ButtonsProfileProps } from '@/app/(profile)/profile/[username]/_component/info/UtilProfileBut';
-import textReducer from '@/hooks/textReducer';
 
 type profileHomeInfoProps = {
   profile: { name: string; username: string; bio: string; avatar: string };

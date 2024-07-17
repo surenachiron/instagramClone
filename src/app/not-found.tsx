@@ -1,5 +1,6 @@
-import GradientText from '@/components/GradientText';
 import { Metadata } from 'next';
+
+import GradientText from '@/components/GradientText';
 
 export const metadata: Metadata = {
   title: 'Not Found',

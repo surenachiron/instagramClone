@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+
 import Button from './Button';
 
 const CopyLink = ({ text = 'Copy', customPath, classes }: { text?: string; customPath?: string; classes?: string }) => {

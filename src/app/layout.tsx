@@ -1,11 +1,14 @@
 import { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import '@/styles/globals.css';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Spinner from '@/components/Spinner';
-import CookiesToLocal from '@/hooks/setCookiesToLocal';
 import { cookies } from 'next/headers';
+
+import { ToastContainer } from 'react-toastify';
+
+import CookiesToLocal from '@/hooks/setCookiesToLocal';
+
+import Spinner from '@/components/Spinner';
+import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata: Metadata = {
   title: 'Instagram clone',

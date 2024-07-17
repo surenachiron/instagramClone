@@ -1,7 +1,9 @@
 import Link from 'next/link';
-import { resultType } from './SearchBox';
 import Image from 'next/image';
+
 import { MdPersonSearch } from 'react-icons/md';
+
+import { resultType } from './SearchBox';
 
 export const SearchResultNode = ({ result, classes }: { result: resultType; classes?: string }) => {
   return (

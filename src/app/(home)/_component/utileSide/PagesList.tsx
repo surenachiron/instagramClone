@@ -4,11 +4,13 @@ import { useEffect, useState, Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useUtilStore } from '@/store/util';
+
 import { GoHomeFill } from 'react-icons/go';
 import { IoPersonCircle } from 'react-icons/io5';
 import { MdOutlineExplore } from 'react-icons/md';
 import { RiMovie2Line } from 'react-icons/ri';
+
+import { useUtilStore } from '@/store/util';
 
 export const PagesDetail: { name: string; link: string; icon: React.ReactNode }[] = [
   { name: 'Home', link: '/', icon: <GoHomeFill className="text-3xl tablet:text-2xl" /> },

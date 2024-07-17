@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/components/Button';
+
 import { supabaseClient } from '@/supabase/utils/client';
 import FilePath from '@/hooks/FilePath';
+
+import Button from '@/components/Button';
 
 const DeletePost = ({ postId, avatar }: { postId: string; avatar?: string }) => {
   const [loading, setLoading] = useState(false);

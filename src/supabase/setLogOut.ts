@@ -1,4 +1,5 @@
 import { useRouter } from 'next/navigation';
+
 import { supabaseClient } from '@/supabase/utils/client';
 
 export const useLogout = () => {

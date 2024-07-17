@@ -1,8 +1,10 @@
 'use client';
 
 import { forwardRef } from 'react';
-import Button from './Button';
+
 import { BsArrowLeft } from 'react-icons/bs';
+
+import Button from './Button';
 
 type Props = {
   onOpen: () => void;

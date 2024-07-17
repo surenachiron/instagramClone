@@ -1,10 +1,12 @@
+import { cache } from 'react';
 import Image from 'next/image';
+
 import { supabaseServer } from '@/supabase/utils/server';
+import { getUser } from '@/supabase/getUser';
+
 import PostTools from './_components/tools/PostTools';
 import CommentsInfo from './_components/tools/CommentsInfo';
 import UserPostInfo from './_components/UserPostInfo';
-import { getUser } from '@/supabase/getUser';
-import { cache } from 'react';
 
 const getFullPostsProfileComments = cache(async (post: string) => {
   const supabase = supabaseServer();

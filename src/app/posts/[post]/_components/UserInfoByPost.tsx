@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { supabaseClient } from '@/supabase/utils/client';
-import { PostsTable } from '@/supabase/models/database';
+
 import Box from '@/components/Box';
 import SkeletonUserInfoByPost from './SkeletonUserInfoByPost';
+import type { PostsTable } from '@/supabase/models/database';
 
 type Props = {
   userData: {

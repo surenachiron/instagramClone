@@ -1,4 +1,5 @@
 import { cache } from 'react';
+
 import { supabaseServer } from './utils/server';
 
 export const getFollowers = cache(async (username: string) => {

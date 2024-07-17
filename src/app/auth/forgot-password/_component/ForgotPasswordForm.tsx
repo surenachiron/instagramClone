@@ -2,14 +2,17 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { sendResetEmail } from '../action';
+
 import Box from '@/components/Box';
 import Button from '@/components/Button';
-import { sendResetEmail } from '../action';
-import { useForm } from 'react-hook-form';
-import { FormForgotPassword, ForgotPasswordSchema } from '@/types/auth/forgotPasswordType';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'react-toastify';
 import FormInput from '@/components/FormInput';
+import { FormForgotPassword, ForgotPasswordSchema } from '@/types/auth/forgotPasswordType';
 
 const ForgotPasswordForm = () => {
   const router = useRouter();

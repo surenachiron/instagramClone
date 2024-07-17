@@ -1,7 +1,8 @@
 'ues client';
 
-import Box from '@/components/Box';
 import Image from 'next/image';
+
+import Box from '@/components/Box';
 import UploadAvatar from '../../[username]/_component/info/UploadAvatar';
 import FormEdit from './FormEdit';
 

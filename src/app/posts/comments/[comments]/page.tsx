@@ -1,8 +1,10 @@
+import { cache } from 'react';
+
 import { supabaseServer } from '@/supabase/utils/server';
+import { getUser } from '@/supabase/getUser';
+
 import CommentsInfo from '../../[post]/_components/tools/CommentsInfo';
 import AddComment from '../../[post]/_components/tools/AddComment';
-import { getUser } from '@/supabase/getUser';
-import { cache } from 'react';
 
 const getPostsProfilesComments = cache(async (commentId: string) => {
   const supabase = supabaseServer();

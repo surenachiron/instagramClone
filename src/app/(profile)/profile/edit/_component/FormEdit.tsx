@@ -1,13 +1,14 @@
 'use client';
 
-import FormInput from '@/components/FormInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+
+import FormInput from '@/components/FormInput';
 import { EditProfileSchema, FormEditProfileType } from './editProfileType';
 import TextArea from '@/components/TextArea';
 import Button from '@/components/Button';
 import { updateProfile } from './UpdateProfileAction';
-import { toast } from 'react-toastify';
 import { ProfilePropsWithoutAuth } from './EditProfile';
 
 const FormEdit = ({ profile }: ProfilePropsWithoutAuth) => {

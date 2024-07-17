@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Button from '@/components/Button';
+
 import { supabaseClient } from '@/supabase/utils/client';
+
+import Button from '@/components/Button';
 
 type Props = {
   followerID: string;

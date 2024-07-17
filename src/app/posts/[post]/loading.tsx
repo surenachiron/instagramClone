@@ -1,7 +1,8 @@
 'use client';
 
-import Skeleton from '@/components/Skeleton';
 import React from 'react';
+
+import Skeleton from '@/components/Skeleton';
 
 const SinglePostLoading = () => {
   return (

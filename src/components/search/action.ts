@@ -1,6 +1,7 @@
 'use server';
 
 import { supabaseServer } from '@/supabase/utils/server';
+
 import { SearchInputType } from './SearchBox';
 
 export const searchResult = async (text: SearchInputType) => {

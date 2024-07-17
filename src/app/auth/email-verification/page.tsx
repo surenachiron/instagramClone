@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+
 import Verification from './_component/Verification';
 
 const EmailVerificationPage = () => {

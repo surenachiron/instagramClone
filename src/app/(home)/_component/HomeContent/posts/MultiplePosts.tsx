@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCreative, Navigation, Pagination } from 'swiper/modules';
 
+import { EffectCreative, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-creative';
 import 'swiper/css/navigation';

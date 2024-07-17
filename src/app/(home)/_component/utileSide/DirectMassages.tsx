@@ -1,8 +1,10 @@
 import Image from 'next/image';
+
+import { AiOutlineDash } from 'react-icons/ai';
+
 import Button from '@/components/Button';
 import textReducer from '@/hooks/textReducer';
 import Box from '@/components/Box';
-import { AiOutlineDash } from 'react-icons/ai';
 
 const directs: { pic: string; username: string; massage: string; link: string }[] = [
   { pic: '/anonymous.png', username: '@surenachiron', massage: "hello bro, i'm waiting here for you", link: '/fdg' },

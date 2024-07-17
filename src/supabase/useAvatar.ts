@@ -1,9 +1,10 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+
 import { supabaseServer } from './utils/server';
-import RandomPath from '@/hooks/RandomPath';
 import { getUser } from './getUser';
+import RandomPath from '@/hooks/RandomPath';
 
 export const setAvatar = async (formData: FormData) => {
   const file = formData.get('imageAvatar') as File;

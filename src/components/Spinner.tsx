@@ -1,8 +1,10 @@
 'use client';
 
-import { useUtilStore } from '@/store/util';
-import InstagramSVG from './Icons/InstagramSVG';
 import { useEffect } from 'react';
+
+import { useUtilStore } from '@/store/util';
+
+import InstagramSVG from './Icons/InstagramSVG';
 
 const Spinner = () => {
   const { loading } = useUtilStore();

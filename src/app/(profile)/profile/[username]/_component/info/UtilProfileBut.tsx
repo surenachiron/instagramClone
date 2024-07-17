@@ -1,8 +1,9 @@
 'use client';
 
-import Button from '@/components/Button';
-import Link from 'next/link';
 import { Fragment } from 'react';
+import Link from 'next/link';
+
+import Button from '@/components/Button';
 
 export type ButtonsProfileProps = {
   primaryText?: string | number;

@@ -3,7 +3,9 @@
 import { type ElementRef, MouseEvent, RefObject, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
+
 import { CgClose } from 'react-icons/cg';
+
 import Button from '@/components/Button';
 
 export function ModalRoute({ children }: { children: React.ReactNode }) {

@@ -1,7 +1,8 @@
 'use client';
 
-import { useUtilAction } from '@/store/util';
 import { useEffect } from 'react';
+
+import { useUtilAction } from '@/store/util';
 
 export default function CookiesToLocal({ namVal, val }: { namVal: string; val: string | undefined }) {
   const { setUsername } = useUtilAction();

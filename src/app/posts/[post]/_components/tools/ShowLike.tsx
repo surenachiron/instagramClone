@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
+
 import { supabaseClient } from '@/supabase/utils/client';
-import Button from '@/components/Button';
 import { removeLike, setLike } from './likeAction';
+
+import Button from '@/components/Button';
 
 type Props = {
   username: string;

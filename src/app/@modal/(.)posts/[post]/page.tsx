@@ -1,5 +1,5 @@
-import { ModalRoute } from './ModalRoute';
 import ShowSinglePost from '@/app/posts/[post]/page';
+import { ModalRoute } from './ModalRoute';
 
 export default async function PhotoModal({ params: { post } }: { params: { post: string } }) {
   return (

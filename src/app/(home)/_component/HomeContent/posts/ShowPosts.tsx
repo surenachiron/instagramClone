@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+
+import UserInfoByPost from '@/app/posts/[post]/_components/UserInfoByPost';
 import CaptionAndTools from './tools/CaptionAndTools';
 import PostDropdown from './tools/PostDropdown';
-import { PostType } from './TShowPosts';
-import UserInfoByPost from '@/app/posts/[post]/_components/UserInfoByPost';
+import type { PostType } from './TShowPosts';
 import SuggestUsers from './SuggestUsers';
 
 const ShowPosts = ({ data, ownUserId }: PostType) => {

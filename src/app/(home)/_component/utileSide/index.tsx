@@ -1,10 +1,12 @@
 import Image from 'next/image';
-import SearchBox from '@/components/search/SearchBox';
-import PagesList from './PagesList';
+
 import { IoMdAddCircleOutline } from 'react-icons/io';
+
+import SearchBox from '@/components/search/SearchBox';
 import Box from '@/components/Box';
-import DirectMassages from './DirectMassages';
 import NewPost from '@/app/(profile)/profile/newPost/post/NewPost';
+import DirectMassages from './DirectMassages';
+import PagesList from './PagesList';
 
 const UtileSide = () => {
   return (

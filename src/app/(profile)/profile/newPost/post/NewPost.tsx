@@ -1,18 +1,21 @@
 'use client';
 
 import React, { ReactElement, useRef, useState } from 'react';
-import { createNewPost } from './action';
-import Modal from '@/components/Modal';
-import { IoMdAddCircleOutline } from 'react-icons/io';
-import UploadSvg from '@/components/Icons/UploadSvg';
 import Image from 'next/image';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { IoMdAddCircleOutline } from 'react-icons/io';
+
+import { createNewPost } from './action';
+
+import { FormNewPostType, NewPostSchema } from './TNewPost';
+import Modal from '@/components/Modal';
+import UploadSvg from '@/components/Icons/UploadSvg';
 import TextArea from '@/components/TextArea';
 import Button from '@/components/Button';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FormNewPostType, NewPostSchema } from './TNewPost';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import Input from '@/components/Input';
-import { toast } from 'react-toastify';
 
 type Props = { icon?: ReactElement };
 

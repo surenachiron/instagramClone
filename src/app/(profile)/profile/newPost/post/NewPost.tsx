@@ -4,9 +4,10 @@ import React, { ReactElement, useRef, useState } from 'react';
 import Image from 'next/image';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { IoMdAddCircleOutline } from 'react-icons/io';
+import { FiUpload } from 'react-icons/fi';
 
 import { createNewPost } from './action';
 
@@ -15,7 +16,7 @@ import Modal from '@/components/Modal';
 import UploadSvg from '@/components/Icons/UploadSvg';
 import TextArea from '@/components/TextArea';
 import Button from '@/components/Button';
-import Input from '@/components/Input';
+import FileInput from '@/components/FileInput';
 
 type Props = { icon?: ReactElement };
 
@@ -25,7 +26,12 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormNewPostType>({ resolver: zodResolver(NewPostSchema) });
+    setValue,
+  } = useForm<FormNewPostType>({
+    resolver: zodResolver(NewPostSchema),
+    mode: 'onChange',
+  });
+
   const newPostRef = useRef<HTMLDialogElement>(null);
   const [fileSelected, setFileSelected] = useState<File | null>(null);
   const [showSelectedImage, setShowSelectedImage] = useState<string | null>(null);
@@ -35,7 +41,7 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
   const submitForm: SubmitHandler<FormNewPostType> = async (data) => {
     const formData = new FormData();
     formData.append('caption', data.caption);
-    formData.append(`media`, data.media[0]!);
+    formData.append('media', data.media[0]);
     setLoading(true);
     const res = await createNewPost(formData);
     if (res) toast.success('Post created');
@@ -48,6 +54,7 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setValue('media', e.target.files!);
       setFileSelected(file);
       imageReader(file);
       setShowBackAction(true);
@@ -77,7 +84,7 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
       iconStyle={'w-full bg-blue gap-x-2 text-white font-light rounded-2xl p-2'}
       parentIconStyle="w-full"
       ref={newPostRef}
-      title="Create new posts"
+      title="Create new post"
       showBackButton={showBackAction}
       onClickBackButton={backAction}
     >
@@ -102,17 +109,19 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
         ) : (
           <>
             <UploadSvg />
-            <Input
-              type="file"
-              name="media"
-              register={register}
+            <FileInput
               accept="image/png, image/jpeg, image/jpg"
               classes="w-3/4 border px-3 py-2 mt-4 bg-blue text-white border-1 border-grayLight rounded-lg cursor-pointer"
-              onChange={handleChange}
+              text={
+                <span className="flex items-center">
+                  Upload File <FiUpload className="text-white ml-1" />
+                </span>
+              }
+              onChangeEvent={handleChange}
+              error={errors.media?.message}
             />
           </>
         )}
-        {errors.media?.message}
       </form>
     </Modal>
   );

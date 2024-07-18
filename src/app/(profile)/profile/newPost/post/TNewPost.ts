@@ -19,5 +19,5 @@ export const NewPostSchema = z.object({
 
 export type FormNewPostType = {
   caption: string;
-  media: FileList;
+  media: FileList | string;
 };

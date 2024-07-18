@@ -14,10 +14,10 @@ export const SearchResultNode = ({ result, classes }: { result: resultType; clas
             <p className="text-sm text-bold text-black">{result}</p>
           </div>
         ) : (
-          <div className="flex flex-col justify-start w-full h-full gap-y-2 overflow-auto customScroll ">
+          <div className="flex flex-col justify-start w-full h-full gap-y-2 overflow-auto">
             {result?.map((user) => (
               <Link
-                href={`profile/${user.user_name}`}
+                href={`/profile/${user.user_name}`}
                 key={user.user_id}
                 className="flex gap-x-2 items-center w-fit group"
               >

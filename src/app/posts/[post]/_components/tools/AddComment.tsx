@@ -42,7 +42,7 @@ const AddComment = ({ avatar, username, post_id, user_id }: TAddComment) => {
   return (
     <form onSubmit={handleSubmit(sendComment)} className="flex gap-x-2 mt-6 tablet:mt-0 border-t pt-2">
       <Image
-        src={avatar}
+        src={avatar ? avatar : '/anonymous.png'}
         alt={`avatar of ${username}`}
         width={150}
         height={150}

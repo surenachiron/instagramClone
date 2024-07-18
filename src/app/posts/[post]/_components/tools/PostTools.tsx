@@ -25,7 +25,7 @@ const PostTools = ({ avatar, username, post_id, user_id, createdAt, caption }: C
   return (
     <div className="flex flex-col py-2 gap-y-3">
       <div className="flex flex-col gap-y-2">
-        <div className="flex gap-x-4">
+        <div className="flex items-start gap-x-4">
           <ShowLike postId={post_id} avatarUrl={avatar} username={username} userId={user_id} />
           <Link href={`/posts/comments/${post_id}`} className="tablet:hidden">
             <Button>

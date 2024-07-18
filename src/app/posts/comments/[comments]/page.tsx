@@ -16,7 +16,13 @@ const getPostsProfilesComments = cache(async (commentId: string) => {
   return data;
 });
 
-const CommentsPage = async ({ params }: { params: { comments: string } }) => {
+const CommentsPage = async ({
+  params,
+  parentClasses = 'h-[80vh]',
+}: {
+  params: { comments: string };
+  parentClasses?: string;
+}) => {
   const commentId = params.comments;
   const postData = await getPostsProfilesComments(commentId);
   const userData = await getUser();
@@ -24,7 +30,7 @@ const CommentsPage = async ({ params }: { params: { comments: string } }) => {
   return (
     <>
       {postData?.comments && postData.profiles && userData ? (
-        <div className="flex flex-col justify-between w-full h-[85vh]">
+        <div className={`flex flex-col justify-between w-full ${parentClasses}`}>
           <div className="h-full overflow-auto">
             <CommentsInfo
               post_id={postData.id}

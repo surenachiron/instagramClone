@@ -1,6 +1,7 @@
 'use client';
 
 import { IoIosMore } from 'react-icons/io';
+
 import CopyLink from '@/components/CopyLink';
 import Dropdown from '@/components/Dropdown';
 import FollowUser from '@/app/(profile)/profile/[username]/_component/info/FollowUser';

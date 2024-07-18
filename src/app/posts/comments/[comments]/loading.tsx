@@ -2,7 +2,7 @@ import Skeleton from '@/components/Skeleton';
 
 const CommentsLoading = () => {
   return (
-    <div className="flex flex-col justify-between w-full h-[85vh]">
+    <div className="flex flex-col justify-between w-full">
       <div className="h-full mt-3">
         {Array.from({ length: 9 }, (_, colIndex) => (
           <div className="flex items-center gap-x-2 mb-4" key={colIndex}>

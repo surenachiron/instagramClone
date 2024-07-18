@@ -28,13 +28,13 @@ const PostsViewer = async () => {
   const userId = userInfo.id as string;
   const following = await getFollowings(userId);
 
-  if (!following) return <ShowPosts data={null} ownUserId={userId} />;
+  if (!following) return <ShowPosts data={null} user={userInfo} />;
   const followingIds = following.map((follow) => follow.followed_id);
   const posts = await getPosts(userId, followingIds);
 
   return (
     <div className="tablet:mx-5">
-      <ShowPosts data={posts} ownUserId={userId} />
+      <ShowPosts data={posts} user={userInfo} />
     </div>
   );
 };

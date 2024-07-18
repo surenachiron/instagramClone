@@ -6,10 +6,26 @@ import Link from 'next/link';
 import UserInfoByPost from '@/app/posts/[post]/_components/UserInfoByPost';
 import CaptionAndTools from './tools/CaptionAndTools';
 import PostDropdown from './tools/PostDropdown';
-import type { PostType } from './TShowPosts';
 import SuggestUsers from './SuggestUsers';
 
-const ShowPosts = ({ data, ownUserId }: PostType) => {
+type homePostT = {
+  data:
+    | {
+        id: string;
+        content: string;
+        media_url: string;
+        profiles: {
+          user_name: string | null;
+          avatar_url: string | null;
+          user_id: string;
+          full_name: string | null;
+        } | null;
+      }[]
+    | null;
+  user: { id: string; avatar: string; username: string };
+};
+
+const ShowPosts = ({ data, user }: homePostT) => {
   return (
     <div className="relative flex flex-col gap-5">
       {data ? (
@@ -48,8 +64,8 @@ const ShowPosts = ({ data, ownUserId }: PostType) => {
                 <PostDropdown
                   postId={post.id}
                   profileID={post.profiles?.user_id as string}
-                  userID={ownUserId}
-                  privateUser={ownUserId !== post.profiles?.user_id}
+                  userID={user.id}
+                  privateUser={user.id !== post.profiles?.user_id}
                   avatar={post.media_url}
                   followValue={true}
                 />
@@ -58,15 +74,15 @@ const ShowPosts = ({ data, ownUserId }: PostType) => {
                 caption={post.content}
                 postId={post.id}
                 user={{
-                  username: post.profiles?.user_name as string,
-                  avatar_url: post.profiles?.avatar_url as string,
-                  user_id: post.profiles?.user_id as string,
+                  username: user.username,
+                  avatar_url: user.avatar,
+                  user_id: user.id,
                 }}
               />
             </div>
           ))
         ) : (
-          <SuggestUsers data={data} ownUserId={ownUserId} />
+          <SuggestUsers data={data} ownUserId={user.id} />
         )
       ) : (
         <div className="h-[200px] w-full flex flex-col items-center justify-center bg-white rounded-lg">

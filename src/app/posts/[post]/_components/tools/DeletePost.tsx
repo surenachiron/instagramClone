@@ -15,12 +15,12 @@ const DeletePost = ({ postId, avatar }: { postId: string; avatar?: string }) => 
   async function deletePost() {
     const supabase = supabaseClient();
     setLoading(true);
-    console.log(avatar, FilePath(avatar!, 'posts/'));
     await supabase.storage.from('posts').remove([FilePath(avatar!, 'posts/')]);
     await supabase.from('posts').delete().eq('id', postId);
-    router.refresh();
     setLoading(false);
+    router.refresh();
   }
+
   return (
     <Button
       onClick={deletePost}

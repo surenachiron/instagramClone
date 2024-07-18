@@ -35,18 +35,18 @@ const PreviewStoryMap = ({ data }: DataStoriesType) => {
     >
       <SwiperSlide className="cursor-pointer w-20 h-20">
         <GradientContainer classes="relative w-fit mb-1" borderGradient={true}>
-          <Link href={'/home/stories'} className="flex items-center flex-col">
+          <Link href={'/stories'} className="flex items-center flex-col">
             <Image src={'/anonymous.png'} alt={`profile of `} width={50} height={50} className="rounded-full" />
           </Link>
         </GradientContainer>
-        <Link href={'/home/stories'} className="flex items-start flex-col mr-2">
+        <Link href={'/stories'} className="flex items-start flex-col mr-2">
           <p className="leading-5 text-xs overflow-hidden text-ellipsis">mohammad</p>
         </Link>
       </SwiperSlide>
 
       {data?.map((story) => (
         <SwiperSlide key={story.id} onClick={() => startShowingStory(story.id)} className="cursor-pointer w-16 h-20">
-          <Link href={'/home/stories'} className="flex items-center flex-col mr-0">
+          <Link href={'/stories'} className="flex items-center flex-col mr-0">
             <GradientContainer classes="w-fit mb-1" borderGradient={true}>
               <Image
                 src={'/anonymous.png'}
@@ -56,7 +56,7 @@ const PreviewStoryMap = ({ data }: DataStoriesType) => {
                 className="rounded-full"
               />
             </GradientContainer>
-            <p className="leading-5 text-xs w-16 overflow-hidden text-ellipsis">{story.title.replaceAll(' ', '')}</p>
+            <p className="leading-5 text-xs w-16 overflow-hidden text-ellipsis">{story.title.trim()}</p>
           </Link>
         </SwiperSlide>
       ))}

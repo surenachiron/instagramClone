@@ -9,7 +9,7 @@ export const RegistrationImageAvatarSchema = z.object({
     .refine((files) => files?.[0]?.size <= 5242880, `File size should be less than 5MB.`)
     .refine(
       (files) => Image_Types.includes(files?.[0]?.type),
-      'Only formats of .jpg, .jpeg, and .png files are accepted.'
+      'Only formats of .jpg, .jpeg and .png files are accepted.'
     ),
 });
 

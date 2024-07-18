@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+
 import { CiBookmark } from 'react-icons/ci';
 import { FaRegComment } from 'react-icons/fa6';
 import { RiSendPlaneLine } from 'react-icons/ri';
+
 import ShowLike from '@/app/posts/[post]/_components/tools/ShowLike';
 import Button from '@/components/Button';
 import textReducer from '@/hooks/textReducer';
@@ -28,8 +30,8 @@ const CaptionAndTools = ({ caption, postId, user }: Props) => {
   return (
     <div className="absolute bottom-0 w-full px-4 py-3 text-white flex justify-between items-center bg-[#80808014]">
       <p className="text-white text-sm" onClick={showFullCaption}>
-        {showContent ? (
-          <div className="max-h-[100px] overflow-auto customScroll fade-in">{caption}</div>
+        {!showContent ? (
+          <div className="max-h-[100px] overflow-auto fade-in">{caption}</div>
         ) : (
           textReducer({ text: caption, min: 0, max: 100, additionally: '...' })
         )}
@@ -38,8 +40,8 @@ const CaptionAndTools = ({ caption, postId, user }: Props) => {
         <ShowLike
           username={user.username as string}
           avatarUrl={user.avatar_url as string}
-          postId={postId}
           userId={user.user_id.toString() as string}
+          postId={postId}
           isShowCount={false}
           parentClasses="p-[6px] tablet:p-2 rounded-full bg-[#c3c3c3cf] backdrop-blur-lg"
           unLikedClasses="text-inherit text-md tablet:text-xl"

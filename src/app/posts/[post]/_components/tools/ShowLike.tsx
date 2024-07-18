@@ -30,7 +30,7 @@ const ShowLike = ({
   likedClasses = 'text-2xl',
   unLikedClasses = 'text-2xl',
 }: Props) => {
-  const [data, setData] = useState<number | undefined>(undefined);
+  const [data, setData] = useState<number | null>(null);
   const [hasLiked, setHasLiked] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const supabase = supabaseClient();
@@ -47,7 +47,7 @@ const ShowLike = ({
         .single();
       console.log(isUserLikedError, error);
       if (error || isUserLikedError) {
-        setData(undefined);
+        setData(count);
         setHasLiked(false);
       } else {
         setData(count!);

@@ -19,7 +19,7 @@ const StoryDetail = () => {
         className="w-32 bg-white p-1 rounded-lg"
       />
       <Button classes="border-2 border-white rounded-full p-1">
-        <Link href={'/home'}>
+        <Link href={'/'}>
           <GrClose className="text-white text-xl" onClick={() => changeShowStories()} />
         </Link>
       </Button>

@@ -68,39 +68,41 @@ const CommentsInfo = ({ post_id, profiles, caption, errorClasses = 'h-1/2' }: Pr
           <span className="text-sm">{caption}</span>
         </div>
       </div>
-      {loading ? (
-        <CommentsLoading />
-      ) : data && data.length ? (
-        <div className="w-full flex flex-col gap-y-2">
-          {data
-            .slice()
-            .sort((a, b) => new Date(b.created_at!).getTime() - new Date(a.created_at!).getTime())
-            .map((comment) => (
-              <Link href={`/profile/${comment.user_name}`} key={comment.id}>
-                <div className="flex items-center gap-x-2">
-                  <Image
-                    src={comment.avatar_url ? comment.avatar_url : '/anonymous.png'}
-                    alt={`avatar of ${comment.user_name}`}
-                    width={150}
-                    height={150}
-                    className={'w-[35px] h-[35px] rounded-full'}
-                  />
-                  <div className="flex flex-col flex-y-1">
-                    <p className="text-black text-sm">{comment.user_name}</p>
-                    <span className="text-sm">{comment.comment_text}</span>
+      <div className="overflow-auto min-h-1/2 h-[90%] flex">
+        {loading ? (
+          <CommentsLoading />
+        ) : data && data.length ? (
+          <div className="w-full flex flex-col min-h-1/2 max-h-[80%] gap-y-2">
+            {data
+              .slice()
+              .sort((a, b) => new Date(b.created_at!).getTime() - new Date(a.created_at!).getTime())
+              .map((comment) => (
+                <Link href={`/profile/${comment.user_name}`} key={comment.id}>
+                  <div className="flex items-center gap-x-2">
+                    <Image
+                      src={comment.avatar_url ? comment.avatar_url : '/anonymous.png'}
+                      alt={`avatar of ${comment.user_name}`}
+                      width={150}
+                      height={150}
+                      className={'w-[35px] h-[35px] rounded-full'}
+                    />
+                    <div className="flex flex-col flex-y-1">
+                      <p className="text-black text-sm">{comment.user_name}</p>
+                      <span className="text-sm">{comment.comment_text}</span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-        </div>
-      ) : (
-        <div className={`py-2 w-full flex flex-col gap-y-2 ${errorClasses}`}>
-          <div className="flex flex-col items-center justify-center w-full h-full">
-            <h4 className="text-2xl font-bold text-black">No comments yet.</h4>
-            <p>Start the conversation.</p>
+                </Link>
+              ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className={`py-2 w-full h-[80%] flex flex-col justify-center items-center gap-y-2 ${errorClasses}`}>
+            <div className="flex flex-col items-center justify-center w-full h-full">
+              <h4 className="text-2xl font-bold text-black">No comments yet.</h4>
+              <p>Start the conversation.</p>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };

@@ -16,13 +16,18 @@ import { useEffect } from 'react';
 
 // type Props = { data: { username: string; stories: { media: string }[] }[] };
 export type DataStoriesType = {
-  data?: {
-    albumId: number;
-    id: number;
-    title: string;
-    url: string;
-    thumbnailUrl: string;
-  }[];
+  data?:
+    | {
+        id: string;
+        file_url: string;
+        profiles: {
+          user_name: string | null;
+          avatar_url: string | null;
+          user_id: string;
+          full_name: string | null;
+        } | null;
+      }[]
+    | null;
 };
 
 const ShowStoriesMap = ({ data }: DataStoriesType) => {
@@ -73,23 +78,23 @@ const ShowStoriesMap = ({ data }: DataStoriesType) => {
                         <div className="flex items-center gap-x-2">
                           <Image
                             src={'/anonymous.png'}
-                            alt={`story of ${story.title}`}
+                            alt={`story of ${story.profiles?.user_id}`}
                             width={40}
                             height={40}
                             className="rounded-full border-2"
                           />
-                          <h3 className="text-white">{story.title}</h3>
+                          <h3 className="text-white">{story.profiles?.user_name}</h3>
                         </div>
                         <Button classes="cursor-pointer">
                           <FaRegCirclePause className="text-xl text-white" />
                         </Button>
                       </div>
                       <Image
-                        src={story.url}
-                        alt={story.title}
+                        src={story.file_url}
+                        alt={story.id}
                         width={350}
                         height={500}
-                        className="rounded-lg w-full h-full"
+                        className="rounded-lg w-full desktop:w-[500px] h-full"
                       />
                     </div>
                   </SwiperSlide>

@@ -25,7 +25,7 @@ const ProfileInfo = ({ profile, buttons, posts }: profileHomeInfoProps) => {
             alt="test image"
             width={70}
             height={70}
-            className="rounded-full"
+            className="rounded-full w-[70px] h-[70px]"
           />
         </GradientContainer>
       </div>
@@ -40,7 +40,9 @@ const ProfileInfo = ({ profile, buttons, posts }: profileHomeInfoProps) => {
       </div>
       {posts && posts.length > 0 && (
         <div className="flex flex-col gap-2 my-4 w-full">
-          <p className="text-sm font-bold text-grayMiddle">posts - {posts?.length}</p>
+          <Link href={`/profile/${profile.username}`}>
+            <p className="text-sm font-bold text-grayMiddle">posts - {posts?.length}</p>
+          </Link>
           <div className="grid grid-cols-12 gap-2">
             {posts.map((post) => (
               <Link

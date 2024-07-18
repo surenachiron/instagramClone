@@ -14,7 +14,7 @@ const getProfileWithPosts = cache(async () => {
     .from('profiles')
     .select(`*, posts(id, media_url)`)
     .eq('user_name', enterUsername)
-    .limit(1, { foreignTable: 'posts' })
+    .limit(3, { foreignTable: 'posts' })
     .single();
   return data;
 });

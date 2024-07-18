@@ -20,7 +20,7 @@ const ForgotPasswordForm = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormForgotPassword>({ resolver: zodResolver(ForgotPasswordSchema) });
+  } = useForm<FormForgotPassword>({ resolver: zodResolver(ForgotPasswordSchema), mode: 'onChange' });
 
   async function formSubmit(data: FormForgotPassword) {
     const result = await sendResetEmail(data);

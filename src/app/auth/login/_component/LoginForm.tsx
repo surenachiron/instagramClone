@@ -22,6 +22,7 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormLoginData>({
     resolver: zodResolver(LoginDataSchema),
+    mode: 'onChange',
   });
 
   const [checkError, setCheckError] = useState('');

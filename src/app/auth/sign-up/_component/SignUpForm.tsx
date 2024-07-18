@@ -20,7 +20,7 @@ const SignUpForm = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormSingUpData>({ resolver: zodResolver(SignUpDataSchema) });
+  } = useForm<FormSingUpData>({ resolver: zodResolver(SignUpDataSchema), mode: 'onChange' });
   const [checkEmailUsername, setCheckEmailUsername] = useState({ emailMessage: '', usernameMessage: '' });
 
   async function formSubmit(data: FormSingUpData) {
@@ -67,7 +67,7 @@ const SignUpForm = () => {
           <FormInput
             type="password"
             name="password"
-            placeholder="Must have 6-42 characters"
+            placeholder="Enter your password"
             register={register}
             error={errors.password?.message}
             autoComplete="new-password"

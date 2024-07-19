@@ -45,18 +45,18 @@ const PreviewStoryMap = ({ data }: DataStoriesType) => {
       </SwiperSlide>
 
       {data?.map((story) => (
-        <SwiperSlide key={story.id} onClick={() => startShowingStory(story.id)} className="cursor-pointer w-16 h-20">
+        <SwiperSlide key={story.id} onClick={() => startShowingStory(+story.id)} className="cursor-pointer w-16 h-20">
           <Link href={'/stories'} className="flex items-center flex-col mr-0">
             <GradientContainer classes="w-fit mb-1" borderGradient={true}>
               <Image
                 src={'/anonymous.png'}
-                alt={`profile of ${story.title}`}
+                alt={`profile of ${story.profiles?.user_name}`}
                 width={50}
                 height={50}
                 className="rounded-full"
               />
             </GradientContainer>
-            <p className="leading-5 text-xs w-16 overflow-hidden text-ellipsis">{story.title.trim()}</p>
+            <p className="leading-5 text-xs w-16 overflow-hidden text-ellipsis">{story.profiles?.user_name}</p>
           </Link>
         </SwiperSlide>
       ))}

@@ -3,16 +3,40 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+
 import GradientContainer from '@/components/GradientContainer';
-import { DataStoriesType } from './ShowStoriesMap';
 import { useStoriesAction, useStoriesStore } from '@/store/stories';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
 
-const PreviewStoryMap = ({ data }: DataStoriesType) => {
+type TStory =
+  | {
+      id: string;
+      file_url?: string;
+      profiles: {
+        user_name: string | null;
+        avatar_url: string | null;
+      } | null;
+    }[]
+  | null;
+
+type PreviewStoriesT = {
+  data: TStory;
+  userData: {
+    id: string;
+    email: string | undefined;
+    fullName: string;
+    username: string;
+    avatar: string | undefined;
+  } | null;
+  userStoryData: TStory;
+};
+
+const PreviewStoryMap = ({ data, userData, userStoryData }: PreviewStoriesT) => {
   const { changeShowStories, setInitialStory } = useStoriesAction();
   const { showStories } = useStoriesStore();
 
@@ -34,29 +58,37 @@ const PreviewStoryMap = ({ data }: DataStoriesType) => {
       className="!px-3 mr-2 z-0 flex gap-2"
     >
       <SwiperSlide className="cursor-pointer w-20 h-20">
-        <GradientContainer classes="relative w-fit mb-1" borderGradient={true}>
-          <Link href={'/stories'} className="flex items-center flex-col">
-            <Image src={'/anonymous.png'} alt={`profile of `} width={50} height={50} className="rounded-full" />
-          </Link>
-        </GradientContainer>
-        <Link href={'/stories'} className="flex items-start flex-col mr-2">
-          <p className="leading-5 text-xs overflow-hidden text-ellipsis">mohammad</p>
+        <Link href={`/stories`} className="flex items-center justify-center flex-col mr-0">
+          <GradientContainer classes={`w-fit mb-1 ${!userStoryData?.length && 'bg-none'}`} borderGradient={true}>
+            <Image
+              src={userData?.avatar ? userData?.avatar : '/anonymous.png'}
+              alt={`profile of ${userData?.username}`}
+              width={50}
+              height={50}
+              className="rounded-full w-[50px] h-[50px]"
+            />
+          </GradientContainer>
+          <p className="leading-5 text-xs text-center w-16 overflow-hidden text-ellipsis swiper-no-swiping">
+            {userData?.username}
+          </p>
         </Link>
       </SwiperSlide>
 
       {data?.map((story) => (
         <SwiperSlide key={story.id} onClick={() => startShowingStory(+story.id)} className="cursor-pointer w-16 h-20">
-          <Link href={'/stories'} className="flex items-center flex-col mr-0">
+          <Link href={`/stories`} className="flex items-center justify-center flex-col mr-0">
             <GradientContainer classes="w-fit mb-1" borderGradient={true}>
               <Image
-                src={'/anonymous.png'}
+                src={story.profiles?.avatar_url ? story.profiles?.avatar_url : '/anonymous.png'}
                 alt={`profile of ${story.profiles?.user_name}`}
                 width={50}
                 height={50}
-                className="rounded-full"
+                className="rounded-full w-[50px] h-[50px]"
               />
             </GradientContainer>
-            <p className="leading-5 text-xs w-16 overflow-hidden text-ellipsis">{story.profiles?.user_name}</p>
+            <p className="leading-5 text-xs text-center w-16 overflow-hidden text-ellipsis swiper-no-swiping">
+              {story.profiles?.user_name}
+            </p>
           </Link>
         </SwiperSlide>
       ))}

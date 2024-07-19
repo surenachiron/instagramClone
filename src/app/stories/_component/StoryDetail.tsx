@@ -10,7 +10,7 @@ const StoryDetail = () => {
   const { changeShowStories } = useStoriesAction();
 
   return (
-    <div className="flex justify-between items-center w-full">
+    <div className="hidden tablet:flex justify-between items-center w-full">
       <Image
         src={'/typography.svg'}
         alt="instagram typography"

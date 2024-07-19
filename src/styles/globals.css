@@ -26,21 +26,26 @@ body {
 }
 
 .postNav {
-  .swiper-pagination {
-    bottom: 15% !important;
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: white;
-  }
-
   .swiper-button-prev,
   .swiper-button-next {
-    color: white !important;
-    border: 1px solid white !important;
-    border-radius: 50% !important;
-    height: fit-content !important;
-    padding: 7px;
+    @media screen and (min-width: 760px) {
+      color: white !important;
+      border: 1px solid white !important;
+      border-radius: 50% !important;
+      height: fit-content !important;
+      padding: 7px;
+      opacity: 1;
+    }
+    opacity: 0;
+    width: 40px !important;
+    height: 100vh !important;
+    top: 0;
+    border: 0 !important;
+    border-radius: 0 !important;
+    right: 0;
+  }
+  .swiper-button-prev {
+    left: 0 !important;
   }
 
   .swiper-button-prev::after,

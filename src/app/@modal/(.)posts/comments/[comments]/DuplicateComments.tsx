@@ -3,8 +3,8 @@ import { cache } from 'react';
 import { supabaseServer } from '@/supabase/utils/server';
 import { getUser } from '@/supabase/getUser';
 
-import CommentsInfo from '../../[post]/_components/tools/CommentsInfo';
-import AddComment from '../../[post]/_components/tools/AddComment';
+import CommentsInfo from '@/app/posts/[post]/_components/tools/CommentsInfo';
+import AddComment from '@/app/posts/[post]/_components/tools/AddComment';
 
 const getPostsProfilesComments = cache(async (commentId: string) => {
   const supabase = supabaseServer();
@@ -16,7 +16,7 @@ const getPostsProfilesComments = cache(async (commentId: string) => {
   return data;
 });
 
-const CommentsPage = async ({ params }: { params: { comments: string } }) => {
+const DuplicateCommentsPage = async ({ params }: { params: { comments: string } }) => {
   const commentId = params.comments;
   const postData = await getPostsProfilesComments(commentId);
   const userData = await getUser();
@@ -24,7 +24,9 @@ const CommentsPage = async ({ params }: { params: { comments: string } }) => {
   return (
     <>
       {postData?.comments && postData.profiles && userData ? (
-        <div className={`flex flex-col justify-between w-full`}>
+        <div
+          className={`flex flex-col justify-between w-full bg-white text-black overflow-auto desktop:w-1/2 border-0 h-[100vh] desktop:h-[80vh] px-3 pb-12 tablet:pb-0`}
+        >
           <div className="h-full overflow-auto">
             <CommentsInfo
               post_id={postData.id}
@@ -47,4 +49,4 @@ const CommentsPage = async ({ params }: { params: { comments: string } }) => {
   );
 };
 
-export default CommentsPage;
+export default DuplicateCommentsPage;

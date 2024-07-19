@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { supabaseServer } from '@/supabase/utils/server';
 import { getUser } from '@/supabase/getUser';
 
-import PostTools from './_components/tools/PostTools';
-import CommentsInfo from './_components/tools/CommentsInfo';
-import UserPostInfo from './_components/UserPostInfo';
+import UserPostInfo from '@/app/posts/[post]/_components/UserPostInfo';
+import CommentsInfo from '@/app/posts/[post]/_components/tools/CommentsInfo';
+import PostTools from '@/app/posts/[post]/_components/tools/PostTools';
 
 const getFullPostsProfileComments = cache(async (post: string) => {
   const supabase = supabaseServer();
@@ -18,7 +18,7 @@ const getFullPostsProfileComments = cache(async (post: string) => {
   return data;
 });
 
-const ShowSinglePost = async ({ params }: { params: { post: string } }) => {
+const DuplicateShowSinglePost = async ({ params }: { params: { post: string } }) => {
   const post = params.post;
   const postData = await getFullPostsProfileComments(post);
   const userData = await getUser();
@@ -27,7 +27,7 @@ const ShowSinglePost = async ({ params }: { params: { post: string } }) => {
     <>
       {postData && postData.profiles && userData ? (
         <div
-          className={`flex tablet:flex-row flex-col w-full gap-x-3 gap-y-2 pt-2 tablet:pt-0 h-full tablet:h-[90vh] tablet:border`}
+          className={`flex tablet:flex-row flex-col w-full gap-x-3 gap-y-2 pt-2 tablet:pt-0 h-full tablet:h-[90vh] tablet:border bg-white text-black overflow-auto desktop:w-3/4 border-0 pb-12 tablet:pb-0`}
         >
           <div className="h-[450px] tablet:h-full w-full tablet:w-1/2 order-2 tablet:order-1 bg-grayMiddle">
             <Image src={postData.media_url} alt={postData.content} width={500} height={500} className="w-full h-full" />
@@ -80,4 +80,4 @@ const ShowSinglePost = async ({ params }: { params: { post: string } }) => {
   );
 };
 
-export default ShowSinglePost;
+export default DuplicateShowSinglePost;

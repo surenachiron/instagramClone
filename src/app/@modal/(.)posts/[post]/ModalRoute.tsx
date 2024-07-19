@@ -7,6 +7,7 @@ import { createPortal } from 'react-dom';
 import { CgClose } from 'react-icons/cg';
 
 import Button from '@/components/Button';
+import NavigateMobile from '@/app/(home)/_component/utileSide/NavigateMobile';
 
 export function ModalRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -42,6 +43,7 @@ export function ModalRoute({ children }: { children: React.ReactNode }) {
           <CgClose className="text-xl text-black" />
         </Button>
         {children}
+        <NavigateMobile />
       </dialog>
     </div>,
     document.getElementById('modal-root')!

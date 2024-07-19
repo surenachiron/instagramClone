@@ -34,7 +34,7 @@ body {
       border-radius: 50% !important;
       height: fit-content !important;
       padding: 7px;
-      opacity: 1;
+      opacity: 1 !important;
     }
     opacity: 0;
     width: 40px !important;

@@ -2,14 +2,11 @@
 
 import React, { useRef } from 'react';
 
-import { UseFormRegisterReturn } from 'react-hook-form';
-
 import Button from './Button';
 
 type Props = {
   classes: string;
   text: string | React.ReactNode;
-  register?: UseFormRegisterReturn;
   accept: string;
   onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string | undefined;

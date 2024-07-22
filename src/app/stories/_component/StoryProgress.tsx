@@ -1,20 +1,36 @@
-const StoryProgress = () => {
-  // const progressCount = useRef(null);
-  // const autoplay = 5000;
-  // function move() {
-  //   // const id = setInterval(frame, autoplay);
-  //   // function frame() {
-  //   //   if (progressCount.current.value === 5000) clearInterval(id);
-  //   //   else progressCount.current.value += 1000;
-  //   // }
-  //   console.log(progressCount.current.value);
-  // }
+'use client';
 
-  // useEffect(() => {
-  //   progressCount.current.value = 0;
-  // }, []);
+type Props = {
+  count: number;
+  activeIndex: number;
+  progress: number | null;
+  nested?: boolean;
+};
 
-  return <div className="absolute w-full">{/* <input type="range" ref={progressCount} /> */}</div>;
+const StoryProgress = ({ count, activeIndex, progress }: Props) => {
+  return (
+    <div className="w-full flex justify-center absolute mt-2">
+      <div className="w-[95%] flex gap-x-2 relative">
+        {Array.from({ length: count }, (_, storyIndex) => (
+          <div className="bg-grayMiddle h-[5px] w-full rounded-xl" key={storyIndex}>
+            <div
+              className={`progress-bar ${
+                activeIndex === storyIndex ? 'active' : storyIndex < activeIndex ? 'w-full' : 'w-0'
+              }`}
+              style={{
+                width:
+                  activeIndex === storyIndex
+                    ? `${typeof progress === 'number' ? (1 - progress) * 100 : 0}%`
+                    : count === 1
+                      ? '100%'
+                      : '',
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default StoryProgress;

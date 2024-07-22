@@ -7,7 +7,7 @@ export const getUser = cache(async () => {
   const supabase = supabaseServer();
 
   const { data } = await supabase.auth.getUser();
-  if (data.user == null) redirect('auth/login');
+  if (data.user == null) redirect('/auth/login');
 
   return {
     id: data.user.id,

@@ -10,7 +10,6 @@ export const setAvatar = async (formData: FormData) => {
   const file = formData.get('imageAvatar') as File;
   const oldAvatar = formData.get('oldAvatarUrl') as string;
   const filePath = RandomPath(file.name);
-  console.log(file, oldAvatar, filePath);
 
   const supabase = supabaseServer();
 

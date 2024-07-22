@@ -30,16 +30,17 @@ body {
   .swiper-button-next {
     @media screen and (min-width: 760px) {
       color: white !important;
+      mix-blend-mode: difference;
       border: 1px solid white !important;
       border-radius: 50% !important;
       height: fit-content !important;
       padding: 7px;
       opacity: 1 !important;
     }
+    top: 15% !important;
     opacity: 0;
-    width: 40px !important;
-    height: 100vh !important;
-    top: 0;
+    width: 25% !important;
+    height: 89% !important;
     border: 0 !important;
     border-radius: 0 !important;
     right: 0;
@@ -163,4 +164,17 @@ button:disabled {
   animation: fadeOut 0.5s forwards;
   opacity: 0;
   display: none;
+}
+
+.progress-bar {
+  max-width: 100%;
+  border-radius: 10px;
+  height: 5px;
+  width: 0;
+  background-color: white;
+  transform-origin: left;
+}
+
+.progress-bar.active {
+  transition: width 0.3s linear;
 }

@@ -6,35 +6,12 @@ import Link from 'next/link';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-
-import GradientContainer from '@/components/GradientContainer';
-import { useStoriesAction, useStoriesStore } from '@/store/stories';
-
 import 'swiper/css/pagination';
 import 'swiper/css';
 
-type TStory =
-  | {
-      id: string;
-      file_url?: string;
-      profiles: {
-        user_name: string | null;
-        avatar_url: string | null;
-      } | null;
-    }[]
-  | null;
-
-type PreviewStoriesT = {
-  data: TStory;
-  userData: {
-    id: string;
-    email: string | undefined;
-    fullName: string;
-    username: string;
-    avatar: string | undefined;
-  } | null;
-  userStoryData: TStory;
-};
+import GradientContainer from '@/components/GradientContainer';
+import { useStoriesAction, useStoriesStore } from '@/store/stories';
+import AddStoryModal from './AddStoryModal';
 
 const PreviewStoryMap = ({ data, userData, userStoryData }: PreviewStoriesT) => {
   const { changeShowStories, setInitialStory } = useStoriesAction();
@@ -57,7 +34,7 @@ const PreviewStoryMap = ({ data, userData, userStoryData }: PreviewStoriesT) => 
       modules={[Pagination]}
       className="!px-3 mr-2 z-0 flex gap-2"
     >
-      <SwiperSlide className="cursor-pointer w-20 h-20">
+      <SwiperSlide className="cursor-pointer w-20 h-20 relative">
         <Link href={`/stories`} className="flex items-center justify-center flex-col mr-0">
           <GradientContainer classes={`w-fit mb-1 ${!userStoryData?.length && 'bg-none'}`} borderGradient={true}>
             <Image
@@ -72,8 +49,8 @@ const PreviewStoryMap = ({ data, userData, userStoryData }: PreviewStoriesT) => 
             {userData?.username}
           </p>
         </Link>
+        <AddStoryModal />
       </SwiperSlide>
-
       {data?.map((story) => (
         <SwiperSlide key={story.id} onClick={() => startShowingStory(+story.id)} className="cursor-pointer w-16 h-20">
           <Link href={`/stories`} className="flex items-center justify-center flex-col mr-0">

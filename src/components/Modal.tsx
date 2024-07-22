@@ -13,10 +13,12 @@ type Props = {
   iconStyle?: string;
   parentIconStyle?: string;
   title?: string;
+  showClose?: boolean;
   showBackButton?: boolean;
   onClickBackButton?: () => void;
   divideClose?: boolean;
-  DialogContentClasses?: string;
+  dialogContentClasses?: string;
+  modalClass?: string;
   children: React.ReactNode;
 };
 
@@ -29,11 +31,13 @@ const Modal = forwardRef<HTMLDialogElement, Props>(
       iconStyle = 'rounded-full bg-blue p-[.3rem]',
       parentIconStyle,
       title,
+      showClose = true,
       showBackButton,
       onClickBackButton,
       children,
       divideClose = false,
-      DialogContentClasses,
+      dialogContentClasses,
+      modalClass,
     },
     ref
   ) => {
@@ -44,14 +48,14 @@ const Modal = forwardRef<HTMLDialogElement, Props>(
         <Button classes={`${parentIconStyle}`} onClick={onOpen}>
           <div className={`${iconStyle}`}>{icon}</div>
         </Button>
-        <dialog id="my_modal_3" className="modal z-[1000]" ref={ref}>
-          {divideClose && (
-            <form method="dialog" onClick={onClose} className={'absolute right-7 top-3'}>
+        <dialog id="my_modal_3" className={`modal z-[1000] ${modalClass}`} ref={ref}>
+          {showClose && divideClose && (
+            <form method="dialog" onClick={onClose} className="absolute right-7 top-3">
               <button className="btn btn-sm btn-circle btn-ghost bg-white">✕</button>
             </form>
           )}
-          <div className={`modal-box bg-white cursor-auto ${DialogContentClasses}`}>
-            {!divideClose && (
+          <div className={`modal-box bg-white cursor-auto ${dialogContentClasses}`}>
+            {showClose && !divideClose && (
               <form method="dialog" onClick={onClose}>
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
               </form>
@@ -59,7 +63,7 @@ const Modal = forwardRef<HTMLDialogElement, Props>(
             <h3 className="font-bold text-lg text-center w-full">{title}</h3>
             {showBackButton && (
               <button className="btn btn-sm btn-circle btn-ghost absolute left-2 top-2" onClick={onClickBackButton}>
-                <BsArrowLeft className="text-lg" />
+                <BsArrowLeft className="text-lg text-white mix-blend-difference" />
               </button>
             )}
             {title && <hr />}

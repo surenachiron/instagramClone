@@ -1,5 +1,3 @@
-import { cache } from 'react';
-
 import { supabaseServer } from '@/supabase/utils/server';
 import { getUser } from '@/supabase/getUser';
 
@@ -23,7 +21,7 @@ export interface UserStory {
   stories: Story[];
 }
 
-const getStories = cache(async (userId: string, followingIDs: (string | null)[]): Promise<UserStory[] | null> => {
+const getStories = async (userId: string, followingIDs: (string | null)[]): Promise<UserStory[] | null> => {
   const validateFollowingIds = followingIDs.filter((id) => id !== null);
   const supabase = supabaseServer();
   const { data } = await supabase
@@ -54,13 +52,13 @@ const getStories = cache(async (userId: string, followingIDs: (string | null)[])
   }));
 
   return userStoriesArray;
-});
+};
 
-const getFollowings = cache(async (userId: string) => {
+const getFollowings = async (userId: string) => {
   const supabase = supabaseServer();
   const { data } = await supabase.from('follows').select('followed_id').eq('follower_id', userId);
   return data;
-});
+};
 
 const ShowStoriesPage = async () => {
   const userInfo = await getUser();

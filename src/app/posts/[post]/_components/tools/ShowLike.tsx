@@ -45,7 +45,6 @@ const ShowLike = ({
         .eq('post_id', postId)
         .eq('user_id', userId)
         .single();
-      console.log(isUserLikedError, error);
       if (error || isUserLikedError) {
         setData(count);
         setHasLiked(false);

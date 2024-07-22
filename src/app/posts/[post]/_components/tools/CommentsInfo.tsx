@@ -68,7 +68,7 @@ const CommentsInfo = ({ post_id, profiles, caption, errorClasses = 'h-1/2' }: Pr
           <span className="text-sm">{caption}</span>
         </div>
       </div>
-      <div className="overflow-auto min-h-1/2 h-[90%] flex">
+      <div className="min-h-1/2 h-[90%] flex">
         {loading ? (
           <CommentsLoading />
         ) : data && data.length ? (

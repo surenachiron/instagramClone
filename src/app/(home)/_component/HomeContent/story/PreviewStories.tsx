@@ -68,10 +68,14 @@ const PreviewStories = async () => {
 
   return (
     <>
-      {data && !error && <PreviewStoryMap data={data} userData={userData} userStoryData={userStories} />}
-      <div className="flex justify-center">
-        <hr className="w-4/5 h-0.5 my-3 bg-[#e2e2e2]" />
-      </div>
+      {data && !error && (
+        <>
+          <PreviewStoryMap data={data} userData={userData} userStoryData={userStories} />
+          <div className="flex justify-center">
+            <hr className="w-4/5 h-0.5 my-3 bg-[#e2e2e2]" />
+          </div>
+        </>
+      )}
     </>
   );
 };

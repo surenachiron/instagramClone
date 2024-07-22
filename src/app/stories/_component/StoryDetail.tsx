@@ -16,7 +16,7 @@ const StoryDetail = () => {
         alt="instagram typography"
         width={50}
         height={35}
-        className="w-32 bg-white p-1 rounded-lg"
+        className="w-32 h-10 bg-white p-1 rounded-lg"
       />
       <Button classes="border-2 border-white rounded-full p-1">
         <Link href={'/'}>

@@ -13,9 +13,7 @@ export const setAvatar = async (formData: FormData) => {
 
   const supabase = supabaseServer();
 
-  const userData = await getUser();
-  if (!userData) return redirect('/auth/login');
-
+  await getUser();
   await supabase.storage.from('avatars').remove([oldAvatar]);
   const { data, error } = await supabase.storage.from('avatars').upload(filePath, file, {
     cacheControl: '3600',

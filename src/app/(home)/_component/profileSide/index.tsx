@@ -14,7 +14,7 @@ const getProfileWithPosts = cache(async () => {
     .from('profiles')
     .select(`*, posts(id, media_url)`)
     .eq('user_name', enterUsername)
-    .limit(3, { foreignTable: 'posts' })
+    .limit(9, { foreignTable: 'posts' })
     .single();
   return data;
 });
@@ -24,7 +24,7 @@ const ProfileSide = async () => {
   const data = await getProfileWithPosts();
 
   return (
-    <Box classes="col-span-1 h-fit rounded-md desktop:flex hidden">
+    <Box classes="col-span-1 h-fit rounded-md desktop:flex hidden bg-none sticky top-16">
       {data ? (
         <ProfileInfo
           profile={{
@@ -41,7 +41,7 @@ const ProfileSide = async () => {
                 <CopyLink
                   text="Share profile"
                   customPath={`/profile/${enterUsername}`}
-                  classes="bg-[#f1f1f1] justify-center"
+                  classes="bg-[#f1f1f1] justify-center text-[14px]"
                 />
               ),
             },

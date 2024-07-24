@@ -31,7 +31,7 @@ const CaptionAndTools = ({ caption, postId, user }: Props) => {
     <div className="absolute bottom-0 w-full px-4 py-3 text-white flex justify-between items-center bg-[#80808014]">
       <p className="text-white text-sm" onClick={showFullCaption}>
         {!showContent ? (
-          <div className="max-h-[100px] overflow-auto fade-in">{caption}</div>
+          <div className="max-h-[100px] overflow-auto overflow-width-scroll fade-in">{caption}</div>
         ) : (
           textReducer({ text: caption, min: 0, max: 100, additionally: '...' })
         )}

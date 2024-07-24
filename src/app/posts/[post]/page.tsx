@@ -40,7 +40,7 @@ const ShowSinglePost = async ({ params }: { params: { post: string } }) => {
               avatar={postData.media_url}
             />
             <hr className="hidden tablet:block w-full mt-1" />
-            <div className="hidden tablet:block h-full overflow-auto relative">
+            <div className="hidden tablet:block h-full overflow-auto overflow-width-scroll relative">
               <CommentsInfo
                 post_id={postData.id}
                 profiles={{ avatar_url: postData.profiles.avatar_url!, user_name: postData.profiles.user_name! }}

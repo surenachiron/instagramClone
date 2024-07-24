@@ -8,7 +8,7 @@ import { ModalRoute } from './ModalRoute';
 const SinglePostLoading = () => {
   return (
     <ModalRoute>
-      <div className="flex tablet:flex-row flex-col w-full tablet:w-3/4 gap-x-3 gap-y-2 pt-2 tablet:pt-0 h-full tablet:h-auto desktop:h-[90vh] bg-white text-black overflow-auto">
+      <div className="flex tablet:flex-row flex-col w-full tablet:w-3/4 gap-x-3 gap-y-2 pt-2 tablet:pt-0 h-full tablet:h-auto desktop:h-[90vh] bg-white text-black overflow-auto overflow-width-scroll">
         <Skeleton
           parentClass="h-[70vh] tablet:h-auto w-full tablet:w-1/2 order-2 tablet:order-1"
           classes="h-full w-full"

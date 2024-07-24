@@ -25,7 +25,7 @@ const CommentsPage = async ({ params }: { params: { comments: string } }) => {
     <>
       {postData?.comments && postData.profiles && userData ? (
         <div className={`flex flex-col justify-between w-full`}>
-          <div className="h-full overflow-auto">
+          <div className="h-full overflow-auto overflow-width-scroll">
             <CommentsInfo
               post_id={postData.id}
               profiles={{ avatar_url: postData.profiles.avatar_url!, user_name: postData.profiles.user_name! }}

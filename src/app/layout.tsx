@@ -34,7 +34,7 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
           <CookiesToLocal namVal="username" val={username} />
           {modal && <div id="modal-root">{modal}</div>}
           {children}
-          <ToastContainer autoClose={3000} />
+          <ToastContainer autoClose={15000} bodyClassName={'z-[999999999]'} />
         </div>
       </body>
     </html>

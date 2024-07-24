@@ -34,7 +34,7 @@ const PreviewStoryMap = ({ data, userData, userStoryData }: PreviewStoriesT) => 
       modules={[Pagination]}
       className="!px-3 mr-2 z-0 flex gap-2"
     >
-      <SwiperSlide className="cursor-pointer w-20 h-20 relative">
+      <SwiperSlide className="cursor-pointer w-20 h-20">
         <Link href={`/stories`} className="flex items-center justify-center flex-col mr-0">
           <GradientContainer classes={`w-fit mb-1 ${!userStoryData?.length && 'bg-none'}`} borderGradient={true}>
             <Image

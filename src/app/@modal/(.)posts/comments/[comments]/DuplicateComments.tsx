@@ -25,9 +25,9 @@ const DuplicateCommentsPage = async ({ params }: { params: { comments: string } 
     <>
       {postData?.comments && postData.profiles && userData ? (
         <div
-          className={`flex flex-col justify-between w-full bg-white text-black overflow-auto desktop:w-1/2 border-0 h-[100vh] desktop:h-[80vh] px-3 pb-12 tablet:pb-0`}
+          className={`flex flex-col justify-between w-full bg-white text-black overflow-auto overflow-width-scroll desktop:w-1/2 border-0 h-[100vh] desktop:h-[80vh] px-3 pb-12 tablet:pb-0`}
         >
-          <div className="h-full overflow-auto">
+          <div className="h-full overflow-auto overflow-width-scroll">
             <CommentsInfo
               post_id={postData.id}
               profiles={{ avatar_url: postData.profiles.avatar_url!, user_name: postData.profiles.user_name! }}

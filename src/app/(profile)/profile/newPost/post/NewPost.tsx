@@ -44,11 +44,12 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
     formData.append('media', data.media[0]);
     setLoading(true);
     const res = await createNewPost(formData);
-    if (res) toast.success('Post created');
-    else toast.error(`Couldn't create post`);
+    if (res) {
+      toast.success('Post created');
+      newPostRef.current?.close();
+      backAction();
+    } else toast.error('Something went wrong, try again.');
     setLoading(false);
-    newPostRef.current?.close();
-    backAction();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +79,7 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
 
   return (
     <Modal
-      onOpen={() => newPostRef.current?.showModal()}
+      onOpen={() => newPostRef.current?.show()}
       onClose={() => backAction()}
       icon={icon}
       iconStyle={'w-full bg-blue gap-x-2 text-white font-light rounded-2xl p-2'}

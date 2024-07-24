@@ -15,7 +15,7 @@ export function ModalRoute({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!dialogRef.current?.open) {
-      dialogRef.current?.showModal();
+      dialogRef.current?.show();
     }
   }, []);
 
@@ -34,7 +34,8 @@ export function ModalRoute({ children }: { children: React.ReactNode }) {
   };
 
   return createPortal(
-    <div className="modal-backdrop" onClick={(e) => handleBackdropClick(e, dialogRef, onDismiss)}>
+    <div className="modal-backdrop relative z-[1000]" onClick={(e) => handleBackdropClick(e, dialogRef, onDismiss)}>
+      <div className="fixed inset-0 bg-black opacity-30"></div>
       <dialog ref={dialogRef} className="modal text-white" onClose={onDismiss}>
         <Button
           onClick={onDismiss}

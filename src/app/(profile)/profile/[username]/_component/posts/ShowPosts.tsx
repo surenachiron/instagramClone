@@ -23,7 +23,7 @@ const ShowPosts = ({ data }: { data: ShowSingePosts }) => {
               className="col-span-4 h-40 tablet:h-64 desktop:h-[300px] group transition-all relative cursor-pointer bg-grayMiddle"
               onClick={() => {
                 setInitialPost(index);
-                newPostRef.current?.showModal();
+                newPostRef.current?.show();
               }}
             >
               <Image

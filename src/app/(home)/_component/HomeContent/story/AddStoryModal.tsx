@@ -40,11 +40,10 @@ const AddStoryModal = () => {
       const formData = new FormData();
       formData.append('storyImage', file);
       const res = await setStory(formData);
-      if (res) {
-        myModal.current?.close();
-        backAction();
-        toast.success('Story uploaded.');
-      } else toast.error('Something went wrong, please try again.');
+      if (res) toast.success('Story uploaded.');
+      else toast.error('Something went wrong, please try again.');
+      myModal.current?.close();
+      backAction();
     }
   };
 
@@ -86,13 +85,13 @@ const AddStoryModal = () => {
             </div>
           </Button>
         }
-        classes="border px-1 py-1 bg-blue text-white border-1 border-grayLight rounded-full absolute bottom-0 right-0"
+        classes="border px-1 py-1 bg-blue text-white border-1 border-grayLight rounded-full absolute bottom-[15px] right-0"
         onChangeEvent={handleChange}
         error={errors.storyMedia?.message}
         accept="image/png, image/jpeg, image/jpg"
       />
       <Modal
-        onOpen={() => myModal.current?.showModal()}
+        onOpen={() => myModal.current?.show()}
         ref={myModal}
         showClose={false}
         showBackButton={showBackAction}

@@ -16,6 +16,7 @@ import Modal from '@/components/Modal';
 import UploadSvg from '@/components/Icons/UploadSvg';
 import Button from '@/components/Button';
 import FileInput from '@/components/FileInput';
+import { toast } from 'react-toastify';
 
 type Props = { icon?: React.ReactElement | string; iconStyle?: string; parentIconStyle?: string };
 
@@ -28,6 +29,7 @@ const UploadAvatar = ({
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
+    setValue,
   } = useForm<ImageAvatarData>({
     resolver: zodResolver(RegistrationImageAvatarSchema),
     mode: 'onChange',
@@ -51,6 +53,8 @@ const UploadAvatar = ({
       if (result?.response) {
         localStorage.setItem('avatar', result.newFile!);
       }
+      if (result?.response) toast.success('Avatar changed.');
+      else toast.error('Something went wrong, try again.');
     }
   };
 
@@ -63,10 +67,10 @@ const UploadAvatar = ({
     if (avatar_url.length > 1) {
       const result = await removeAvatar(avatar_url);
       if (result) {
-        setRemoveStatus({ text: 'your avatar removed.', status: true });
+        toast.success('Your avatar removed.');
         localStorage.removeItem('avatar');
       }
-    } else setRemoveStatus({ text: 'you have no avatar.', status: false });
+    } else toast.error('Your have no avatar.');
     setLoading('removingAvatar', false);
   };
 
@@ -74,6 +78,7 @@ const UploadAvatar = ({
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
+      setValue('imageAvatar', e.target.files!);
       reader.onloadend = () => {
         setShowSelectedImage(reader.result as string);
       };
@@ -89,7 +94,7 @@ const UploadAvatar = ({
 
   return (
     <Modal
-      onOpen={() => uploadAvatarRef.current?.showModal()}
+      onOpen={() => uploadAvatarRef.current?.show()}
       onClose={() => closeModal()}
       icon={icon}
       iconStyle={iconStyle}

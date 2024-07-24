@@ -44,11 +44,10 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
     formData.append('media', data.media[0]);
     setLoading(true);
     const res = await createNewPost(formData);
-    if (res) {
-      toast.success('Post created');
-      newPostRef.current?.close();
-      backAction();
-    } else toast.error('Something went wrong, try again.');
+    if (res) toast.success('Post created');
+    else toast.error('Something went wrong, try again.');
+    newPostRef.current?.close();
+    backAction();
     setLoading(false);
   };
 
@@ -79,7 +78,7 @@ const NewPost = ({ icon = <IoMdAddCircleOutline className="text-2xl" /> }: Props
 
   return (
     <Modal
-      onOpen={() => newPostRef.current?.show()}
+      onOpen={() => newPostRef.current?.showModal()}
       onClose={() => backAction()}
       icon={icon}
       iconStyle={'w-full bg-blue gap-x-2 text-white font-light rounded-2xl p-2'}

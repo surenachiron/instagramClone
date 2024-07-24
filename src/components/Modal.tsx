@@ -48,7 +48,8 @@ const Modal = forwardRef<HTMLDialogElement, Props>(
         <Button classes={`${parentIconStyle}`} onClick={onOpen}>
           <div className={`${iconStyle}`}>{icon}</div>
         </Button>
-        <dialog id="my_modal_3" className={`modal z-[1000] ${modalClass}`} ref={ref}>
+        <dialog className={`modal z-[1000] ${modalClass}`} ref={ref}>
+          <div className="fixed inset-0 bg-black opacity-40" onClick={onClose}></div>
           {showClose && divideClose && (
             <form method="dialog" onClick={onClose} className="absolute right-7 top-3">
               <button className="btn btn-sm btn-circle btn-ghost bg-white">✕</button>

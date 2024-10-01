@@ -3,6 +3,8 @@
 Instagram Clone is a demo application that mimics the core functionalities of Instagram. In this app, users can browse through posts, like photos, and follow other users, providing an experience similar to the original Instagram platform.
 
  <!-- Replace with the actual image link -->
+![Untitled2](https://github.com/user-attachments/assets/65e83ecf-de18-4fe7-b7c7-7eaf7358c67c)
+
 
 # Technologies:
 
